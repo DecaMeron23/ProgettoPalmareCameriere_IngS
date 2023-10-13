@@ -1,2 +1,4 @@
-# ProgettoOspedale_IngS
-Progetto di ingegneria del software
+# ProgettoPalmareCameriere_IngS
+Progetto Ingegneria del Software
+
+Il file del Project Plane è :
