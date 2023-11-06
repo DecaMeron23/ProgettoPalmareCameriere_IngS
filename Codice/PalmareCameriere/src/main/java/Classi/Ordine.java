@@ -13,11 +13,23 @@ public class Ordine {
 	private List<PiattoOrdinato> lista_piatti_ordinati;
 	private double prezzo_parziale;
 
-	public Ordine() {
-		lista_piatti_ordinati = new ArrayList<>();
-		prezzo_parziale = 0;
+	public Ordine(List<PiattoOrdinato> lista_piatti_ordinati) {
+		this.lista_piatti_ordinati = lista_piatti_ordinati;
+		elimina_occorrenze_zero();
+		aggiorna_prezzo_parziale();
 	}
 	
+
+	private void elimina_occorrenze_zero() {
+		List<PiattoOrdinato> lista_da_eliminare = new ArrayList<>();
+		for (PiattoOrdinato piattoOrdinato : lista_piatti_ordinati) {
+			if(piattoOrdinato.getQuantita() == 0) {
+				lista_da_eliminare.add(piattoOrdinato);
+			}
+		}
+		lista_piatti_ordinati.removeAll(lista_da_eliminare);
+	}
+
 
 	public double getPrezzo_parziale() {
 		aggiorna_prezzo_parziale();

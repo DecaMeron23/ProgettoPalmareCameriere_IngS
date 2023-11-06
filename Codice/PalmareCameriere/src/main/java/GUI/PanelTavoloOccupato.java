@@ -21,6 +21,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import Classi.Componente;
+import Classi.Ordine;
 import Classi.Piatto;
 import Classi.PiattoOrdinato;
 import Classi.ResocontoTavolo;
@@ -37,23 +38,24 @@ public class PanelTavoloOccupato extends JPanel {
 	private Text_Commento_Piatto commento_piatto;
 	private Panel_Ordini_Tavolo_Occupato panel_sx;
 	private JLabel lbl_totale;
+	private Bottone_Invia btn_invia;
+	private Bottone_Paga btn_paga;
 
 	public PanelTavoloOccupato(Tavolo tavolo, List<Componente> lista_componenti) {
 		resoconto_tavolo = tavolo.resoconto_tavolo;
 		lista_piatti_ordinati = new ArrayList<>();
 		commento_piatto = new Text_Commento_Piatto("Commenti vanno Qui!!");
 		aggiungi = new JButton("Aggiungi");
-		
-		lbl_totale = new JLabel();
-		Bottone_Invia btn_invia = new Bottone_Invia();
-		Bottone_Paga btn_paga = new Bottone_Paga();
-		panel_sx = new Panel_Ordini_Tavolo_Occupato(btn_invia , btn_paga , lbl_totale);
+
+		lbl_totale = new JLabel("Importo Totale: " + resoconto_tavolo.getPrezzo_totale() + " €");
+		btn_invia = new Bottone_Invia();
+		btn_paga = new Bottone_Paga();
+		panel_sx = new Panel_Ordini_Tavolo_Occupato(btn_invia, btn_paga, lbl_totale);
 		JPanel panel_dx = new JPanel();
 		JPanel panelDX_Basso = new JPanel();
 		JTabbedPane tabbedCoponenti = new JTabbedPane();
 		JScrollPane scroll_pane_sx = new JScrollPane(panel_sx);
-		
-		
+
 		// setting Layout
 		setLayout(new BorderLayout());
 		panel_dx.setLayout(new BorderLayout());
@@ -115,14 +117,6 @@ public class PanelTavoloOccupato extends JPanel {
 		}
 	}
 
-	public void repaint_panel_sx() {
-		panel_sx.panel_sopra.removeAll();
-		for (PiattoOrdinato piatto_ordinato : lista_piatti_ordinati) {
-			Piatto_Ordinato_Piu_Meno_Text element = new Piatto_Ordinato_Piu_Meno_Text(piatto_ordinato);
-			panel_sx.panel_sopra.add(element);
-		}
-	}
-
 	class ChangeListener_Tabbet_Componenti implements ChangeListener {
 
 		@Override
@@ -147,7 +141,7 @@ public class PanelTavoloOccupato extends JPanel {
 			// aggiorniamo il panel_DX
 			repaint_panel_dx();
 			// il panel_SX
-			repaint_panel_sx();
+			panel_sx.repaint_panel();
 
 		}
 
@@ -157,65 +151,91 @@ public class PanelTavoloOccupato extends JPanel {
 
 		public Bottone_Invia() {
 			super("Invia");
-			setVisible(true);
 			setEnabled(false);
 			addActionListener(new ActionListener_btn_invia());
 		}
 
-		class ActionListener_btn_invia implements ActionListener{
+		class ActionListener_btn_invia implements ActionListener {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				setEnabled(false);
+				Ordine ordine = new Ordine(lista_piatti_ordinati);
+				resoconto_tavolo.aggingiOrdine(ordine);
+				lista_piatti_ordinati = new ArrayList<PiattoOrdinato>();
+				panel_sx.repaint_panel();
 			}
-			
+
 		}
 
 	}
-	
+
 	class Bottone_Paga extends JButton {
-		
+
 		public Bottone_Paga() {
 			super("Pagato");
 			boolean btn_attivare = !resoconto_tavolo.getLista_ordini().isEmpty();
-			setVisible(true);
 			setEnabled(btn_attivare);
 			addActionListener(new ActionListener_btn_paga());
 		}
-		
-		class ActionListener_btn_paga implements ActionListener{
+
+		class ActionListener_btn_paga implements ActionListener {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 			}
-			
+
 		}
 	}
 
-	// classe per il panel di sinistra	
+	// classe per il panel di sinistra
 	class Panel_Ordini_Tavolo_Occupato extends JPanel {
 
 		public JPanel panel_sopra;
 		public JPanel panel_sotto;
-		
+
 		public Panel_Ordini_Tavolo_Occupato(Bottone_Invia btn_invia, Bottone_Paga btn_paga, JLabel lbl_totale) {
 
 			panel_sopra = new JPanel();
 			panel_sotto = new JPanel();
-			
+
 			panel_sopra.setLayout(new BoxLayout(panel_sopra, BoxLayout.Y_AXIS));
-			
-			panel_sotto.setLayout(new BorderLayout());
-			panel_sotto.add(btn_paga,  BorderLayout.WEST);
-			panel_sotto.add(btn_invia , BorderLayout.EAST);
-			panel_sotto.add(lbl_totale , BorderLayout.CENTER);
-			
+
+			panel_sotto.setLayout(new GridLayout(0, 3));
+			panel_sotto.add(btn_paga, BorderLayout.WEST);
+			panel_sotto.add(btn_invia, BorderLayout.EAST);
+
+			// mettere prezzo sopra pulsanti
+			panel_sotto.add(lbl_totale, BorderLayout.CENTER);
+
 			setLayout(new BorderLayout());
-			add(panel_sopra , BorderLayout.CENTER);
-			add(panel_sotto , BorderLayout.SOUTH);
+			add(panel_sopra, BorderLayout.CENTER);
+			add(panel_sotto, BorderLayout.SOUTH);
 		}
+		
+		public void repaint_panel() {
+			panel_sopra.removeAll();
+			panel_sopra.removeAll();
+			panel_sopra.revalidate();
+			panel_sopra.repaint();
+			for (PiattoOrdinato piatto_ordinato : lista_piatti_ordinati) {
+				Piatto_Ordinato_Piu_Meno_Text element = new Piatto_Ordinato_Piu_Meno_Text(piatto_ordinato);
+				panel_sx.panel_sopra.add(element);
+			}
+			if (lista_piatti_ordinati.size() > 0) {
+				btn_invia.setEnabled(true);
+			}
+			aggiorna_prezzo();
+		}
+
+		private void aggiorna_prezzo() {
+			lbl_totale.setText("Importo Totale: " + resoconto_tavolo.getPrezzo_totale() + " €");
+		}
+
 	}
+	
+	
 
 	class PanelComponente extends JPanel {
 

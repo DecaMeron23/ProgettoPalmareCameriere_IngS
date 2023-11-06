@@ -38,6 +38,7 @@ public class ResocontoTavolo {
     	for (Ordine ordine : lista_ordini) {
 			prezzo += ordine.getPrezzo_parziale();
 		}
+    	prezzo_totale = prezzo;
 	}
 
 	private void setPrezzo_totale(double prezzo_totale) {
