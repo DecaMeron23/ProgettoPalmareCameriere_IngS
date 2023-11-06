@@ -12,15 +12,15 @@ public class PiattoOrdinato {
 	private double prezzo;
 	private String commento;
 
-	public PiattoOrdinato(int quantita , String commento , Piatto piatto) {
+	public PiattoOrdinato(int quantita, String commento , Piatto piatto) {
 		super();
-		this.quantita  = quantita ;
+		this.quantita = quantita;
 		this.commento = commento;
 		this.piatto = piatto;
 	}
 
-	public int getQuantita () {
-		return quantita ;
+	public int getQuantita() {
+		return quantita;
 	}
 
 	public double getPrezzo() {
@@ -29,15 +29,15 @@ public class PiattoOrdinato {
 	}
 
 	private void aggiornaPrezzo() {
-		prezzo = piatto.getPrezzo() * quantita ;
+		prezzo = piatto.getPrezzo() * quantita;
 	}
 
 	public String getCommento() {
 		return commento;
 	}
 
-	public void setQuantita (int quantita ) {
-		this.quantita = quantita ;
+	public void setQuantita(int quantita) {
+		this.quantita = quantita;
 	}
 	
 	public void setCommento(String commento) {
