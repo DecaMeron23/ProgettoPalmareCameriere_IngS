@@ -10,6 +10,8 @@ import java.util.List;
 
 public class ResocontoTavolo {
     
+	private static final double COSTO_COPERTO  = 2;
+	
 	private int num_coperti;
     private double prezzo_totale;
     private List<Ordine> lista_ordini;
@@ -26,20 +28,23 @@ public class ResocontoTavolo {
         return num_coperti;
     }
 
-    private double getPrezzo_totale() {
+    public double getPrezzo_totale() {
+        aggiorna_prezzo_totale();
         return prezzo_totale;
     }
 
-    private void setNum_coperti(int num_coperti) {
-        this.num_coperti = num_coperti;
-    }
+    private void aggiorna_prezzo_totale() {
+    	double prezzo = num_coperti * COSTO_COPERTO;
+    	for (Ordine ordine : lista_ordini) {
+			prezzo += ordine.getPrezzo_parziale();
+		}
+	}
 
-    private void setPrezzo_totale(double prezzo_totale) {
+	private void setPrezzo_totale(double prezzo_totale) {
         this.prezzo_totale = prezzo_totale;
     }
 
     public void aggingiOrdine(Ordine ordine) {
-    	ordine.setPrecedenza(numero_ordini++);
 		lista_ordini.add(ordine);
 	}
     public List<Ordine> getLista_ordini() {

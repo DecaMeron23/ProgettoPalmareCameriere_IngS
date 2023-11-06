@@ -5,28 +5,30 @@
 */
 package Classi;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Ordine {
 
-	private int precedenza;
 	private List<PiattoOrdinato> lista_piatti_ordinati;
-
 	private double prezzo_parziale;
 
-	private int getPrecedenza() {
-		return precedenza;
+	public Ordine() {
+		lista_piatti_ordinati = new ArrayList<>();
+		prezzo_parziale = 0;
 	}
+	
 
-	private double getPrezzo_parziale() {
+	public double getPrezzo_parziale() {
+		aggiorna_prezzo_parziale();
 		return prezzo_parziale;
 	}
 
-	public void setPrecedenza(int precedenza) {
-		this.precedenza = precedenza;
-	}
-
-	private void setPrezzo_parziale(double prezzo_parziale) {
-		this.prezzo_parziale = prezzo_parziale;
+	private void aggiorna_prezzo_parziale() {
+		double prezzo = 0;
+		for (PiattoOrdinato piatto_ordinato : lista_piatti_ordinati) {
+			prezzo += prezzo + piatto_ordinato.getPrezzo() * piatto_ordinato.getQuantita();
+		}
+		prezzo_parziale = prezzo;
 	}
 }
