@@ -10,10 +10,9 @@ import Classi.Enum.Stato_Tavolo;
 public class Tavolo {
 
 	private int nome;
-
 	private int num_posti_massimi;
-
 	private Stato_Tavolo stato;
+	private ResocontoTavolo resoconto_tavolo;
 
 	public Tavolo(int nome, int num_post_massimi) {
 		super();

@@ -8,19 +8,19 @@ package Classi;
 public class PiattoOrdinato {
 
 	private Piatto piatto;
-	private int quantit√†;
+	private int quantita;
 	private double prezzo;
 	private String commento;
 
-	public PiattoOrdinato(int quantit√†, String commento , Piatto piatto) {
+	public PiattoOrdinato(int quantita†, String commento , Piatto piatto) {
 		super();
-		this.quantit√† = quantit√†;
+		this.quantita† = quantita†;
 		this.commento = commento;
 		this.piatto = piatto;
 	}
 
-	public int getQuantit√†() {
-		return quantit√†;
+	public int getQuantita†() {
+		return quantita†;
 	}
 
 	public double getPrezzo() {
@@ -29,15 +29,15 @@ public class PiattoOrdinato {
 	}
 
 	private void aggiornaPrezzo() {
-		prezzo = piatto.getPrezzo() * quantit√†;
+		prezzo = piatto.getPrezzo() * quantita†;
 	}
 
 	public String getCommento() {
 		return commento;
 	}
 
-	public void setQuantit√†(int quantit√†) {
-		this.quantit√† = quantit√†;
+	public void setQuantita†(int quantita†) {
+		this.quantita = quantita†;
 	}
 	
 	public void setCommento(String commento) {
