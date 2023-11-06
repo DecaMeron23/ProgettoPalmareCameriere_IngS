@@ -36,5 +36,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/PrototipoPalmareCliente_Vecchio/miglayout15-swing.jar" sourcepath="/PrototipoPalmareCliente_Vecchio/miglayout-src.zip"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -5,9 +5,6 @@
 */
 package Classi;
 
-import java.util.*;
-import java.time.*;
-
 public class Piatto {
 
 	private String nome;
@@ -33,5 +30,13 @@ public class Piatto {
 
 	private void setPrezzo(double prezzo) {
 		this.prezzo = prezzo;
+	}
+
+	public boolean equals(Piatto p) {
+		if(p == null) {
+			return false;
+		}
+		return this.nome.equals(p.nome) && this.prezzo == p.prezzo;
+
 	}
 }

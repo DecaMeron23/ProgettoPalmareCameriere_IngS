@@ -12,13 +12,14 @@ public class Tavolo {
 	private int nome;
 	private int num_posti_massimi;
 	private Stato_Tavolo stato;
-	private ResocontoTavolo resoconto_tavolo;
+	public ResocontoTavolo resoconto_tavolo;
 
 	public Tavolo(int nome, int num_post_massimi) {
 		super();
 		this.nome = nome;
 		this.num_posti_massimi = num_post_massimi;
 		stato = Stato_Tavolo.LIBERO;
+		
 	}
 
 	public int getNome() {

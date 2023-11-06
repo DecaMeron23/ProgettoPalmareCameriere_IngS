@@ -42,4 +42,7 @@ public class ResocontoTavolo {
     	ordine.setPrecedenza(numero_ordini++);
 		lista_ordini.add(ordine);
 	}
+    public List<Ordine> getLista_ordini() {
+		return lista_ordini;
+	}
 }

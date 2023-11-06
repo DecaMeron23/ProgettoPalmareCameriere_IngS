@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import Classi.ResocontoTavolo;
 import Classi.Tavolo;
 import Classi.Enum.Stato_Tavolo;
 
@@ -68,6 +69,7 @@ public class FrameTavoloLiberoCoperti extends JFrame {
 				int coperti = Integer.parseInt(lbl_text.getText());
 				//tavolo.resoconto.setNumero_coperti(coperti);
 				tavolo.setStato(Stato_Tavolo.OCCUPATO);
+				tavolo.resoconto_tavolo = new ResocontoTavolo(coperti);
 				dispose();
 			}
 		});

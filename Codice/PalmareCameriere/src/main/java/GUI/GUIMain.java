@@ -65,7 +65,6 @@ public class GUIMain extends JFrame {
 		btn_impostazioni = new JButton("Impostazioni");
 
 		btn_tavoli.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				open_panel_tavoli();
