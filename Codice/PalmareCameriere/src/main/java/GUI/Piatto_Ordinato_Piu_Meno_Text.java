@@ -2,8 +2,6 @@ package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,6 +15,7 @@ import Classi.PiattoOrdinato;
 
 public class Piatto_Ordinato_Piu_Meno_Text extends JPanel {
 
+	private static final long serialVersionUID = 4372601481061137751L;
 	PiattoOrdinato piatto_ordinato;
 	JLabel lbl_nome_piatto;
 	JLabel lbl_numero_ordini;
@@ -61,6 +60,8 @@ public class Piatto_Ordinato_Piu_Meno_Text extends JPanel {
 
 	class Panel_Up extends JPanel {
 
+		private static final long serialVersionUID = -131067429834709115L;
+
 		public Panel_Up(PiattoOrdinato piatto_ordinato) {
 			lbl_nome_piatto = new JLabel(piatto_ordinato.getPiatto().getNome());
 			btn_meno = new JButton("-");
@@ -85,6 +86,9 @@ public class Piatto_Ordinato_Piu_Meno_Text extends JPanel {
 	}
 
 	class Panel_Down extends JPanel {
+
+	
+		private static final long serialVersionUID = 2888129150603015263L;
 
 		public Panel_Down(PiattoOrdinato piatto_ordinato) {
 			setLayout(new BorderLayout());

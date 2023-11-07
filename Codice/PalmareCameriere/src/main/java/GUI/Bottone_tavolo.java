@@ -1,4 +1,5 @@
 package GUI;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 
@@ -10,23 +11,25 @@ import Classi.Tavolo;
 
 public class Bottone_tavolo extends JButton {
 
+	private static final long serialVersionUID = 1024426268537840715L;
+
 	private Tavolo tavolo;
 
 	public Bottone_tavolo(Tavolo tavolo) {
-		JLabel lblNome = new JLabel("Tavolo Numero: " + tavolo.getNome()); 
-		JLabel lblPosti = new JLabel("Posti Disponibili: " + tavolo.getNum_posti_massimi()); 
-		
+		JLabel lblNome = new JLabel("Tavolo Numero: " + tavolo.getNome());
+		JLabel lblPosti = new JLabel("Posti Disponibili: " + tavolo.getNum_posti_massimi());
+
 		lblNome.setHorizontalAlignment(SwingConstants.CENTER);
-		//lblNome.setVerticalAlignment(SwingConstants.NORTH);
-		
+		// lblNome.setVerticalAlignment(SwingConstants.NORTH);
+
 		lblPosti.setHorizontalAlignment(SwingConstants.CENTER);
-		//lblPosti.setVerticalAlignment(SwingConstants.SOUTH);
-		
+		// lblPosti.setVerticalAlignment(SwingConstants.SOUTH);
+
 		setLayout(new BorderLayout());
-		
-		add(lblNome , BorderLayout.NORTH);
-		add(lblPosti , BorderLayout.SOUTH);
-		
+
+		add(lblNome, BorderLayout.NORTH);
+		add(lblPosti, BorderLayout.SOUTH);
+
 		this.tavolo = tavolo;
 		aggiornaStato();
 	}
@@ -54,7 +57,7 @@ public class Bottone_tavolo extends JButton {
 	public Tavolo getTavolo() {
 		return tavolo;
 	}
-	
+
 	public boolean equals(Tavolo tavolo) {
 		return this.tavolo.equals(tavolo);
 	}

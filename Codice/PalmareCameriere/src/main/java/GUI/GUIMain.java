@@ -79,7 +79,9 @@ public class GUIMain extends JFrame {
 				setVisible(true);
 	}
 
-	protected void open_panel_tavoli() {
+	protected void open_panel_tavoli() {	
+		
+		content_pane.removeAll();
 		
 		panel_tavoli = new PanelTavoli(lista_tavoli, new Azione_Btn_Tavoli());
 
@@ -87,12 +89,9 @@ public class GUIMain extends JFrame {
 
 		scrollPane_tavoli.getViewport().setPreferredSize(new Dimension(1500, 800));
 		content_pane.add(scrollPane_tavoli);
-
-		content_pane.removeAll();
-		content_pane.add(panel_tavoli);
+		
 		content_pane.repaint();
 		content_pane.revalidate();
-		
 	
 	}
 

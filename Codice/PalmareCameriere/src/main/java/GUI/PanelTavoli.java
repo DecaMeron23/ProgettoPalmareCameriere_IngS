@@ -26,17 +26,16 @@ public class PanelTavoli extends JPanel {
 	}
 
 	private List<Bottone_tavolo> addTavoli(List<Tavolo> lista_tavolo, ActionListener actionListener_tavoli) {
-		List<Bottone_tavolo> bottoni_tavolo = new ArrayList();
+		List<Bottone_tavolo> bottoni_tavolo = new ArrayList<>();
 
 		for (Tavolo tavolo : lista_tavolo) {
-			// nome del tavolo
-			String nome_tavolo = tavolo.getNome() + "";
 			// creazione del bottone
 			Bottone_tavolo btn = new Bottone_tavolo(tavolo);
 			// aggiunta del action listener
 			btn.addActionListener(actionListener_tavoli);
 			// modifica dimensioni
-			btn.setPreferredSize(new Dimension(300, 100));
+			btn.setMinimumSize(new Dimension(300, 100));
+			btn.setMaximumSize(new Dimension(300, 100));
 			// agginta al panel
 			add(btn);
 			// aggiunta alla lista

@@ -15,6 +15,8 @@ import Classi.Enum.Stato_Tavolo;
 
 public class FrameTavoloLiberoCoperti extends JFrame {
 	
+	private static final long serialVersionUID = 6266921115114034123L;
+	
 	private final Tavolo tavolo;
 
 	public FrameTavoloLiberoCoperti(Tavolo t) {

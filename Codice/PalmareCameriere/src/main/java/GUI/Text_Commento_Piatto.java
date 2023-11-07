@@ -7,6 +7,7 @@ import javax.swing.JTextArea;
 
 public class Text_Commento_Piatto extends JTextArea {
 
+	private static final long serialVersionUID = -7713478503984950541L;
 	private String commento_iniziale;
 
 	public Text_Commento_Piatto() {

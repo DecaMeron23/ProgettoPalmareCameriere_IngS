@@ -43,4 +43,8 @@ public class Ordine {
 		}
 		prezzo_parziale = prezzo;
 	}
+	
+	public List<PiattoOrdinato> getLista_piatti_ordinati() {
+		return lista_piatti_ordinati;
+	}
 }
