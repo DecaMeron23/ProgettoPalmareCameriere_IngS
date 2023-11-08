@@ -74,6 +74,7 @@ public class Panel_Componenti_Tavolo_Occupato extends JPanel {
 			// aggiunto lo scrollPane alla componente
 			JScrollPane scroll = new JScrollPane(panel);
 			scroll.getViewport().setPreferredSize(new Dimension(1000, 700));
+			scroll.getVerticalScrollBar().setUnitIncrement(10);
 			// aggiungo la componente al tab
 			tabbed.add(scroll, comp.getNome());
 			lista_panel_componenti.add(panel);
