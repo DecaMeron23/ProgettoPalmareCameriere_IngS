@@ -86,7 +86,7 @@ public class GUIMain extends JFrame {
 		panel_tavoli = new PanelTavoli(lista_tavoli, new Azione_Btn_Tavoli());
 
 		scrollPane_tavoli = new JScrollPane(panel_tavoli);
-
+		scrollPane_tavoli.getVerticalScrollBar().setUnitIncrement(10);
 		scrollPane_tavoli.getViewport().setPreferredSize(new Dimension(1500, 800));
 		content_pane.add(scrollPane_tavoli);
 		

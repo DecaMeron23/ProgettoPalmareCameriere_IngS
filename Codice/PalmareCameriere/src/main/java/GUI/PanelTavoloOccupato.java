@@ -34,15 +34,20 @@ public class PanelTavoloOccupato extends JPanel {
 		panel_sx = new Panel_Ordini_Tavolo_Occupato(this);
 		panel_dx = new Panel_Componenti_Tavolo_Occupato(lista_componenti, this);
 
-		JScrollPane scroll_pane_sx = new JScrollPane(panel_sx);
-
 		// setting Layout
 		setLayout(new BorderLayout());
 
-		JSplitPane split_pane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scroll_pane_sx, panel_dx);
+		JSplitPane split_pane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panel_sx, panel_dx);
 		split_pane.setDividerLocation(POS_SEPARAZIONE_DX_SX);
 		split_pane.setEnabled(false);
 		add(split_pane);
+		
+		repaint_panel();
+	}
+
+	private void repaint_panel() {
+		panel_dx.repaint_panel();
+		panel_sx.repaint_panel();
 	}
 
 	public void aggiungi_piatto(Text_Commento_Piatto commento_piatto) {
