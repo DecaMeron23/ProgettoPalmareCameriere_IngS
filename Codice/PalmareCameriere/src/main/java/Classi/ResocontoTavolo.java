@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ResocontoTavolo {
     
-	private static final double COSTO_COPERTO  = 2;
+	public static final double COSTO_COPERTO  = 2;
 	
 	private int num_coperti;
     private double prezzo_totale;
@@ -24,7 +24,7 @@ public class ResocontoTavolo {
 		numero_ordini = 0;
 	}
 
-	private int getNum_coperti() {
+	public int getNum_coperti() {
         return num_coperti;
     }
 

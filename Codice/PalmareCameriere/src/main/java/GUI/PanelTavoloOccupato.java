@@ -21,14 +21,14 @@ public class PanelTavoloOccupato extends JPanel {
 
 	PiattoOrdinato piatto_ordinato_attuale;
 	List<PiattoOrdinato> lista_piatti_ordinati;
-	ResocontoTavolo resoconto_tavolo;
+	Tavolo tavolo;
 
 	private Panel_Ordini_Tavolo_Occupato panel_sx;
 	private Panel_Componenti_Tavolo_Occupato panel_dx;
 
 	public PanelTavoloOccupato(Tavolo tavolo, List<Componente> lista_componenti) {
-
-		resoconto_tavolo = tavolo.resoconto_tavolo;
+		
+		this.tavolo= tavolo; 
 		lista_piatti_ordinati = new ArrayList<>();
 
 		panel_sx = new Panel_Ordini_Tavolo_Occupato(this);

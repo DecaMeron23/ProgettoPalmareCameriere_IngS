@@ -57,4 +57,8 @@ public class Tavolo {
 	public void modifica_nome(int nome) {
 		this.nome = nome;
 	}
+
+	public void pagato() {
+		resoconto_tavolo = null;
+	}
 }
