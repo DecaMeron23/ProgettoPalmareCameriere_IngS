@@ -1,8 +1,11 @@
 package GUI;
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,25 +16,40 @@ import Classi.ResocontoTavolo;
 import Classi.Tavolo;
 import Classi.Enum.Stato_Tavolo;
 
-public class FrameTavoloLiberoCoperti extends JFrame {
+public class Frame_Tavolo_Libero_Coperti extends JFrame {
 	
 	private static final long serialVersionUID = 6266921115114034123L;
 	
 	private final Tavolo tavolo;
 
-	public FrameTavoloLiberoCoperti(Tavolo t) {
+	private JLabel lbl_text;
+
+	public Frame_Tavolo_Libero_Coperti(Tavolo t, WindowAdapter close) {
 		super();
 		this.tavolo = t;		
 		setType(Type.POPUP);
+		setUndecorated(false);
 		setAlwaysOnTop(true);
 		setTitle("Coperti Tavolo " + tavolo.getNome());
 		setBounds(100, 100, 500, 500);
+		
+		addWindowListener(close);
+		
+		Dimension dimensioniSchermo = Toolkit.getDefaultToolkit().getScreenSize();
+		
+		// Calcola le coordinate per centrare la finestra
+        int x = (dimensioniSchermo.width - getWidth()) / 2;
+        int y = (dimensioniSchermo.height - getHeight()) / 2;
 
+        // Imposta la posizione della finestra
+        setLocation(x, y);
+
+		
 		final JButton btn_piu = new JButton("+");
 		btn_piu.setEnabled(false);
 		JButton btn_invio = new JButton("invio");
 		final JButton btn_meno = new JButton("-");
-		final JLabel lbl_text = new JLabel("" + tavolo.getNum_posti_massimi());
+		lbl_text = new JLabel("" + tavolo.getNum_posti_massimi());
 		lbl_text.setHorizontalAlignment(SwingConstants.CENTER);
 
 		btn_meno.addActionListener(new ActionListener() {
@@ -64,17 +82,7 @@ public class FrameTavoloLiberoCoperti extends JFrame {
 			}
 		});
 
-		btn_invio.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int coperti = Integer.parseInt(lbl_text.getText());
-				//tavolo.resoconto.setNumero_coperti(coperti);
-				tavolo.setStato(Stato_Tavolo.OCCUPATO);
-				tavolo.resoconto_tavolo = new ResocontoTavolo(coperti);
-				dispose();
-			}
-		});
+		btn_invio.addActionListener(new Action_Btn_Invio());
 
 		getContentPane().setLayout(new GridLayout(4, 0, 20, 40));
 
@@ -86,8 +94,25 @@ public class FrameTavoloLiberoCoperti extends JFrame {
 		setVisible(true);
 	}
 
-	public Tavolo getTavolo() {
+	Tavolo getTavolo() {
 		return tavolo;
 		
+	}
+	
+	private int get_int_label() {
+		return Integer.parseInt(lbl_text.getText());
+	}
+	
+	class Action_Btn_Invio implements ActionListener{
+		
+		
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			int coperti = get_int_label();
+			tavolo.setStato(Stato_Tavolo.OCCUPATO);
+			tavolo.resoconto_tavolo = new ResocontoTavolo(coperti);
+			dispose();
+		}
 	}
 }

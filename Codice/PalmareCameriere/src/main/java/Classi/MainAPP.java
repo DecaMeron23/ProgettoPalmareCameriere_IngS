@@ -100,13 +100,13 @@ public class MainAPP {
 		
 		List<Piatto> listaPiatto2 = new ArrayList<Piatto>();
 		
-		listaPiatto2.add(new Piatto("Cotoletta e patatine", 470));
-		listaPiatto2.add(new Piatto("Prosciutto e Melone", 254));
-		listaPiatto2.add(new Piatto("Insalata", 254));
-		listaPiatto2.add(new Piatto("Pollo al Limone", 254));
-		listaPiatto2.add(new Piatto("Spiedini di carne", 254));
-		listaPiatto2.add(new Piatto("Polenta", 254));
-		listaPiatto2.add(new Piatto("Coniglio", 254));
+		listaPiatto2.add(new Piatto("Cotoletta e patatine", 40));
+		listaPiatto2.add(new Piatto("Prosciutto e Melone", 24));
+		listaPiatto2.add(new Piatto("Insalata", 25));
+		listaPiatto2.add(new Piatto("Pollo al Limone", 1));
+		listaPiatto2.add(new Piatto("Spiedini di carne", 1));
+		listaPiatto2.add(new Piatto("Polenta", 1));
+		listaPiatto2.add(new Piatto("Coniglio", 1));
 
 		final List<Componente> componenti = new ArrayList<Componente>();
 		

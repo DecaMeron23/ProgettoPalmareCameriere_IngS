@@ -34,7 +34,7 @@ public class Tavolo {
 		return stato;
 	}
 
-	private void setNum_posti_massimi(int num_post_massimi) {
+	public void setNum_posti_massimi(int num_post_massimi) {
 		this.num_posti_massimi = num_post_massimi;
 	}
 
@@ -59,6 +59,7 @@ public class Tavolo {
 	}
 
 	public void pagato() {
+		setStato(Stato_Tavolo.DA_PULIRE);
 		resoconto_tavolo = null;
 	}
 }

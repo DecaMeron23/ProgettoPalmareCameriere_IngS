@@ -21,17 +21,17 @@ import Classi.Componente;
 import Classi.Piatto;
 import Classi.PiattoOrdinato;
 
-public class Panel_Componenti_Tavolo_Occupato extends JPanel {
+public class Panel_DX_Tavolo_Occupato extends JPanel {
 
 	private static final long serialVersionUID = -5753067260932073798L;
 
 	List<PanelComponente> lista_panel_componenti;
 	private List<Componente> lista_componenti;
-	private PanelTavoloOccupato panelTavoloOccupato;
+	private Panel_Tavolo_Occupato panelTavoloOccupato;
 	private Text_Commento_Piatto commento_piatto;
 	private JButton btn_aggiungi;
 
-	public Panel_Componenti_Tavolo_Occupato(List<Componente> lista_componenti, PanelTavoloOccupato panelTavoloOccupato) {
+	public Panel_DX_Tavolo_Occupato(List<Componente> lista_componenti, Panel_Tavolo_Occupato panelTavoloOccupato) {
 
 		this.panelTavoloOccupato = panelTavoloOccupato;
 
@@ -58,8 +58,8 @@ public class Panel_Componenti_Tavolo_Occupato extends JPanel {
 
 	// verifica se il bottone aggiungi deve stare attivo o disattivato
 	private void verifica_btn_aggiungi() {
-		if (panelTavoloOccupato.piatto_ordinato_attuale == null
-				|| panelTavoloOccupato.piatto_ordinato_attuale.getPiatto() == null) {
+		if (panelTavoloOccupato.piatto_selezionato == null
+				|| panelTavoloOccupato.piatto_selezionato.getPiatto() == null) {
 			btn_aggiungi.setEnabled(false);
 		} else {
 			btn_aggiungi.setEnabled(true);
@@ -122,8 +122,8 @@ public class Panel_Componenti_Tavolo_Occupato extends JPanel {
 
 		public void repaint_all_btn_piatti() {
 			for (Bottone_Piatto btn : lista_bottoni_piatti) {
-				if (panelTavoloOccupato.piatto_ordinato_attuale == null
-						|| !btn.equals_piatto(panelTavoloOccupato.piatto_ordinato_attuale.getPiatto())) {
+				if (panelTavoloOccupato.piatto_selezionato == null
+						|| !btn.equals_piatto(panelTavoloOccupato.piatto_selezionato.getPiatto())) {
 					btn.setBackground(null);
 				} else {
 					btn.setBackground(Color.cyan);
@@ -138,15 +138,15 @@ public class Panel_Componenti_Tavolo_Occupato extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Bottone_Piatto btn = (Bottone_Piatto) e.getSource();
-				if (panelTavoloOccupato.piatto_ordinato_attuale == null) {
-					panelTavoloOccupato.piatto_ordinato_attuale = new PiattoOrdinato(btn.getPiatto());
+				if (panelTavoloOccupato.piatto_selezionato == null) {
+					panelTavoloOccupato.piatto_selezionato = new PiattoOrdinato(btn.getPiatto());
 				} else {
-					if (panelTavoloOccupato.piatto_ordinato_attuale.getPiatto() == null) {
-						panelTavoloOccupato.piatto_ordinato_attuale.setPiatto(btn.getPiatto());
-					} else if (panelTavoloOccupato.piatto_ordinato_attuale.getPiatto().equals(btn.getPiatto())) {
-						panelTavoloOccupato.piatto_ordinato_attuale.setPiatto(null);
+					if (panelTavoloOccupato.piatto_selezionato.getPiatto() == null) {
+						panelTavoloOccupato.piatto_selezionato.setPiatto(btn.getPiatto());
+					} else if (panelTavoloOccupato.piatto_selezionato.getPiatto().equals(btn.getPiatto())) {
+						panelTavoloOccupato.piatto_selezionato.setPiatto(null);
 					} else {
-						panelTavoloOccupato.piatto_ordinato_attuale.setPiatto(btn.getPiatto());
+						panelTavoloOccupato.piatto_selezionato.setPiatto(btn.getPiatto());
 					}
 				}
 				repaint_all_btn_piatti();

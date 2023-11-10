@@ -12,17 +12,21 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class Frame_conferma_uscita extends JFrame {
+public class Frame_conferma extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	public Frame_conferma_uscita(String string, ActionListener listener_btn_si, ActionListener listener_btn_no) {
+	public Frame_conferma(String string, ActionListener listener_btn_si, ActionListener listener_btn_no) {
 
 		setTitle("Conferma Uscita");
 		setSize(new Dimension(300	, 200));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
+		setType(Type.POPUP);
+		
+		setUndecorated(true);
 		setResizable(false);
+		setAlwaysOnTop(true);
 
 		// creo i panel
 		JPanel panel_principale = new JPanel(new BorderLayout());
@@ -64,4 +68,5 @@ public class Frame_conferma_uscita extends JFrame {
 		setVisible(true);
 
 	}
+
 }
