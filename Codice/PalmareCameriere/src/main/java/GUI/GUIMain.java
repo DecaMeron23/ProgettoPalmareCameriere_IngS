@@ -25,10 +25,9 @@ public class GUIMain extends JFrame {
 	Container content_pane;
 	JButton btn_tavoli;
 	JButton btn_impostazioni;
-	PanelTavoli panel_tavoli;
+	// Panel_Bottoni_Tavoli panel_bottoni_tavoli;
 	JPanel panel_tavolo;
 
-	private JScrollPane scrollPane_tavoli;
 	private List<Tavolo> lista_tavoli;
 	private List<Componente> lista_componenti;
 
@@ -53,7 +52,6 @@ public class GUIMain extends JFrame {
 		this.lista_componenti = lista_componenti;
 
 		setResizable(false);
-
 		setTitle("Palmare Cameriere");
 
 		content_pane = getContentPane();
@@ -62,19 +60,9 @@ public class GUIMain extends JFrame {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setUndecorated(true);
 
-		btn_tavoli = new JButton("Tavoli");
-		btn_impostazioni = new JButton("Impostazioni");
-
-		btn_tavoli.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				repaint_panel_tavoli();
-			}
-		});
-
 		repaint_panel_tavoli();
 
-		JMenuBar menuBar = new BarraMenu(btn_tavoli, btn_impostazioni);
+		JMenuBar menuBar = new BarraMenu(this);
 		setJMenuBar(menuBar);
 
 		setVisible(true);
@@ -84,37 +72,33 @@ public class GUIMain extends JFrame {
 	 * Aggiorna la grafica del panel dei tavoli
 	 */
 	public void repaint_panel_tavoli() {
-		
+
 		content_pane.removeAll();
 		content_pane.repaint();
 		content_pane.revalidate();
-		
-		panel_tavoli = new PanelTavoli(lista_tavoli, new Azione_Btn_Tavoli());
 
-		scrollPane_tavoli = new JScrollPane(panel_tavoli);
-		scrollPane_tavoli.getVerticalScrollBar().setUnitIncrement(10);
-		scrollPane_tavoli.getViewport().setPreferredSize(new Dimension(1500, 800));
-		content_pane.add(scrollPane_tavoli);
+		JScrollPane panel_bottoni_tavoli = new Panel_Bottoni_Tavoli(lista_tavoli, new Azione_Btn_Tavoli());
 
-		panel_tavoli.repaint();
-		panel_tavoli.revalidate();
+		content_pane.add(panel_bottoni_tavoli);
+
+		panel_bottoni_tavoli.repaint();
+		panel_bottoni_tavoli.revalidate();
 
 	}
 
 	void openTavolo(Tavolo tavolo) {
 		switch (tavolo.getStato()) {
 		case LIBERO:
-			attivaGUI(false);
-			
+			content_pane.setEnabled(false);
 			WindowAdapter close = new WindowAdapter() {
-				
+
 				@Override
 				public void windowClosed(WindowEvent e) {
-					attivaGUI(true);
+					content_pane.setEnabled(true);
 				}
 			};
-			
-			Frame_Tavolo_Libero_Coperti frameCoperti = new Frame_Tavolo_Libero_Coperti(tavolo , close);
+
+			Frame_Tavolo_Libero_Coperti frameCoperti = new Frame_Tavolo_Libero_Coperti(tavolo, close);
 			frameCoperti.addWindowListener(new ListenerFrameCoperti());
 			break;
 		case OCCUPATO:
@@ -132,6 +116,7 @@ public class GUIMain extends JFrame {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					content_pane.setEnabled(true);
+					SwingUtilities.getWindowAncestor((JButton) e.getSource()).dispose();
 				}
 			};
 
@@ -144,14 +129,19 @@ public class GUIMain extends JFrame {
 
 		}
 	}
+	
+	public void open_impostazioni() {
 
-	private void attivaGUI(boolean bool) {
-		this.setEnabled(bool);
-		this.toFront();
-
+		Panel_Impostazioni panel_impostazioni = new Panel_Impostazioni();
+		content_pane.removeAll();
+		content_pane.add(panel_impostazioni);
+		
+		repaint();
+		revalidate();
+		
 	}
 
-	public class Azione_Si_Frame_conferma implements ActionListener {
+	private class Azione_Si_Frame_conferma implements ActionListener {
 
 		private Tavolo tavolo;
 
@@ -164,12 +154,12 @@ public class GUIMain extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			tavolo.setStato(Stato_Tavolo.LIBERO);
 			SwingUtilities.getWindowAncestor((JButton) (e.getSource())).dispose();
-			content_pane.setEnabled(true);
+			setEnabled(true);
 			repaint_panel_tavoli();
 		}
 	}
 
-	public class Azione_Btn_Tavoli implements ActionListener {
+	private class Azione_Btn_Tavoli implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -182,11 +172,11 @@ public class GUIMain extends JFrame {
 
 	}
 
-	public class ListenerFrameCoperti extends WindowAdapter {
+	private class ListenerFrameCoperti extends WindowAdapter {
 
 		@Override
 		public void windowClosed(WindowEvent e) {
-			attivaGUI(true);
+			content_pane.setEnabled(true);
 			Frame_Tavolo_Libero_Coperti frame = (Frame_Tavolo_Libero_Coperti) e.getSource();
 			Tavolo tavolo = frame.getTavolo();
 			openTavolo(tavolo);

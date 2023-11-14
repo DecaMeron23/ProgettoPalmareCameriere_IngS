@@ -94,7 +94,7 @@ public class Panel_DX_Tavolo_Occupato extends JPanel {
 		add(panelDX_Basso);
 	}
 
-	class PanelComponente extends JPanel {
+	private class PanelComponente extends JPanel {
 
 		private static final long serialVersionUID = -8073574984234371067L;
 
@@ -156,7 +156,7 @@ public class Panel_DX_Tavolo_Occupato extends JPanel {
 
 	}
 
-	class ChangeListener_Tabbet_Componenti implements ChangeListener {
+	private class ChangeListener_Tabbet_Componenti implements ChangeListener {
 
 		@Override
 		public void stateChanged(ChangeEvent e) {
@@ -165,7 +165,7 @@ public class Panel_DX_Tavolo_Occupato extends JPanel {
 
 	}
 
-	class ActionListener_Btn_Aggiungi implements ActionListener {
+	private class ActionListener_Btn_Aggiungi implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {

@@ -39,7 +39,7 @@ public class Piatto_Ordinato_Piu_Meno_Text extends JPanel {
 		add(panel_sotto);
 	}
 
-	class ActionListener_Bottone_Piu implements ActionListener {
+	private class ActionListener_Bottone_Piu implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -49,7 +49,7 @@ public class Piatto_Ordinato_Piu_Meno_Text extends JPanel {
 
 	}
 
-	class ActionListener_Bottone_Meno implements ActionListener {
+	private class ActionListener_Bottone_Meno implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -58,7 +58,7 @@ public class Piatto_Ordinato_Piu_Meno_Text extends JPanel {
 		}
 	}
 
-	class Panel_Up extends JPanel {
+	private class Panel_Up extends JPanel {
 
 		private static final long serialVersionUID = -131067429834709115L;
 
@@ -85,7 +85,7 @@ public class Piatto_Ordinato_Piu_Meno_Text extends JPanel {
 
 	}
 
-	class Panel_Down extends JPanel {
+	private class Panel_Down extends JPanel {
 
 	
 		private static final long serialVersionUID = 2888129150603015263L;

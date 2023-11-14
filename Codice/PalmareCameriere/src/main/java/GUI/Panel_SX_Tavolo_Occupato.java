@@ -235,7 +235,7 @@ class Panel_SX_Tavolo_Occupato extends JPanel {
 	/**
 	 * Classe per il bottone pagato
 	 */
-	class Bottone_Pagato extends JButton {
+	private class Bottone_Pagato extends JButton {
 
 		private static final long serialVersionUID = -1400046920322830699L;
 
@@ -246,7 +246,7 @@ class Panel_SX_Tavolo_Occupato extends JPanel {
 			addActionListener(new ActionListener_btn_pagato());
 		}
 
-		class ActionListener_btn_pagato implements ActionListener {
+		private class ActionListener_btn_pagato implements ActionListener {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -299,7 +299,7 @@ class Panel_SX_Tavolo_Occupato extends JPanel {
 	 * Classe per il bottone invia
 	 */
 
-	class Bottone_Invia extends JButton {
+	private class Bottone_Invia extends JButton {
 
 		private static final long serialVersionUID = 5053523527111913425L;
 
@@ -312,7 +312,7 @@ class Panel_SX_Tavolo_Occupato extends JPanel {
 		/**
 		 * implementazione action listener
 		 */
-		class ActionListener_btn_invia implements ActionListener {
+		private class ActionListener_btn_invia implements ActionListener {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {

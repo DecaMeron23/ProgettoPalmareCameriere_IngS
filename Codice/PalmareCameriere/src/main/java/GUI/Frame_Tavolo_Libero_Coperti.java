@@ -103,7 +103,7 @@ public class Frame_Tavolo_Libero_Coperti extends JFrame {
 		return Integer.parseInt(lbl_text.getText());
 	}
 	
-	class Action_Btn_Invio implements ActionListener{
+	private class Action_Btn_Invio implements ActionListener{
 		
 		
 		

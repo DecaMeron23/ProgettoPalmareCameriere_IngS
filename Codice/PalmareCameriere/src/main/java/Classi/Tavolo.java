@@ -62,4 +62,9 @@ public class Tavolo {
 		setStato(Stato_Tavolo.DA_PULIRE);
 		resoconto_tavolo = null;
 	}
+	
+	@Override
+	public String toString() {
+		return "Tavolo n° " + nome + ", numero posti: " + num_posti_massimi;
+	}
 }
