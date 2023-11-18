@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -231,6 +233,12 @@ class Panel_SX_Tavolo_Occupato extends JPanel {
 		lbl_totale.setText("Importo Totale: "
 				+ formatta_prezzo(panel_tavolo_occupato.tavolo.resoconto_tavolo.getPrezzo_totale()) + " €");
 	}
+	
+	private void enable_frame(boolean bol) {
+		JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(panel_tavolo_occupato);
+		frame.setAlwaysOnTop(bol);
+		frame.setEnabled(bol);
+	}
 
 	/**
 	 * Classe per il bottone pagato
@@ -279,9 +287,16 @@ class Panel_SX_Tavolo_Occupato extends JPanel {
 						setEnabled(true);
 					}
 				};
+				
+				WindowAdapter adapter = new WindowAdapter() {
+					@Override
+					public void windowClosed(WindowEvent e) {
+						enable_frame(true);
+					}
+				};
 
 				// apriamo il frame che chiede la conferma
-				new Frame_conferma("E' stato effettuato il pagamento?", listener_si, listener_no);
+				new Frame_conferma("E' stato effettuato il pagamento?", listener_si, listener_no , adapter);
 			}
 
 			/**

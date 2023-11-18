@@ -32,15 +32,6 @@ public class GUIMain extends JFrame {
 	private List<Componente> lista_componenti;
 
 	/**
-	 * Launch the application.
-	 */
-	/*
-	 * public static void main(String[] args) { EventQueue.invokeLater(new
-	 * Runnable() { public void run() { try { GUIMain frame = new
-	 * GUIMain(lista_tavoli); frame.setVisible(true); } catch (Exception e) {
-	 * e.printStackTrace(); } } }); }
-	 */
-	/**
 	 * Create the frame.
 	 * 
 	 * @param lista_tavoli
@@ -56,9 +47,10 @@ public class GUIMain extends JFrame {
 
 		content_pane = getContentPane();
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		setUndecorated(true);
+
+		setUndecorated(false);
 
 		repaint_panel_tavoli();
 
@@ -89,18 +81,18 @@ public class GUIMain extends JFrame {
 	void openTavolo(Tavolo tavolo) {
 		switch (tavolo.getStato()) {
 		case LIBERO:
-			content_pane.setEnabled(false);
+			enable_frame(false);
 			WindowAdapter close = new WindowAdapter() {
 
 				@Override
 				public void windowClosed(WindowEvent e) {
-					content_pane.setEnabled(true);
+					enable_frame(true);
 				}
 			};
 
-			Frame_Tavolo_Libero_Coperti frameCoperti = new Frame_Tavolo_Libero_Coperti(tavolo, close);
-			frameCoperti.addWindowListener(new ListenerFrameCoperti());
+			new Frame_Tavolo_Libero_Coperti(tavolo, close);
 			break;
+
 		case OCCUPATO:
 			JPanel panel = new Panel_Tavolo_Occupato(tavolo, lista_componenti);
 			content_pane.removeAll();
@@ -119,28 +111,46 @@ public class GUIMain extends JFrame {
 					SwingUtilities.getWindowAncestor((JButton) e.getSource()).dispose();
 				}
 			};
+			WindowAdapter adapter = new WindowAdapter() {
 
+				@Override
+				public void windowClosed(WindowEvent e) {
+					enable_frame(true);
+				}
+			};
 			// disabilito il frame
-			content_pane.setEnabled(false);
-			new Frame_conferma("Il tavolo è pulito?", act_btn_si, act_btn_no);
+			enable_frame(false);
+			new Frame_conferma("Il tavolo è pulito?", act_btn_si, act_btn_no, adapter);
 			break;
 		default:
 			break;
 
 		}
 	}
-	
+
 	public void open_impostazioni() {
 
 		Panel_Impostazioni panel_impostazioni = new Panel_Impostazioni();
 		content_pane.removeAll();
 		content_pane.add(panel_impostazioni);
-		
+
 		repaint();
 		revalidate();
-		
+
 	}
 
+	private void enable_frame(boolean bool) {
+		JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(content_pane);
+		frame.setEnabled(bool);
+		if(bool) {
+			frame.toFront();
+			
+		}
+	}
+
+	/**
+	 * Classe per il frame conferma
+	 */
 	private class Azione_Si_Frame_conferma implements ActionListener {
 
 		private Tavolo tavolo;
@@ -154,7 +164,7 @@ public class GUIMain extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			tavolo.setStato(Stato_Tavolo.LIBERO);
 			SwingUtilities.getWindowAncestor((JButton) (e.getSource())).dispose();
-			setEnabled(true);
+			enable_frame(true);
 			repaint_panel_tavoli();
 		}
 	}
@@ -163,7 +173,7 @@ public class GUIMain extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			Bottone_tavolo btn_tavolo = (Bottone_tavolo) e.getSource();
+			Bottone_Tavolo btn_tavolo = (Bottone_Tavolo) e.getSource();
 
 			Tavolo tavolo = btn_tavolo.getTavolo();
 			openTavolo(tavolo);
@@ -171,16 +181,4 @@ public class GUIMain extends JFrame {
 		}
 
 	}
-
-	private class ListenerFrameCoperti extends WindowAdapter {
-
-		@Override
-		public void windowClosed(WindowEvent e) {
-			content_pane.setEnabled(true);
-			Frame_Tavolo_Libero_Coperti frame = (Frame_Tavolo_Libero_Coperti) e.getSource();
-			Tavolo tavolo = frame.getTavolo();
-			openTavolo(tavolo);
-		}
-	}
-
 }

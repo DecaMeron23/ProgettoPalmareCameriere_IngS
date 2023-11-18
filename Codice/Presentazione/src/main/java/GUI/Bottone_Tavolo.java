@@ -9,13 +9,13 @@ import javax.swing.SwingConstants;
 
 import Classi.Tavolo;
 
-public class Bottone_tavolo extends JButton {
+public class Bottone_Tavolo extends JButton {
 
 	private static final long serialVersionUID = 1024426268537840715L;
 
 	private Tavolo tavolo;
 
-	public Bottone_tavolo(Tavolo tavolo) {
+	public Bottone_Tavolo(Tavolo tavolo) {
 		JLabel lblNome = new JLabel("Tavolo Numero: " + tavolo.getNome());
 		JLabel lblPosti = new JLabel("Posti Disponibili: " + tavolo.getNum_posti_massimi());
 

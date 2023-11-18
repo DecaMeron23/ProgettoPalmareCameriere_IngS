@@ -29,9 +29,10 @@ public class Frame_Tavolo_Libero_Coperti extends JFrame {
 		this.tavolo = t;		
 		setType(Type.POPUP);
 		setUndecorated(false);
-		setAlwaysOnTop(true);
 		setTitle("Coperti Tavolo " + tavolo.getNome());
 		setBounds(100, 100, 500, 500);
+		
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 		addWindowListener(close);
 		

@@ -4,11 +4,11 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>ProgettoPalmareCameriere</groupId>
-  <artifactId>PalmareCameriere</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <groupId>Progetto</groupId>
+  <artifactId>Progetto_Presentazione</artifactId>
+  <version>0.0.1</version>
 
-  <name>PalmareCameriere</name>
+  <name>Presentazione</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -30,6 +30,11 @@
       <artifactId>junit</artifactId>
       <version>4.11</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+    	<groupId>Progetto</groupId>
+    	<artifactId>Progetto_Logico</artifactId>
+    	<version>0.0.1</version>
     </dependency>
   </dependencies>
 

@@ -19,7 +19,7 @@ public class Panel_Bottoni_Tavoli extends JScrollPane {
 	/**
 	 * lista dei pulsanti tavoli
 	 */
-	private List<Bottone_tavolo> btn_tavolo;
+	private List<Bottone_Tavolo> btn_tavolo;
 
 	/**
 	 * panel contenente i pulsanti
@@ -43,12 +43,12 @@ public class Panel_Bottoni_Tavoli extends JScrollPane {
 		
 	}
 
-	private List<Bottone_tavolo> addTavoli(List<Tavolo> lista_tavolo, ActionListener actionListener_tavoli) {
-		List<Bottone_tavolo> bottoni_tavolo = new ArrayList<>();
+	private List<Bottone_Tavolo> addTavoli(List<Tavolo> lista_tavolo, ActionListener actionListener_tavoli) {
+		List<Bottone_Tavolo> bottoni_tavolo = new ArrayList<>();
 
 		for (Tavolo tavolo : lista_tavolo) {
 			// creazione del bottone
-			Bottone_tavolo btn = new Bottone_tavolo(tavolo);
+			Bottone_Tavolo btn = new Bottone_Tavolo(tavolo);
 			// aggiunta del action listener
 			btn.addActionListener(actionListener_tavoli);
 			// modifica dimensioni
@@ -61,12 +61,12 @@ public class Panel_Bottoni_Tavoli extends JScrollPane {
 		return bottoni_tavolo;
 	}
 
-	public List<Bottone_tavolo> getBtn_tavolo() {
+	public List<Bottone_Tavolo> getBtn_tavolo() {
 		return btn_tavolo;
 	}
 
 	public JButton getPulstanteTavolo(Tavolo tavolo) {
-		for (Bottone_tavolo btn : btn_tavolo) {
+		for (Bottone_Tavolo btn : btn_tavolo) {
 			if (btn.equals(tavolo)) {
 				return btn;
 			}

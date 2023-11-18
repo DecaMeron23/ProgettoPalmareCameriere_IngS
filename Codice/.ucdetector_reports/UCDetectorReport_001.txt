@@ -1,0 +1,4 @@
+Created with UCDetector 2.0.0	2023-11-15 11:51:25	http://www.ucdetector.org/	Created by class: org.ucdetector.report.TextReport	
+Location	Description	Java	Marker	Author
+main_package.ModificheDB.<init>(ModificheDB.java:12)	Class "ModificheDB" has 0 references	ModificheDB	org.ucdetector.analyzeMarkerReference	
+main_package.CreateDB.<init>(CreateDB.java:10)	Class "CreateDB" has 0 references	CreateDB	org.ucdetector.analyzeMarkerReference	
