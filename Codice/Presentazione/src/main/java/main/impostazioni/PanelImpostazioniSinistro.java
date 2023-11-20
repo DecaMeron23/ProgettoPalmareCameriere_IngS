@@ -7,17 +7,17 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class PanelImpostazioniSinistro extends JPanel {
+class PanelImpostazioniSinistro extends JPanel {
 
 	private static final long serialVersionUID = -641162938886101084L;
 
 	// arrai dei bottoni
-	final JButton[] btnImpostazioni;
+	private final JButton[] btnImpostazioni;
 
 	/**
 	 * @param action: action listener dei bottoni
 	 */
-	public PanelImpostazioniSinistro(ActionListener action) {
+	PanelImpostazioniSinistro(ActionListener action) {
 
 		// set layout
 		setLayout(new GridLayout(0, 1));
@@ -51,7 +51,7 @@ public class PanelImpostazioniSinistro extends JPanel {
 	 * 
 	 * @param button: il bottone che verrà colorato
 	 */
-	public void repaintPanel(JButton button) {
+	void repaintPanel(JButton button) {
 		for (JButton btn : btnImpostazioni) {
 			if (btn.equals(button)) {
 				btn.setBackground(Color.cyan);
@@ -61,7 +61,7 @@ public class PanelImpostazioniSinistro extends JPanel {
 		}
 	}
 
-	public int getTipoBtn(JButton button) {
+	int getTipoBtn(JButton button) {
 		for (int i = 0; i < btnImpostazioni.length; i++) {
 			if(btnImpostazioni[i].equals(button)) {
 				return i;

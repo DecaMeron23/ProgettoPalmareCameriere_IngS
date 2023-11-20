@@ -25,11 +25,11 @@ import main.tavoli.BottoneTavolo;
  * Classe che estende JPanel, utilizzata nelle impostazioni, in particolare
  * nelle modifiche dei tavoli
  */
-public class PanelImpostazioniTavoli extends JPanel {
+class PanelImpostazioniTavoli extends JPanel {
 
 	private static final long serialVersionUID = 2122068881007738339L;
 
-	Tavolo[] listaDiProva = new Tavolo[] { new Tavolo(1, 3) };
+	private Tavolo[] listaDiProva = new Tavolo[] { new Tavolo(1, 3) };
 
 	/**
 	 * Data Base
@@ -48,11 +48,11 @@ public class PanelImpostazioniTavoli extends JPanel {
 	 */
 	private JButton btnElimina;
 
-	JPanel panelSopra;
+	private JPanel panelSopra;
 
-	Tavolo tavoloSelezionato;
+	private Tavolo tavoloSelezionato;
 
-	JLabel lblTavoloSelezionato;
+	private JLabel lblTavoloSelezionato;
 
 	public PanelImpostazioniTavoli() {
 

@@ -16,11 +16,11 @@ import classi.ordine.PiattoOrdinato;
 public class PanelPiattoOrdinatoSelettore extends JPanel {
 
 	private static final long serialVersionUID = 4372601481061137751L;
-	PiattoOrdinato piattoOrdinato;
-	JLabel lblNomePiatto;
-	JLabel lblNumeroOrdini;
-	JButton btnMeno;
-	JButton btnPiu;
+	private PiattoOrdinato piattoOrdinato;
+	private JLabel lblNomePiatto;
+	private JLabel lblNumeroOrdini;
+	private JButton btnMeno;
+	private JButton btnPiu;
 
 	public PanelPiattoOrdinatoSelettore(PiattoOrdinato piattoOrdinato) {
 

@@ -1,7 +1,6 @@
 package main.impostazioni;
 
 import java.awt.BorderLayout;
-import java.lang.invoke.SerializedLambda;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -9,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 
-public class PanelImpostazioniComponenti extends JPanel {
+class PanelImpostazioniComponenti extends JPanel {
 
 	private static final long serialVersionUID = -2936621503776909843L;
 

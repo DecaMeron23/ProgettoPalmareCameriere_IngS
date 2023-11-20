@@ -1,0 +1,3 @@
+Created with UCDetector 2.0.0	2023-11-20 17:33:54	http://www.ucdetector.org/	Created by class: org.ucdetector.report.TextReport	
+Location	Description	Java	Marker	Author
+main.tavoloOccupato.LabelOrdine.<init>(LabelOrdine.java:7)	Class "LabelOrdine" has 0 references	LabelOrdine	org.ucdetector.analyzeMarkerReference	

@@ -12,21 +12,22 @@ public class PanelImpostazioni extends JPanel {
 
 	private static final long serialVersionUID = 5685747632097901109L;
 
-	static final int TAVOLI = 0;
-	static final int COMPONENTI = 1;
-	static final int AGG_PIATTO = 2;
-	static final int MOD_PIATTO = 3;
+// TODO from UCDetector: Constant "PanelImpostazioni.TAVOLI" has 0 references
+	static final int TAVOLI = 0; // NO_UCD (unused code)
+	static final int COMPONENTI = 1; // NO_UCD (unused code)
+	static final int AGG_PIATTO = 2; // NO_UCD (unused code)
+	static final int MOD_PIATTO = 3; // NO_UCD (unused code)
 
 		
 	/**
 	 * Panel Sinistro contenente i bottoni
 	 */
-	PanelImpostazioniSinistro panelSx;
+	private PanelImpostazioniSinistro panelSx;
 
 	/**
 	 * Panel Destro contenente i panel per le impostazioni
 	 */
-	PanelImpostazioniDestro panelDx;
+	private PanelImpostazioniDestro panelDx;
 
 	public PanelImpostazioni() {
 

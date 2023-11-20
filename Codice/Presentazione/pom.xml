@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>Progetto</groupId>
-  <artifactId>Progetto_Presentazione</artifactId>
+  <artifactId>Prgetto_Presentazione</artifactId>
 
   <name>Presentazione</name>
   <!-- FIXME change it to the project's website -->
@@ -29,11 +29,6 @@
       <artifactId>junit</artifactId>
       <version>4.11</version>
       <scope>test</scope>
-    </dependency>
-    <dependency>
-    	<groupId>Progetto</groupId>
-    	<artifactId>Progetto_Logico</artifactId>
-    	<version>0.0.1-SNAPSHOT</version>
     </dependency>
   </dependencies>
 

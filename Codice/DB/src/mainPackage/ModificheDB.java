@@ -7,6 +7,7 @@ import mainPackage.interfacce.Add_Interface;
 import mainPackage.interfacce.Get_Interface;
 
 /**
+ @SuppressWarnings("ucd")
  * Classe che serve ad aggiungere elementi al data base
  */
 public class ModificheDB implements Add_Interface , Get_Interface{

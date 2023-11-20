@@ -12,12 +12,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import Classi.Enum.Stato_Tavolo;
 import classi.enumerativi.StatoTavolo;
 import classi.tavolo.ResocontoTavolo;
 import classi.tavolo.Tavolo;
 
-public class FrameSelezioneCoperti extends JFrame {
+class FrameSelezioneCoperti extends JFrame {
 
 	private static final long serialVersionUID = 6266921115114034123L;
 
@@ -25,7 +24,7 @@ public class FrameSelezioneCoperti extends JFrame {
 
 	private JLabel lblText;
 
-	public FrameSelezioneCoperti(Tavolo t, WindowAdapter close) {
+	FrameSelezioneCoperti(Tavolo t, WindowAdapter close) {
 		super();
 		this.tavolo = t;
 		setType(Type.POPUP);
@@ -93,11 +92,6 @@ public class FrameSelezioneCoperti extends JFrame {
 		getContentPane().add(btnInvio);
 
 		setVisible(true);
-	}
-
-	Tavolo getTavolo() {
-		return tavolo;
-
 	}
 
 	private int getIntLabel() {

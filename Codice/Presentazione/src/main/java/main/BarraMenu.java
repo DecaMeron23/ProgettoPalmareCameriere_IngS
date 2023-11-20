@@ -7,13 +7,13 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JMenuBar;
 
-public class BarraMenu extends JMenuBar {
+class BarraMenu extends JMenuBar {
 
 	private static final long serialVersionUID = 5682216914516074221L;
 
 	private final MainFrame gui;
 
-	public BarraMenu(MainFrame guiMain) {
+	BarraMenu(MainFrame guiMain) {
 		gui = guiMain;
 
 		JButton btnTavoli = new JButton("Tavoli");

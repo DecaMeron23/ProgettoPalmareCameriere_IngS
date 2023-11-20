@@ -1,0 +1,3 @@
+Created with UCDetector 2.0.0	2023-11-20 17:36:14	http://www.ucdetector.org/	Created by class: org.ucdetector.report.TextReport	
+Location	Description	Java	Marker	Author
+classi.enumerativi.StatoTavolo.OCCUPATO(StatoTavolo.java:10)	EnumConstant "StatoTavolo.OCCUPATO" has 0 references	StatoTavolo.OCCUPATO	org.ucdetector.analyzeMarkerReference	

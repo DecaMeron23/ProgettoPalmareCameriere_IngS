@@ -32,7 +32,7 @@ public class TextAreaCommentoPiatto extends JTextArea {
 		return commentoIniziale.equals(super.getText());
 	}
 
-	class ActionClickTextField extends MouseAdapter {
+	private class ActionClickTextField extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			if (isCommentoIniziale()) {

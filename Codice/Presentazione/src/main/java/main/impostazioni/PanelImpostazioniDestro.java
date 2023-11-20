@@ -2,7 +2,7 @@ package main.impostazioni;
 
 import javax.swing.JPanel;
 
-public class PanelImpostazioniDestro extends JPanel {
+class PanelImpostazioniDestro extends JPanel {
 
 	private static final long serialVersionUID = 3686468376115049646L;
 
@@ -25,7 +25,7 @@ public class PanelImpostazioniDestro extends JPanel {
 	 * 
 	 * @param panel: il panel da attivare
 	 */
-	public void seleziona_panel(int panel) {
+	void seleziona_panel(int panel) {
 		removeAll();
 		for (int i = 0; i < panelImpostazioni.length; i++) {
 			if (i == panel) {

@@ -25,11 +25,12 @@ import main.tavoloOccupato.panel.PanelTavoloOccupato;
 public class MainFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	Container contentPane;
-	JButton btnTavoli;
-	JButton btnImpostazioni;
+	private Container contentPane;
+	// TODO from UCDetector: Field "MainFrame.btnTavoli" has 0 references
+	JButton btnTavoli; // NO_UCD (unused code)
+	JButton btnImpostazioni; // NO_UCD (unused code)
 	// Panel_Bottoni_Tavoli panel_bottoni_tavoli;
-	JPanel panelTavolo;
+	JPanel panelTavolo; // NO_UCD (unused code)
 
 	private List<Tavolo> listaTavoli;
 	private List<Componente> listaComponenti;
@@ -40,7 +41,7 @@ public class MainFrame extends JFrame {
 	 * @param listaTavoli
 	 * @param listaComponenti
 	 */
-	public MainFrame(List<Tavolo> listaTavoli, List<Componente> listaComponenti) {
+	MainFrame(List<Tavolo> listaTavoli, List<Componente> listaComponenti) {
 
 		this.listaTavoli = listaTavoli;
 		this.listaComponenti = listaComponenti;
@@ -81,7 +82,7 @@ public class MainFrame extends JFrame {
 
 	}
 
-	void openTavolo(Tavolo tavolo) {
+	private void openTavolo(Tavolo tavolo) {
 		switch (tavolo.getStato()) {
 		case LIBERO:
 			enableFrame(false);
@@ -131,7 +132,7 @@ public class MainFrame extends JFrame {
 		}
 	}
 
-	public void openImpostazioni() {
+	void openImpostazioni() {
 
 		PanelImpostazioni panelImpostazioni = new PanelImpostazioni();
 		contentPane.removeAll();
