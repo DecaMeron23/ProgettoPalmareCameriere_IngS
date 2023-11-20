@@ -3,6 +3,7 @@
 	<name>DB</name>
 	<comment></comment>
 	<projects>
+		<project>Logico</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

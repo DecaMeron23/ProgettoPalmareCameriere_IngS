@@ -4,7 +4,10 @@ import java.awt.EventQueue;
 import java.util.ArrayList;
 import java.util.List;
 
-import GUI.GUIMain;
+import Classi.Menu.Componente;
+import Classi.Menu.Piatto;
+import classi.tavolo.Tavolo;
+import main.MainFrame;
 
 public class MainAPP {
 
@@ -116,7 +119,7 @@ public class MainAPP {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GUIMain frame = new GUIMain(lista_tavoli , componenti);
+					MainFrame frame = new MainFrame(lista_tavoli , componenti);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

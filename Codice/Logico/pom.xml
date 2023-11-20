@@ -2,7 +2,6 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>Progetto</groupId>
   <artifactId>Progetto_Logico</artifactId>
-  <version>0.0.1</version>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
@@ -15,16 +14,5 @@
       </plugin>
     </plugins>
   </build>
-  <dependencies>
-  	<dependency>
-  		<groupId>Progetto</groupId>
-  		<artifactId>Progetto_DB</artifactId>
-  		<version>0.0.1</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>Progetto</groupId>
-  		<artifactId>Progetto_Presentazione</artifactId>
-  		<version>0.0.1</version>
-  	</dependency>
-  </dependencies>
+  <version>0.0.1-SNAPSHOT</version>
 </project>
