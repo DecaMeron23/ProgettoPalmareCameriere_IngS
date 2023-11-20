@@ -1,0 +1,47 @@
+	<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>Progetto</groupId>
+  <artifactId>Progetto_DB</artifactId>
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <release>17</release>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+	<dependency>
+	    <groupId>org.xerial</groupId>
+	    <artifactId>sqlite-jdbc</artifactId>
+	    <version>3.43.2.2</version>
+	</dependency>
+	<dependency>
+		<groupId>org.jooq</groupId>
+		<artifactId>jooq</artifactId>
+		<version>3.18.7</version>
+	</dependency>
+	<!-- These may not be required, unless you use the GenerationTool
+	manually for code generation -->
+	<dependency>
+		<groupId>org.jooq</groupId>
+		<artifactId>jooq-meta</artifactId>
+		<version>3.18.7</version>
+	</dependency>
+	<dependency>
+		<groupId>org.jooq</groupId>
+		<artifactId>jooq-codegen</artifactId>
+		<version>3.18.7</version>
+	</dependency>
+	<dependency>
+		<groupId>Progetto</groupId>
+		<artifactId>Progetto_Logico</artifactId>
+		<version>0.0.1</version>
+	</dependency>
+  </dependencies>
+  <version>0.0.1</version>
+</project>
