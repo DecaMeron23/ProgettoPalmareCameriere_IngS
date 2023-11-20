@@ -1,14 +1,12 @@
 # Fdb version 4
-["pdflatex"] 1700488975 "c:/Users/emili/OneDrive - unibg.it/UNI/3° Anno/Ingegneria del Software/GitHub/ProgettoPalmareCameriere_IngS/Documentazione/Latex/Documentazione.tex" "Documentazione.pdf" "Documentazione" 1700488977 0
-  "../../Immagini/Diagramma_Gant.jpg" 1700488625 47967 099a4fbbdd0646949d5b09d94b222526 ""
-  "../../Immagini/Esempio_Bottoni.jpg" 1700488625 44372 69a47f1f9c2bb30c7e6c7081e92fc9da ""
-  "../../Immagini/Modello_Processo_Evolutivo.jpg" 1700488625 93124 72af30525c7d9c850852bce71a40e166 ""
-  "../../UML/Diagrammi/Use_Case_Diagram.png" 1700488625 96415 84824b533867cabb06b1820c672532d5 ""
-  "Documentazione.aux" 1700488977 3092 8f0279fa67d5e1d4724af80edec2e76e "pdflatex"
-  "Documentazione.out" 1700488977 2105 58b06d768c8db431f99c1475a37d051b "pdflatex"
-  "Documentazione.tex" 1700488974 9501 8764affa0cab8fef647f1a552af34dc6 ""
-  "Documentazione.toc" 1700488977 1205 5551cf3872bfd40357d69367d7d7919b "pdflatex"
-  "c:/Users/emili/OneDrive - unibg.it/UNI/3° Anno/Ingegneria del Software/GitHub/ProgettoPalmareCameriere_IngS/Documentazione/Latex/Documentazione.tex" 1700488974 9501 8764affa0cab8fef647f1a552af34dc6 ""
+["pdflatex"] 1700413249 "c:/Users/emili/OneDrive - unibg.it/UNI/3° Anno/Ingegneria del Software/GitHub/ProgettoPalmareCameriere_IngS/Documentazione/Latex/ProjectPlane.tex" "ProjectPlane.pdf" "ProjectPlane" 1700413251 0
+  "../../Immagini/Esempio_Bottoni.jpg" 1700407105 44372 69a47f1f9c2bb30c7e6c7081e92fc9da ""
+  "../../UML/Diagrammi/Use_Case_Diagram.png" 1700401894 96415 84824b533867cabb06b1820c672532d5 ""
+  "ProjectPlane.aux" 1700413251 2445 31b6e7c18c3725486cb4afd938698d4e "pdflatex"
+  "ProjectPlane.out" 1700413251 1935 97fdaabae35f7b0a5793a75b56363db1 "pdflatex"
+  "ProjectPlane.tex" 1700413247 7210 247eda2b0f68d6b6eb536b6f0369fe07 ""
+  "ProjectPlane.toc" 1700413251 1124 d22101d0aba008dc5d3151a6c1e9d5d1 "pdflatex"
+  "c:/Users/emili/OneDrive - unibg.it/UNI/3° Anno/Ingegneria del Software/GitHub/ProgettoPalmareCameriere_IngS/Documentazione/Latex/ProjectPlane.tex" 1700413247 7210 247eda2b0f68d6b6eb536b6f0369fe07 ""
   "c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1700323682 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1700325156 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2023/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1700324341 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
@@ -83,9 +81,9 @@
   "c:/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1700354857 8213408 1fbc7e50b485c35dee11dd274724832f ""
   "c:/texlive/2023/texmf.cnf" 1700339251 713 e69b156964470283e0530f5060668171 ""
   (generated)
-  "Documentazione.aux"
-  "Documentazione.log"
-  "Documentazione.out"
-  "Documentazione.pdf"
-  "Documentazione.toc"
+  "ProjectPlane.aux"
+  "ProjectPlane.log"
+  "ProjectPlane.out"
+  "ProjectPlane.pdf"
+  "ProjectPlane.toc"
   (rewritten before read)
