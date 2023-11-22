@@ -186,7 +186,7 @@ class PanelImpostazioniTavoli extends JPanel {
 			};
 
 			// apriamo il frame che chiede la conferma
-			new FrameConfermaScelta("Sicuro di chiudere il tavolo n° " + tavoloSelezionato.getNome(), actSi,
+			new FrameConfermaScelta("bah" , "Sicuro di chiudere il tavolo n° " + tavoloSelezionato.getNome(), actSi,
 					actNo , closeWindAdapter);
 			enableFrame(false);
 		}

@@ -1,0 +1,15 @@
+{
+    "latex-workshop.latex.tools": [
+    {
+        "name": "latexmk",
+        "command": "latexmk",
+        "args": [
+            "-pdf",
+            "-jobname=Documentazione",
+            "%DOC%"
+        ]
+    }
+],
+"latex-workshop.latex.cleanAndRetry.enabled": true,
+"latex-workshop.latex.outDir": "../"
+}

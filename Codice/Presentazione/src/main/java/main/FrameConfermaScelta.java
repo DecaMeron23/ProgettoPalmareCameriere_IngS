@@ -1,3 +1,7 @@
+/**
+ *  @author Benedetta Vitale & Emilio Meroni
+ */
+
 package main;
 
 import java.awt.BorderLayout;
@@ -13,20 +17,33 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+/**
+ * The Class Frame per la conferma della scelta.
+ */
 public class FrameConfermaScelta extends JFrame {
 
+	/** Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-	public FrameConfermaScelta(String string, ActionListener listenerBtnSi, ActionListener listenerBtnNo , WindowAdapter winAdapter) {
+	/**
+	 * costruttore frame conferma scelta.
+	 *
+	 * @param titolo        il titolo del frame
+	 * @param string        la stringa che compare in centro allo schermo
+	 * @param listenerBtnSi il listener per il bottone si
+	 * @param listenerBtnNo il listener per il bottone no
+	 * @param winAdapter    il listener per la chiusura del frame
+	 */
+	public FrameConfermaScelta(String titolo, String string, ActionListener listenerBtnSi, ActionListener listenerBtnNo,
+			WindowAdapter winAdapter) {
 
-		setTitle("Conferma Uscita");
+		setTitle(titolo);
 		setSize(new Dimension(300, 200));
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
 		setType(Type.POPUP);
 
 		addWindowListener(winAdapter);
-		
 
 		setUndecorated(false);
 		setResizable(false);
@@ -50,15 +67,15 @@ public class FrameConfermaScelta extends JFrame {
 		lblTesto.setHorizontalAlignment(SwingConstants.CENTER);
 
 		// creo i pulsanti
-		JButton btnsi = new JButton("si");
+		JButton btnSi = new JButton("si");
 		JButton btnNo = new JButton("no");
 
 		// aggiungo action listener
-		btnsi.addActionListener(listenerBtnSi);
+		btnSi.addActionListener(listenerBtnSi);
 		btnNo.addActionListener(listenerBtnNo);
 
 		// aggiungo i pulsanti
-		panelPulsanti.add(btnsi);
+		panelPulsanti.add(btnSi);
 		panelPulsanti.add(btnNo);
 
 		// aggiungo il panel pulsanti al panel principale

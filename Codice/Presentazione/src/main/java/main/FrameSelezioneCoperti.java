@@ -1,3 +1,7 @@
+/**
+ *  @author Benedetta Vitale & Emilio Meroni
+ */
+
 package main;
 
 import java.awt.Dimension;
@@ -16,20 +20,37 @@ import classi.enumerativi.StatoTavolo;
 import classi.tavolo.ResocontoTavolo;
 import classi.tavolo.Tavolo;
 
+/**
+ * The Class Frame per selezionare il numero dei coperti.
+ */
 class FrameSelezioneCoperti extends JFrame {
 
+	/** Constant serialVersionUID. */
 	private static final long serialVersionUID = 6266921115114034123L;
 
+	/** tavolo a cui si fa riferimento. */
 	private final Tavolo tavolo;
 
+	/** il label di testo. */
 	private JLabel lblText;
 
-	FrameSelezioneCoperti(Tavolo t, WindowAdapter close) {
+	/** The main frame. */
+	private MainFrame mainFrame;
+	
+	/**
+	 * Instantiates a new frame selezione coperti.
+	 *
+	 * @param t il tavolo a cui fa riferimento il frame
+	 * @param close il listener del frame
+	 * @param mainFrame il main frame 
+	 */
+	FrameSelezioneCoperti(Tavolo t, WindowAdapter close, MainFrame mainFrame) {
 		super();
 		this.tavolo = t;
+		this.mainFrame = mainFrame;
 		setType(Type.POPUP);
 		setUndecorated(false);
-		setTitle("Coperti Tavolo " + tavolo.getNome());
+		setTitle("Coperti Tavolo " + t.getNome());
 		setBounds(100, 100, 500, 500);
 
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -49,7 +70,7 @@ class FrameSelezioneCoperti extends JFrame {
 		btnPiu.setEnabled(false);
 		JButton btnInvio = new JButton("invio");
 		final JButton btnMeno = new JButton("-");
-		lblText = new JLabel("" + tavolo.getNumPostiMassimi());
+		lblText = new JLabel("" + t.getNumPostiMassimi());
 		lblText.setHorizontalAlignment(SwingConstants.CENTER);
 
 		btnMeno.addActionListener(new ActionListener() {
@@ -94,17 +115,31 @@ class FrameSelezioneCoperti extends JFrame {
 		setVisible(true);
 	}
 
+	/**
+	 * prendi il label in numero intero.
+	 *
+	 * @return  il valore in intero del testo all'interno del label 
+	 */
 	private int getIntLabel() {
 		return Integer.parseInt(lblText.getText());
 	}
 
+	/**
+	 * Class ActionBtnInvio.
+	 */
 	private class ActionBtnInvio implements ActionListener {
 
+		/**
+		 * Action performed.
+		 *
+		 * @param e the l'evento
+		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			int coperti = getIntLabel();
 			tavolo.setStato(StatoTavolo.OCCUPATO);
 			tavolo.resocontoTavolo = new ResocontoTavolo(coperti);
+			mainFrame.repaintPanelTavoli();
 			dispose();
 		}
 	}

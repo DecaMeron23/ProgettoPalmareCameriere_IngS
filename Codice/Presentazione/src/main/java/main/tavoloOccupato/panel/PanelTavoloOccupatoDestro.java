@@ -1,3 +1,7 @@
+/**
+ *  @author Benedetta Vitale & Emilio Meroni
+ */
+
 package main.tavoloOccupato.panel;
 
 import java.awt.BorderLayout;
@@ -23,17 +27,36 @@ import classi.ordine.PiattoOrdinato;
 import main.tavoloOccupato.BottonePiatto;
 import main.tavoloOccupato.TextAreaCommentoPiatto;
 
-public class PanelTavoloOccupatoDestro extends JPanel {
+/**
+ * The Class Panel Tavolo Occupato Destro.
+ */
+class PanelTavoloOccupatoDestro extends JPanel {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -5753067260932073798L;
 
-	List<PanelComponente> listaPanelComponenti;
+	/** The lista panel componenti. */
+	private List<PanelComponente> listaPanelComponenti;
+	
+	/** The lista componenti. */
 	private List<Componente> listaComponenti;
+	
+	/** The panel tavolo occupato. */
 	private PanelTavoloOccupato panelTavoloOccupato;
+	
+	/** The commento piatto. */
 	private TextAreaCommentoPiatto commentoPiatto;
+	
+	/** The btn aggiungi. */
 	private JButton btnAggiungi;
 
-	public PanelTavoloOccupatoDestro(List<Componente> listaComponenti, PanelTavoloOccupato panelTavoloOccupato) {
+	/**
+	 * Instantiates a new panel tavolo occupato destro.
+	 *
+	 * @param listaComponenti the lista componenti
+	 * @param panelTavoloOccupato the panel tavolo occupato
+	 */
+	PanelTavoloOccupatoDestro(List<Componente> listaComponenti, PanelTavoloOccupato panelTavoloOccupato) {
 
 		this.panelTavoloOccupato = panelTavoloOccupato;
 
@@ -58,6 +81,9 @@ public class PanelTavoloOccupatoDestro extends JPanel {
 
 	}
 
+	/**
+	 * Verifica btn aggiungi.
+	 */
 	// verifica se il bottone aggiungi deve stare attivo o disattivato
 	private void verificaBtnAggiungi() {
 		if (panelTavoloOccupato.piattoSelezionato == null
@@ -68,6 +94,11 @@ public class PanelTavoloOccupatoDestro extends JPanel {
 		}
 	}
 
+	/**
+	 * Aggiungi panel componenti.
+	 *
+	 * @param tabbed the tabbed
+	 */
 	private void aggiungiPanelComponenti(JTabbedPane tabbed) {
 		listaPanelComponenti = new ArrayList<>();
 		for (Componente comp : listaComponenti) {
@@ -83,12 +114,21 @@ public class PanelTavoloOccupatoDestro extends JPanel {
 		}
 	}
 
+	/**
+	 * Repaint panel.
+	 */
 	public void repaintPanel() {
 		for (PanelComponente panel : listaPanelComponenti) {
 			panel.repaintAllBtnPiatti();
 		}
 	}
 
+	/**
+	 * Aggiungi elementi panel destro.
+	 *
+	 * @param tabbedCoponenti the tabbed coponenti
+	 * @param panelBassoDestro the panel basso destro
+	 */
 	private void aggiungiElementiPanelDestro(JTabbedPane tabbedCoponenti, JPanel panelBassoDestro) {
 		panelBassoDestro.add(commentoPiatto, BorderLayout.CENTER);
 		panelBassoDestro.add(btnAggiungi, BorderLayout.EAST);
@@ -96,12 +136,22 @@ public class PanelTavoloOccupatoDestro extends JPanel {
 		add(panelBassoDestro);
 	}
 
+	/**
+	 * The Class PanelComponente.
+	 */
 	private class PanelComponente extends JPanel {
 
+		/** The Constant serialVersionUID. */
 		private static final long serialVersionUID = -8073574984234371067L;
 
+		/** The lista bottoni piatti. */
 		List<BottonePiatto> listaBottoniPiatti;
 
+		/**
+		 * Instantiates a new panel componente.
+		 *
+		 * @param componente the componente
+		 */
 		public PanelComponente(Componente componente) {
 			super();
 
@@ -109,6 +159,11 @@ public class PanelTavoloOccupatoDestro extends JPanel {
 			aggiungiBtnPiatti(componente.getListaPiatti());
 		}
 
+		/**
+		 * Aggiungi btn piatti.
+		 *
+		 * @param listaPiatti the lista piatti
+		 */
 		void aggiungiBtnPiatti(List<Piatto> listaPiatti) {
 			List<BottonePiatto> listaBottoniPiatti = new ArrayList<>();
 			for (Piatto piatto : listaPiatti) {
@@ -122,6 +177,9 @@ public class PanelTavoloOccupatoDestro extends JPanel {
 			this.listaBottoniPiatti = listaBottoniPiatti;
 		}
 
+		/**
+		 * Repaint all btn piatti.
+		 */
 		public void repaintAllBtnPiatti() {
 			for (BottonePiatto btn : listaBottoniPiatti) {
 				if (panelTavoloOccupato.piattoSelezionato == null
@@ -135,8 +193,16 @@ public class PanelTavoloOccupatoDestro extends JPanel {
 
 		}
 
+		/**
+		 * The Class ActionPulsantePiatto.
+		 */
 		class ActionPulsantePiatto implements ActionListener {
 
+			/**
+			 * Action performed.
+			 *
+			 * @param e the e
+			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				BottonePiatto btn = (BottonePiatto) e.getSource();
@@ -158,8 +224,16 @@ public class PanelTavoloOccupatoDestro extends JPanel {
 
 	}
 
+	/**
+	 * The Class ChangeListenerTabbetComponenti.
+	 */
 	private class ChangeListenerTabbetComponenti implements ChangeListener {
 
+		/**
+		 * State changed.
+		 *
+		 * @param e the e
+		 */
 		@Override
 		public void stateChanged(ChangeEvent e) {
 			repaintPanel();
@@ -167,8 +241,16 @@ public class PanelTavoloOccupatoDestro extends JPanel {
 
 	}
 
+	/**
+	 * The Class ActionListenerBtnAggiungi.
+	 */
 	private class ActionListenerBtnAggiungi implements ActionListener {
 
+		/**
+		 * Action performed.
+		 *
+		 * @param e the e
+		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			panelTavoloOccupato.aggiungiPiatto(commentoPiatto);

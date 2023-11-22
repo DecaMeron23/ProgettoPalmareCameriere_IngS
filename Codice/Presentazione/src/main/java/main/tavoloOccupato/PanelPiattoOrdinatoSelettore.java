@@ -43,7 +43,8 @@ public class PanelPiattoOrdinatoSelettore extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			piattoOrdinato.incrementaQuantità();
+			int quantita = piattoOrdinato.getQuantita();
+			piattoOrdinato.setQuantita(quantita++);
 			lblNumeroOrdini.setText("" + piattoOrdinato.getQuantita());
 		}
 
@@ -53,7 +54,8 @@ public class PanelPiattoOrdinatoSelettore extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			piattoOrdinato.decrementaQuantità();
+			int quantita = piattoOrdinato.getQuantita();
+			piattoOrdinato.setQuantita(quantita--);
 			lblNumeroOrdini.setText("" + piattoOrdinato.getQuantita());
 		}
 	}

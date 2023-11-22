@@ -1,3 +1,7 @@
+/**
+ *  @author Benedetta Vitale & Emilio Meroni
+ */
+
 package main;
 
 import java.awt.EventQueue;

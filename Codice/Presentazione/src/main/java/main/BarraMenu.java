@@ -1,54 +1,40 @@
+/**
+ *  @author Benedetta Vitale & Emilio Meroni
+ */
+
 package main;
 
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JMenuBar;
 
+/**
+ * Class Barra Menu.
+ */
 class BarraMenu extends JMenuBar {
 
+	/** Constant serialVersionUID. */
 	private static final long serialVersionUID = 5682216914516074221L;
 
-	private final MainFrame gui;
-
-	BarraMenu(MainFrame guiMain) {
-		gui = guiMain;
+	/**
+	 * costruttore della barra menu.
+	 *
+	 * @param listenerTavolo l'action listener per il pulsante tavoli
+	 * @param listenerImpostazioni l'action listener per il pulsante impostazioni
+	 */
+	BarraMenu(ActionListener listenerTavolo, ActionListener listenerImpostazioni) {
 
 		JButton btnTavoli = new JButton("Tavoli");
 		JButton btnImpostazioni = new JButton("Impostazioni");
 
-		btnImpostazioni.addActionListener(new AzioneBtnImpostazioni());
-		btnTavoli.addActionListener(new AzioneBtnTavoli());
+		btnImpostazioni.addActionListener(listenerTavolo);
+		btnTavoli.addActionListener(listenerImpostazioni);
 
 		setLayout(new BorderLayout());
 		add(btnTavoli, BorderLayout.WEST);
 		add(btnImpostazioni, BorderLayout.EAST);
 
 	}
-
-	/**
-	 * Classe che implementa Action Listener per il pulsante tavoli
-	 */
-	private class AzioneBtnTavoli implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			gui.repaintPanelTavoli();
-		}
-
-	}
-
-	/**
-	 * Classe che implementa Action Listener per il pulsante impostazioni
-	 */
-	private class AzioneBtnImpostazioni implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			gui.openImpostazioni();
-		}
-	}
-
 }

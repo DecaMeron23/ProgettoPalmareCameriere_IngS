@@ -299,7 +299,7 @@ class PanelTavoloOccupatoSinistro extends JPanel {
 				};
 
 				// apriamo il frame che chiede la conferma
-				new FrameConfermaScelta("E' stato effettuato il pagamento?", actSi, actNo , adapter);
+				new FrameConfermaScelta("Conferma Pagamento", "E' stato effettuato il pagamento?", actSi, actNo , adapter);
 			}
 
 			/**

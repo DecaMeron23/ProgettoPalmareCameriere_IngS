@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -65,13 +64,14 @@ public class PanelBottoniTavoli extends JScrollPane {
 		return btnTavolo;
 	}
 
-	public JButton getPulstanteTavolo(Tavolo tavolo) {
-		for (BottoneTavolo btn : btnTavolo) {
-			if (btn.equals(tavolo)) {
-				return btn;
-			}
-		}
-		return null;
-	}
+// TODO Remove unused code found by UCDetector
+// 	public JButton getPulstanteTavolo(Tavolo tavolo) {
+// 		for (BottoneTavolo btn : btnTavolo) {
+// 			if (btn.equals(tavolo)) {
+// 				return btn;
+// 			}
+// 		}
+// 		return null;
+// 	}
 
 }

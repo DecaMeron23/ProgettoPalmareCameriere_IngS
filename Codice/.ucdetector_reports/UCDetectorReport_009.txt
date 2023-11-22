@@ -1,0 +1,3 @@
+Created with UCDetector 2.0.0	2023-11-20 19:00:41	http://www.ucdetector.org/	Created by class: org.ucdetector.report.TextReport	
+Location	Description	Java	Marker	Author
+classi.menu.Componente.aggiungiPiatto(Componente.java:51)	Method "Componente.aggiungiPiatto(Piatto)" has 0 references	Componente.aggiungiPiatto(Piatto)	org.ucdetector.analyzeMarkerReference	

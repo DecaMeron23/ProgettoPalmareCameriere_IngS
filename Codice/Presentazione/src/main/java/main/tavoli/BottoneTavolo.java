@@ -51,7 +51,6 @@ public class BottoneTavolo extends JButton {
 		default:
 			break;
 		}
-		this.repaint();
 	}
 
 	public Tavolo getTavolo() {
