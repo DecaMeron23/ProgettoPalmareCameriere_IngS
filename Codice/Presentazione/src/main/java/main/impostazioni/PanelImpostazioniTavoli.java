@@ -8,6 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,6 +20,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 
+import classi.dataBase.InterfaceModel;
 import classi.tavolo.Tavolo;
 import main.FrameConfermaScelta;
 import main.tavoli.BottoneTavolo;
@@ -29,7 +33,12 @@ class PanelImpostazioniTavoli extends JPanel {
 
 	private static final long serialVersionUID = 2122068881007738339L;
 
-	private Tavolo[] listaDiProva = new Tavolo[] { new Tavolo(1, 3) };
+	private List<Tavolo> listaTavolo = generaLista();
+
+	/**
+	 * Modello dei dati
+	 */
+	private InterfaceModel model;
 
 	/**
 	 * Data Base
@@ -63,6 +72,7 @@ class PanelImpostazioniTavoli extends JPanel {
 		JScrollPane jScrollPane = new JScrollPane();
 		jScrollPane.setViewportView(panelSopra);
 		jScrollPane.setPreferredSize(new Dimension(900, 700));
+		jScrollPane.getVerticalScrollBar().setUnitIncrement(10);
 
 		// creiamo la classe che si occupa del DB, la Jlist con tutti i tavoli
 		// db = new ModificheDB();
@@ -91,14 +101,24 @@ class PanelImpostazioniTavoli extends JPanel {
 		add(panelSotto, BorderLayout.SOUTH);
 	}
 
+	private List<Tavolo> generaLista() {
+		List<Tavolo> list = new ArrayList<Tavolo>();
+		for (int i = 0; i < 14; i++) {
+			list.add(new Tavolo(i, 4));
+		}
+		return list;
+	}
+
 	/**
 	 * metodo che aggiorna i tavoli della JList
 	 */
 	private void aggiornaListTavoli(JPanel panel) {
 
 		panelSopra.removeAll();
-		
-		for (Tavolo tavolo : listaDiProva) {
+
+//		List<Tavolo> listaTavolo = model.getListaTavoli();
+
+		for (Tavolo tavolo : listaTavolo) {
 			BottoneTavolo btn = new BottoneTavolo(tavolo);
 			btn.addActionListener(new ActionListener() {
 
@@ -111,28 +131,39 @@ class PanelImpostazioniTavoli extends JPanel {
 				}
 			});
 
-			setSize(new Dimension(150, 100));
+			btn.setSize(new Dimension(600, 500));
 
 			panel.add(btn);
 		}
 
+		int pulsantiMancanti = 32 - listaTavolo.size();
+
+		if (pulsantiMancanti > 0) {
+			for (int i = 0; i < pulsantiMancanti; i++) {
+				JButton btn = new JButton("");
+				btn.setVisible(false);
+				btn.setEnabled(false);
+				panel.add(btn);
+			}
+		}
+
 		lblTavoloSelezionato.setText("Tavolo Selezionato n° ");
-		
+
 		btnModifica.setEnabled(false);
 		btnElimina.setEnabled(false);
-		
+
 		repaint();
 		revalidate();
 
 	}
-	
+
 	private void enableFrame(boolean bool) {
-		JFrame frame = ((JFrame)SwingUtilities.getWindowAncestor(this));
+		JFrame frame = ((JFrame) SwingUtilities.getWindowAncestor(this));
 		frame.setEnabled(bool);
 		if (bool) {
 			frame.toFront();
 		}
-		
+
 	}
 
 	/**
@@ -177,7 +208,7 @@ class PanelImpostazioniTavoli extends JPanel {
 					enableFrame(true);
 				}
 			};
-			
+
 			WindowAdapter closeWindAdapter = new WindowAdapter() {
 				@Override
 				public void windowClosed(WindowEvent e) {
@@ -186,8 +217,8 @@ class PanelImpostazioniTavoli extends JPanel {
 			};
 
 			// apriamo il frame che chiede la conferma
-			new FrameConfermaScelta("bah" , "Sicuro di chiudere il tavolo n° " + tavoloSelezionato.getNome(), actSi,
-					actNo , closeWindAdapter);
+			new FrameConfermaScelta("bah", "Sicuro di chiudere il tavolo n° " + tavoloSelezionato.getNome(), actSi,
+					actNo, closeWindAdapter);
 			enableFrame(false);
 		}
 	}
@@ -199,7 +230,7 @@ class PanelImpostazioniTavoli extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			new FrameAggiungiModificaTavolo(null , FrameAggiungiModificaTavolo.AGGIUNGI);
+			new FrameAggiungiModificaTavolo(null, FrameAggiungiModificaTavolo.AGGIUNGI);
 			enableFrame(false);
 		}
 
@@ -215,7 +246,6 @@ class PanelImpostazioniTavoli extends JPanel {
 		public static final int AGGIUNGI = 0;
 		public static final int MODIFICA = 1;
 
-
 		public FrameAggiungiModificaTavolo(Tavolo tavolo, int tipo) {
 
 			String titolo = (tipo == MODIFICA ? ("Modifica Tavolo n°" + tavolo.getNome()) : "Aggiungi Tavolo");
@@ -228,14 +258,13 @@ class PanelImpostazioniTavoli extends JPanel {
 
 			setType(Type.POPUP);
 
-
 			addWindowListener(new WindowAdapter() {
 				@Override
 				public void windowClosed(WindowEvent e) {
 					enableFrame(true);
 				}
 			});
-						
+
 			setUndecorated(false);
 			setResizable(false);
 			setAlwaysOnTop(true);

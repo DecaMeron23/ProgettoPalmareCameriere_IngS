@@ -83,4 +83,11 @@ public class ResocontoTavolo {
     public List<Ordine> getListaOrdini() {
 		return listaOrdini;
 	}
+
+//	/**
+//	 * @return il tavolo a cui si riferisce il resoconto
+//	 */
+//	public Tavolo getTavolo() {
+//		return tavolo;
+//	}
 }

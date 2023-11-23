@@ -24,7 +24,7 @@ class BarraMenu extends JMenuBar {
 	 * @param listenerTavolo l'action listener per il pulsante tavoli
 	 * @param listenerImpostazioni l'action listener per il pulsante impostazioni
 	 */
-	BarraMenu(ActionListener listenerTavolo, ActionListener listenerImpostazioni) {
+	BarraMenu(ActionListener listenerImpostazioni, ActionListener listenerTavolo) {
 
 		JButton btnTavoli = new JButton("Tavoli");
 		JButton btnImpostazioni = new JButton("Impostazioni");
