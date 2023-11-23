@@ -24,3 +24,26 @@ hs_err_pid*
 replay_pid*
 *.metadata
 *.prefs
+
+# LaTeX
+*.aux
+*.log
+*.toc
+*.out
+*.synctex.gz
+*.pdf
+
+# BibTeX
+*.bbl
+*.blg
+
+# LaTeX auto-generated files
+*.fdb_latexmk
+*.fls
+
+# TeXShop
+*.tps
+*.pdfsync
+
+# Overleaf
+.project
