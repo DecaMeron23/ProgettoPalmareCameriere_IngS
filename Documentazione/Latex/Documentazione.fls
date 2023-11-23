@@ -1,8 +1,8 @@
-PWD c:/Users/emili/OneDrive - unibg.it/UNI/3° Anno/Ingegneria del Software/GitHub/ProgettoPalmareCameriere_IngS/Documentazione/Latex
+PWD c:/Users/bened/Desktop/Università/Terzo Anno/Ingegneria del Softwere/GitHub/ProgettoPalmareCameriere_IngS/Documentazione/Latex
 INPUT c:/texlive/2023/texmf.cnf
 INPUT c:/texlive/2023/texmf-dist/web2c/texmf.cnf
 INPUT c:/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT c:/Users/emili/OneDrive - unibg.it/UNI/3° Anno/Ingegneria del Software/GitHub/ProgettoPalmareCameriere_IngS/Documentazione/Latex/Documentazione.tex
+INPUT c:/Users/bened/Desktop/Università/Terzo Anno/Ingegneria del Softwere/GitHub/ProgettoPalmareCameriere_IngS/Documentazione/Latex/Documentazione.tex
 OUTPUT Documentazione.log
 INPUT c:/texlive/2023/texmf-dist/tex/latex/base/book.cls
 INPUT c:/texlive/2023/texmf-dist/tex/latex/base/book.cls

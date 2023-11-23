@@ -10,7 +10,7 @@
 \contentsline {section}{\numberline {1.9}Garanzia e Qualità}{7}{section.1.9}%
 \contentsline {section}{\numberline {1.10}Workpackages}{8}{section.1.10}%
 \contentsline {section}{\numberline {1.11}Risorse}{8}{section.1.11}%
-\contentsline {section}{\numberline {1.12}Budget}{8}{section.1.12}%
+\contentsline {section}{\numberline {1.12}Budget}{9}{section.1.12}%
 \contentsline {section}{\numberline {1.13}Cambiamenti}{9}{section.1.13}%
 \contentsline {section}{\numberline {1.14}Consegna}{9}{section.1.14}%
 \contentsline {chapter}{\numberline {2}Specifiche dei Requisiti}{11}{chapter.2}%
