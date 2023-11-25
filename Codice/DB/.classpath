@@ -16,6 +16,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" path="/Logico"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

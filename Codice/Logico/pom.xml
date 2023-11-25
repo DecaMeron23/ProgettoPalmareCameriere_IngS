@@ -15,4 +15,33 @@
     </plugins>
   </build>
   <version>0.0.1-SNAPSHOT</version>
+  
+  <dependencies>
+  	<dependency>
+	  	<groupId>Progetto</groupId>
+	  	<artifactId>Progetto_DB</artifactId>
+	  	<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  	<dependency>
+	 	<groupId>org.jooq</groupId>
+		<artifactId>jooq</artifactId>
+		<version>3.18.7</version>
+	</dependency>
+	<dependency>
+		<groupId>org.jooq</groupId>
+		<artifactId>jooq-meta</artifactId>
+		<version>3.18.7</version>
+	</dependency>
+	<dependency>
+		<groupId>org.jooq</groupId>
+		<artifactId>jooq-codegen</artifactId>
+		<version>3.18.7</version>
+	</dependency>
+	<dependency>
+        <groupId>org.xerial</groupId>
+        <artifactId>sqlite-jdbc</artifactId>
+        <version>3.34.0</version> <!-- Sostituisci con l'ultima versione disponibile -->
+    </dependency>
+  
+  </dependencies>
 </project>

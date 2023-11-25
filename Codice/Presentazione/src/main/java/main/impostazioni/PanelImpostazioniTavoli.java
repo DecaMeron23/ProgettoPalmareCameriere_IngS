@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -20,7 +19,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 
-import classi.dataBase.InterfaceModel;
 import classi.tavolo.Tavolo;
 import main.FrameConfermaScelta;
 import main.tavoli.BottoneTavolo;
@@ -38,7 +36,7 @@ class PanelImpostazioniTavoli extends JPanel {
 	/**
 	 * Modello dei dati
 	 */
-	private InterfaceModel model;
+	//private InterfaceModel model;
 
 	/**
 	 * Data Base
