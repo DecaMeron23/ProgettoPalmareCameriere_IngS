@@ -10,13 +10,17 @@ import javax.swing.JSplitPane;
 
 public class PanelImpostazioni extends JPanel {
 
+	/**
+	 * Posizione del divisore
+	 */
+	private static final int DIVIDER_LOCATION = 300;
+
 	private static final long serialVersionUID = 5685747632097901109L;
 
 // TODO from UCDetector: Constant "PanelImpostazioni.TAVOLI" has 0 references
 	static final int TAVOLI = 0; // NO_UCD (unused code)
 	static final int COMPONENTI = 1; // NO_UCD (unused code)
-	static final int AGG_PIATTO = 2; // NO_UCD (unused code)
-	static final int MOD_PIATTO = 3; // NO_UCD (unused code)
+	static final int PIATTI = 2; // NO_UCD (unused code)
 
 		
 	/**
@@ -41,7 +45,7 @@ public class PanelImpostazioni extends JPanel {
 		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panelSx, panelDx);
 
 		// set posizione del divisore, disabilitazione muovimento dello split
-		splitPane.setDividerLocation(500);
+		splitPane.setDividerLocation(DIVIDER_LOCATION);
 		splitPane.setEnabled(false);
 		splitPane.setDividerSize(1);
 
