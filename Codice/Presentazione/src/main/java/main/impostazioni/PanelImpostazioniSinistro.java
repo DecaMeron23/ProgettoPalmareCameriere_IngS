@@ -11,7 +11,7 @@ class PanelImpostazioniSinistro extends JPanel {
 
 	private static final long serialVersionUID = -641162938886101084L;
 
-	// arrai dei bottoni
+	// array dei bottoni
 	private final JButton[] btnImpostazioni;
 
 	/**
@@ -25,17 +25,15 @@ class PanelImpostazioniSinistro extends JPanel {
 		// creazione dei pulsanti
 		JButton btnTavoli = new JButton("Tavoli");
 		JButton btnComponenti = new JButton("Componenti");
-		JButton btnAggPiatto = new JButton("Aggiungi Piatto");
-		JButton btnModPiatto = new JButton("Modifica Piatto");
+		JButton btnPiatti = new JButton("Piatti");
 
 		// aggiungiamo i bottoni
-		btnImpostazioni = new JButton[] { btnTavoli, btnComponenti, btnAggPiatto, btnModPiatto };
+		btnImpostazioni = new JButton[] { btnTavoli, btnComponenti , btnPiatti};
 
 		// settaggio identificativi bottoni
 		btnTavoli.setName("tavoli");
 		btnComponenti.setName("componenti");
-		btnAggPiatto.setName("agg_piatto");
-		btnModPiatto.setName("mod_piatto");
+		btnPiatti.setName("piatto");
 
 		// aggiunta action listener e aggiunta al panel
 		for (JButton btn : btnImpostazioni) {
@@ -61,6 +59,12 @@ class PanelImpostazioniSinistro extends JPanel {
 		}
 	}
 
+	/**
+	 * 	Funzione che idenditifica il bottone
+	 * 
+	 * @param button: Bottone da identificare
+	 * @return i intero che identifica il bottone
+	 */
 	int getTipoBtn(JButton button) {
 		for (int i = 0; i < btnImpostazioni.length; i++) {
 			if(btnImpostazioni[i].equals(button)) {

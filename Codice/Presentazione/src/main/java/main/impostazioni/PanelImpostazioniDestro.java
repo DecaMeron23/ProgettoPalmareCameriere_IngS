@@ -14,11 +14,10 @@ class PanelImpostazioniDestro extends JPanel {
 		// creazione panel
 		JPanel panelTavoli = new PanelImpostazioniTavoli();
 		JPanel panelComponenti = new PanelImpostazioniComponenti();
-		JPanel panelAggPiatto = new PanelImpostazioniAggiungi();
-		JPanel panelModPiatto = new PanelImpostazioniModifica();
+		JPanel panelPiatti = new PanelImpostazioniPiatti();
 
 		// aggiunta panel nell'array
-		panelImpostazioni = new JPanel[] { panelTavoli, panelComponenti, panelAggPiatto, panelModPiatto };
+		panelImpostazioni = new JPanel[] { panelTavoli, panelComponenti, panelPiatti};
 	}
 
 	/**
