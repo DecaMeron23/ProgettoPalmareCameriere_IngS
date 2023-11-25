@@ -103,7 +103,7 @@ class PanelImpostazioniTavoli extends JPanel {
 
 	private List<Tavolo> generaLista() {
 		List<Tavolo> list = new ArrayList<Tavolo>();
-		for (int i = 0; i < 14; i++) {
+		for (int i = 0; i < 2; i++) {
 			list.add(new Tavolo(i, 4));
 		}
 		return list;
@@ -130,8 +130,6 @@ class PanelImpostazioniTavoli extends JPanel {
 					lblTavoloSelezionato.setText("Tavolo Selezionato n° " + tavoloSelezionato.getNome());
 				}
 			});
-
-			btn.setSize(new Dimension(600, 500));
 
 			panel.add(btn);
 		}
