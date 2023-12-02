@@ -7,8 +7,6 @@ package classi.ordine;
 import java.util.ArrayList;
 import java.util.List;
 
-import classi.tavolo.Tavolo;
-
 /**
  * Classe che raggruppa tutti i piatti ordinati.
  */

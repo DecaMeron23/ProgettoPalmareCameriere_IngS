@@ -1,7 +1,6 @@
 /**
  *  @author Benedetta Vitale & Emilio Meroni
  */
-
 package classi.menu;
 
 import java.util.List;

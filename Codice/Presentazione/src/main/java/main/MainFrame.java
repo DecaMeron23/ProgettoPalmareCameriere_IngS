@@ -78,23 +78,8 @@ public class MainFrame extends JFrame {
 
 		repaintPanelTavoli();
 
-		ActionListener listenerTavoli = new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				repaintPanelTavoli();
-			}
-		};
-
-		ActionListener listenerImpostazioni = new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				openImpostazioni();
-			}
-		};
-
-		JMenuBar menuBar = new BarraMenu(listenerTavoli , listenerImpostazioni);
+		JMenuBar menuBar = new BarraMenu();
 		setJMenuBar(menuBar);
 
 		setVisible(true);

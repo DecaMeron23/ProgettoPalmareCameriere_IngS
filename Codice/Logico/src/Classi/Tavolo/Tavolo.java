@@ -1,6 +1,7 @@
 /**
  *  @author Benedetta Vitale & Emilio Meroni
  */
+
 package classi.tavolo;
 
 import classi.enumerativi.StatoTavolo;
@@ -12,20 +13,20 @@ public class Tavolo {
 
 	/** nome del tavolo un intero */
 	private int nome;
-	
-	/** il numero dei posti massimi che ha il tavolo*/
+
+	/** il numero dei posti massimi che ha il tavolo */
 	private int num_posti_massimi;
-	
+
 	/** Stato del tavolo */
 	private StatoTavolo stato;
-	
+
 	/** il resoconto del tavolo */
 	public ResocontoTavolo resocontoTavolo;
 
 	/**
 	 * Costruttore del tavolo.
 	 *
-	 * @param nome il nome del tavolo
+	 * @param nome             il nome del tavolo
 	 * @param num_post_massimi il numero dei posti massimi del tavolo
 	 */
 	public Tavolo(int nome, int num_post_massimi) {
@@ -33,7 +34,7 @@ public class Tavolo {
 		this.nome = nome;
 		this.num_posti_massimi = num_post_massimi;
 		stato = StatoTavolo.LIBERO;
-		
+
 	}
 
 	/**
@@ -80,7 +81,7 @@ public class Tavolo {
 	public void setStato(StatoTavolo stato) {
 		this.stato = stato;
 	}
-	
+
 	/**
 	 * imposta il nuovo nome del tavolo.
 	 *
@@ -98,7 +99,7 @@ public class Tavolo {
 		setStato(StatoTavolo.DA_PULIRE);
 		resocontoTavolo = null;
 	}
-	
+
 	/**
 	 * metodo toString
 	 *
