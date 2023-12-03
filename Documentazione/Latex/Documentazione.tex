@@ -1,4 +1,8 @@
-\documentclass{book}
+\documentclass[12pt, letterpaper]{book}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{hyphenat}
+\hyphenation{mate-mati-ca recu-perare}
 \usepackage{hyperref}
 \usepackage{graphicx}
 
@@ -18,10 +22,10 @@
 
 \section{Introduzione}
 
-    Questo progetto verrà svolto da Benedetta Vitale ed Emilio Meroni, entrambi studenti al terzo anno di ingegneria informatica presso l'università di Bergamo.
+    Questo progetto verrà svolto da Benedetta Vitale ed Emilio Meroni, entrambi studenti al terzo anno d'ingegneria informatica presso l'università di Bergamo.\\
 
     Il software che andremo a sviluppare è pensato per dare supporto 
-    all'attività di ristorazione. In particolare, dovrà assistere alle mansioni dei camerieri, come ad esempio: prendere le ordinazioni, redigere il conto, trovare i tavoli disponibili, ecc.
+    all'attività di ristorazione. In particolare, dovrà assistere alle mansioni dei camerieri, come ad esempio: prendere le ordinazioni, redigere il conto, trovare i tavoli disponibili, ecc.\\
 
     Abbiamo scelto questa tipologia di sistema dato che Emilio lavora, nei week-end, presso un ristorante, e gli ha incuriosito la gestione interna tramite l'utilizzo dei palmari da parte dei camerieri. 
     \begin{tabbing}
@@ -30,33 +34,15 @@
     
 \section{Modello di Processo}
 
-    Il modello di processo che seguiremo è quello della prototipazione, in particolare la prototipazione evolutiva [Figura: \ref{fig: modello_processo_evolutivo}]. Questo processo è molto utile per quanto riguarda la costruzione dell'interfaccia grafica, dato che ci aiuterà a costruire più velocemente la GUI finale, tramite diversi prototipi di iterfacce utente. La parte principale della nostra applicazione, infatti, sarà la grafica.
+    Il modello di processo che seguiremo è quello della prototipazione, in particolare la prototipazione evolutiva [Figura: \ref{fig: modello_processo_evolutivo}]. Questo processo è molto utile per quanto riguarda la costruzione dell'interfaccia grafica, dato che ci aiuterà a costruire più velocemente la GUI finale, tramite diversi prototipi d'interfacce utente. La parte principale della nostra applicazione, infatti, sarà la grafica.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width = 0.7\linewidth]{../../Immagini/Modello_Processo_Evolutivo.jpg}
     \caption{Modello Di Processo Evolutivo}
     \label{fig: modello_processo_evolutivo}
-    
 \end{figure}
 
-\begin{tabbing}
-    
-\end{tabbing}
-\begin{tabbing}
-    
-\end{tabbing}
-
-\begin{tabbing}
-    
-\end{tabbing}
-
-\begin{tabbing}
-    
-\end{tabbing}
-\begin{tabbing}
-    
-\end{tabbing}
 \section{Organizzazione del Progetto}\label{sez: organizzazioneProgetto}
 
 Utilizzeremo una organizzazione a tre livelli:
@@ -72,7 +58,7 @@ Il livello \textit{Logico}, possiamo posizionarlo graficamente tra il livello Da
 
 L'ultimo livello, quello di \textit{Presentazione}, sarà quello visto dall'utente che usufruirà dell'applicazione. Possiamo definirlo come il livello più esterno dove i dati verranno presentati in modo grafico e, la gestione dei tavoli e delle comande sarà fatta in modo interattivo.\\
 
-Il progetto verrà suddivisa in:
+Il progetto verrà suddiviso in:
 \begin{itemize}
     \item \textbf{Documentazione}; questa parte verrà svolta da entrambe le figure coinvolte nel progetto. 
     \item \textbf{Progettazione desing}; parte eseguita da Benedetta, che apprezza particolarmente questo ambito.
@@ -80,24 +66,24 @@ Il progetto verrà suddivisa in:
     \item \textbf{Codifica parte logica} e \textbf{data base}; le quali verranno scritte sia da Benedetta e sia da Emilio.
 \end{itemize}
 
-\section{Standard, Lineeguida, Procedure}
+\section{Standard, Linee guida, Procedure}
 
-Per la parte della stesura della documentazione si è scelto di utilizzare un tool molto utile nella scrittura di documenti professionali, \textit{laTeX}. Scelta quasi obbligata, derivata dall'utilizzo di \textit{GitHub} insieme al programma di scrittura precendente \textit{Microsoft Word}; il quale ha causato difficolta nei "merge" su \textit{GitHub}.\\
+Per la parte della stesura della documentazione si è scelto di utilizzare un tool molto utile nella scrittura di documenti professionali, \textit{LaTeX}. Scelta quasi obbligata, derivata dall'utilizzo di \textit{GitHub} insieme al programma di scrittura precedente \textit{Microsoft Word}; il quale ha causato difficoltà nei "merge" su \textit{GitHub}.\\
 
-Mentre, per la parte di \textit{codifica} abbiamo scelto di utilizzare lo standard definito da \textit{Java}\footnote{Standard di Java si possono trovare su questo \href{https://www.oracle.com/java/technologies/javase/codeconventions-contents.html}{\underline{sito}}}. In primo luogo perché l'IDE utilizzato per la parte di progammazione è \textit{Eclipse}, il quale fornise strumenti per la formatttazione e nominazione di metodi in modo automatico secondo gli standard di \textit{Java}; inoltre, non avendo entrambi molta esperienza ci è venuto comodo utilizzare uno dei pochi standard di codificha che conosciamo.\\
+Mentre, per la parte di \textit{codifica} abbiamo scelto di utilizzare lo standard definito da \textit{Java}\footnote{Standard di Java si possono trovare su questo \href{https://www.oracle.com/java/technologies/javase/codeconventions-contents.html}{\underline{sito}}}. In primo luogo perché l'IDE utilizzato per la parte di programmazione è \textit{Eclipse}, il quale fornisce strumenti per la formattazione e nominazione di metodi in modo automatico secondo gli standard di \textit{Java}; inoltre, non avendo entrambi molta esperienza ci è venuto comodo utilizzare uno dei pochi standard di codificha che conosciamo.\\
 
 Lo strumento che utilizzeremo per la condivisione della documentazione e del codice sarà, come già anticipato, la piattaforma di condivisione \textit{GitHub}.
 
 \section{Attività di Gestione}
 
-La priorità fissata per questo progetto sarà quella di avere una documentazione dettagliata, e, specialmente, di avere un project plane completo per l'inizio del mese di dicembre. Parellamente alla stesura di quest'ultimo si è desciso di dedicare, almeno una volta a settimana, del tempo sulla parte di progettazione. 
+La priorità fissata per questo progetto sarà quella di avere una documentazione dettagliata, e, specialmente, di avere un project plane completo per l'inizio del mese di dicembre. Parellamente alla stesura di quest'ultimo si è deciso di dedicare, almeno una volta a settimana, del tempo sulla parte di progettazione. 
 
 
 \section{Rischi}
 
 In questa sezione si discutono i rischi che potrebbero verificarsi durante lo sviluppo del progetto. 
 
-Un primo rischio, evidenzianto da entrambe le parti, sono le difficoltà che potrebbero verificarsi nell'utilizzo di \textit{windows builder} (plugin che consente la costruzione dell'interfaccia utente su \textit{Eclipse}), dovuta a una bassa conoscenza del tool. Un probabile "effetto" sarà quello di allungare i tempi di codifica sul modulo di presentazione.
+Un primo rischio, evidenziato da entrambe le parti, sono le difficoltà che potrebbero verificarsi nell'utilizzo di \textit{windows builder} (plugin che consente la costruzione dell'interfaccia utente su \textit{Eclipse}), dovuta a una bassa conoscenza del tool. Un probabile "effetto" sarà quello di allungare i tempi di codifica sul modulo di presentazione.
 
 \section{Personale}
 Il numero di persone che lavoreranno a questo progetto sarà molto ristretto, nello specifico sono: 
@@ -120,8 +106,8 @@ Il programma dovrà essere utilizzato in ristoranti, e in particolare, dal perso
 In particolare abbiamo evidenziato quattro qualità che il sistema dovrà possedere:
 
 \begin{enumerate}
-    \item \textbf{Semplice}: Il programma sarà scritto per avere poche sezioni scritte e di facile comprensione, anche per chi si approcia al programma per la prima volta. Si utilizzeranno poche schermate che contengono tutto il necessario per le \textit{macro} operazioni definite.
-    \item \textbf{Intuiblile}: L'utilizzo dei colori per indicare gli stati dei \textit{tavoli}, in particolre si è deciso che: per i \textit{tavoli liberi} si utilizzarà il colore verde, per i \textit{tavoli occupati} il colore rosso e per i \textit{tavoli da pulire} l'arancione [Figura: \ref{fig: es_bottoni}].
+    \item \textbf{Semplice}: Il programma sarà scritto per avere poche sezioni scritte e di facile comprensione, anche per chi si approccia al programma per la prima volta. Si utilizzeranno poche schermate che contengono tutto il necessario per le \textit{macro} operazioni definite.
+    \item \textbf{Intuiblile}: L'utilizzo dei colori per indicare gli stati dei \textit{tavoli}, in particolare si è deciso che: per i \textit{tavoli liberi} si utilizzerà il colore verde, per i \textit{tavoli occupati} il colore rosso e per i \textit{tavoli da pulire} l'arancione [Figura: \ref{fig: es_bottoni}].
     \item \textbf{Prevenzione Errori}: Per la prevenzione degli errori si utilizzeranno schermate \textit{pop-up}, per la convalida degli input.
     \item \textbf{Veloce}: Con questo termine si indica che il programma, che verrà utilizzato da dispositivi touch, dovrà essere principalmente composto da bottoni che minimizzano i tempi di utilizzo, puntando a un uso minimo della tastiera. Comportando un'esperienza più agevole per l'utente.
 \end{enumerate}
@@ -144,9 +130,9 @@ I moduli presenti in questo progetto, come già anticipato parzialmente nella se
     \item \textbf{Codifica data base}
 \end{itemize}
 
-L'oganizzazione dei pacchetti di lavoro, presenti su \textit{GitHub}, sarà suddivisa in cartelle, per la parte di codifica raggurpperemo i diversi moduli in unico folder; mentre, la documentazione sarà posizionata in una cartella a parte.\\
+L'organizzazione dei pacchetti di lavoro, presenti su \textit{GitHub}, sarà suddivisa in cartelle, per la parte di codifica raggrupperemo i diversi moduli in unico folder; mentre, la documentazione sarà posizionata in una cartella a parte.\\
 
-Oltre ad avere queste directory, si avrà una parte dedicata ai modelli \textit{ER}(riguradanti il data base) e una per la parte \textit{UML} contenente tutti grafici per la progettazione. 
+Oltre ad avere queste directory, si avrà una parte dedicata ai modelli \textit{ER}(riguardanti il data base) e una per la parte \textit{UML} contenente tutti grafici per la progettazione. 
 
 \section{Risorse}
 
@@ -160,19 +146,19 @@ Gli strumenti che verranno adottati in questo progetto saranno:
 
 \section{Budget}
 
-    Per quanto riguarda il budget, si è previsto un tempo totale di 80 ore lavorative. Con una forte attenzione sulla parte di documentazione (comprendendo anche la parte di documentazione del codice), rispetto a quella di codifica.\\
+    Per quanto riguarda il bilancio, si è previsto un tempo totale di 80 ore lavorative. Con una forte attenzione sulla parte di documentazione (comprendendo anche la parte di documentazione del codice), rispetto a quella di codifica.\\
 
     In prima approssimazione possiamo definire una divisione del tempo come mostrato in figura [\ref{fig: diagramma_gant}]. 
     \begin{figure}[h]
         \centering
         \includegraphics[width = 1\linewidth]{Diagramma_Gant.jpg}
-        \caption{Diaramma di Gant}
+        \caption{Diagramma di Gant}
         \label{fig: diagramma_gant}    
     \end{figure}
 
 \section{Cambiamenti}
 
-    Per quanto riguarda le modifiche che verrano richieste si seguira la seguente scaletta: inizialmente si verificherà la fattibilita, in caso negativo si cercheranno altre soluzioni che vadano incontro al cliente. Mentre, se si accettano, verrà creato un "branch" sulla piattaforma di \textit{GitHub}. Da qui si aggiornarà la documentazione e i vari diagrammi \textit{UML}, in seguito si procederà alla modificha del codice. Infine prima di eseguire il "merge" delle modifiche con il \textit{main branch}, si eseguiranno dei test di verifica della funzionabilita e di correttezza.
+    Per quanto riguarda le modifiche che verranno richieste si seguirà la seguente scaletta: inizialmente si verificherà la fattibilità, in caso negativo si cercheranno altre soluzioni che vadano incontro al cliente. Mentre, se si accettano, verrà creato un "branch" sulla piattaforma di \textit{GitHub}. Da qui si aggiornerà la documentazione e i vari diagrammi \textit{UML}, in seguito si procederà alle modifiche del codice. Infine prima di eseguire il "merge" delle modifiche con il \textit{main branch}, si eseguiranno dei test di verifica della funzionalità e di correttezza.
 
 \section{Consegna}
 
@@ -184,7 +170,7 @@ Gli strumenti che verranno adottati in questo progetto saranno:
         \item Consegna del \textbf{Project Plane}, il quale dovrà essere consegnato circa un mese prima del primo esame scritto, che si svolgerà nel mese di gennaio; quindi, per il mese di dicembre si dovrà effettuare la prima consegna.
         \item Consegna del \textbf{Progetto}, quest'ultimo avrà una scadenza più lunga, infatti, l'ultimo giorno di consegna sarà cinque giorni prima dell'esame orale.
     \end{itemize}
-    Per quanto riguarda i metodi di consegna si dovrà condividere con il professore Gargantini la repository di \textit{GitHub} contenente il progetto. Per la consegna della documentazione si dovrà indicare nel file \textit{readMe}, della repository, la posizione del project plane. Mentre, per la consegna del progetto si dovrà creare un \textit{issue}, intitolata “Approvazione Progetto” ed assegnarla al professore.
+    Per quanto riguarda i metodi di consegna si dovrà condividere con il professore Gargantini la repository di \textit{GitHub} contenente il progetto. Per la consegna della documentazione si dovrà indicare nel file \textit{readMe}, della repository, la posizione del project plane. Mentre, per la consegna del progetto si dovrà creare un \textit{issue}, intitolata “Approvazione Progetto” e assegnarla al professore.
 
 % \chapter{Specifiche dei Requisiti}
 
