@@ -4,7 +4,7 @@
 package model.generated.tables.records;
 
 
-import model.generated.tables.Ordine;
+import model.generated.tables.OrdineTables;
 
 import org.jooq.Field;
 import org.jooq.Record2;
@@ -73,12 +73,12 @@ public class OrdineRecord extends UpdatableRecordImpl<OrdineRecord> implements R
 
     @Override
     public Field<Integer> field1() {
-        return Ordine.ORDINE.NUM_ORDINE;
+        return OrdineTables.ORDINE.NUM_ORDINE;
     }
 
     @Override
     public Field<Integer> field2() {
-        return Ordine.ORDINE.TAVOLO;
+        return OrdineTables.ORDINE.TAVOLO;
     }
 
     @Override
@@ -128,14 +128,14 @@ public class OrdineRecord extends UpdatableRecordImpl<OrdineRecord> implements R
      * Create a detached OrdineRecord
      */
     public OrdineRecord() {
-        super(Ordine.ORDINE);
+        super(OrdineTables.ORDINE);
     }
 
     /**
      * Create a detached, initialised OrdineRecord
      */
     public OrdineRecord(Integer numOrdine, Integer tavolo) {
-        super(Ordine.ORDINE);
+        super(OrdineTables.ORDINE);
 
         setNumOrdine(numOrdine);
         setTavolo(tavolo);

@@ -17,9 +17,6 @@ public class PiattoOrdinato {
 	/** la quantita scelta */
 	private int quantita = 1;
 
-	/** il prezzo del piatto nel complesso */
-	private double prezzo;
-
 	/** il commento per il piatto */
 	private String commento;
 
@@ -59,15 +56,7 @@ public class PiattoOrdinato {
 	 * @return il prezzo
 	 */
 	public double getPrezzo() {
-		aggiornaPrezzo();
-		return prezzo;
-	}
-
-	/**
-	 * Aggiorna prezzo.
-	 */
-	private void aggiornaPrezzo() {
-		prezzo = piatto.getPrezzo() * quantita;
+		return piatto.getPrezzo() * quantita;
 	}
 
 	/**

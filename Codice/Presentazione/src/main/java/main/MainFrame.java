@@ -76,10 +76,9 @@ public class MainFrame extends JFrame {
 
 		setUndecorated(false);
 
-		repaintPanelTavoli();
+		paintPanelTavoli();
 
-
-		JMenuBar menuBar = new BarraMenu();
+		JMenuBar menuBar = new BarraMenu(this);
 		setJMenuBar(menuBar);
 
 		setVisible(true);
@@ -88,7 +87,7 @@ public class MainFrame extends JFrame {
 	/**
 	 * Aggiorna la grafica del panel con tutti i pulsanti dei tavoli.
 	 */
-	public void repaintPanelTavoli() {
+	public void paintPanelTavoli() {
 
 		mainPanel.removeAll();
 
@@ -198,7 +197,7 @@ public class MainFrame extends JFrame {
 		 */
 		public AzioneSiFrameConferma(final Tavolo tavolo) {
 			this.tavolo = tavolo;
-			repaintPanelTavoli();
+			paintPanelTavoli();
 		}
 
 		/**
@@ -211,7 +210,7 @@ public class MainFrame extends JFrame {
 			tavolo.setStato(StatoTavolo.LIBERO);
 			SwingUtilities.getWindowAncestor((JButton) (e.getSource())).dispose();
 			enableFrame(true);
-			repaintPanelTavoli();
+			paintPanelTavoli();
 		}
 	}
 
@@ -233,6 +232,5 @@ public class MainFrame extends JFrame {
 			openTavolo(tavolo);
 			btnTavolo.aggiornaStato();
 		}
-
 	}
 }

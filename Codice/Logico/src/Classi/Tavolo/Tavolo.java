@@ -15,7 +15,7 @@ public class Tavolo {
 	private int nome;
 
 	/** il numero dei posti massimi che ha il tavolo */
-	private int num_posti_massimi;
+	private int numPostiMassimi;
 
 	/** Stato del tavolo */
 	private StatoTavolo stato;
@@ -32,7 +32,7 @@ public class Tavolo {
 	public Tavolo(int nome, int num_post_massimi) {
 		super();
 		this.nome = nome;
-		this.num_posti_massimi = num_post_massimi;
+		this.numPostiMassimi = num_post_massimi;
 		stato = StatoTavolo.LIBERO;
 
 	}
@@ -52,7 +52,7 @@ public class Tavolo {
 	 * @return il numero dei posti massimi al tavolo
 	 */
 	public int getNumPostiMassimi() {
-		return num_posti_massimi;
+		return numPostiMassimi;
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class Tavolo {
 	 * @param num_post_massimi il nuovo numero massimo
 	 */
 	public void setNumPostiMassimi(int num_post_massimi) {
-		this.num_posti_massimi = num_post_massimi;
+		this.numPostiMassimi = num_post_massimi;
 	}
 
 	/**
@@ -107,6 +107,6 @@ public class Tavolo {
 	 */
 	@Override
 	public String toString() {
-		return "Tavolo n° " + nome + ", numero posti: " + num_posti_massimi;
+		return "Tavolo n° " + nome + ", numero posti: " + numPostiMassimi;
 	}
 }

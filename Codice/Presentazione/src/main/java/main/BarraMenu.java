@@ -25,8 +25,9 @@ class BarraMenu extends JMenuBar {
 	
 	/**
 	 * costruttore della barra menu.
+	 * @param mainFrame Il MainFrame
 	 */
-	BarraMenu() {
+	BarraMenu(final MainFrame mainFrame) {
 
 		btnTavoli = new JButton("Tavoli");
 		btnImpostazioni = new JButton("Impostazioni");
@@ -36,8 +37,7 @@ class BarraMenu extends JMenuBar {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				MainFrame frame = (MainFrame) SwingUtilities.getWindowAncestor(btnImpostazioni);
-				frame.repaintPanelTavoli();
+				 mainFrame.paintPanelTavoli();
 			}
 		};
 
@@ -45,8 +45,7 @@ class BarraMenu extends JMenuBar {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				MainFrame frame = (MainFrame) SwingUtilities.getWindowAncestor(btnImpostazioni);
-				frame.openImpostazioni();
+				mainFrame.openImpostazioni();
 			}
 		};
 		

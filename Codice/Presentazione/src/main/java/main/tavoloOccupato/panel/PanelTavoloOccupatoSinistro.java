@@ -27,7 +27,6 @@ import classi.ordine.PiattoOrdinato;
 import classi.tavolo.ResocontoTavolo;
 import main.FrameConfermaScelta;
 import main.MainFrame;
-import main.tavoloOccupato.PanelPiattoOrdinatoSelettore;
 
 /**
  * Panel della riguardante la parte SX del panel tavolo occupato
@@ -275,7 +274,7 @@ class PanelTavoloOccupatoSinistro extends JPanel {
 						setEnabled(true);
 						// torniamo al panel tavoli
 						MainFrame frame =(MainFrame) SwingUtilities.getWindowAncestor(panelTavoloOccupato);
-						frame.repaintPanelTavoli();
+						frame.paintPanelTavoli();
 						JComponent componente = (JComponent) e.getSource();
 						SwingUtilities.getWindowAncestor(componente).dispose();
 					}

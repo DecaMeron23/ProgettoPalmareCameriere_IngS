@@ -1,4 +1,4 @@
-package main.tavoloOccupato;
+package main.tavoloOccupato.panel;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -13,7 +13,7 @@ import javax.swing.SwingConstants;
 
 import classi.ordine.PiattoOrdinato;
 
-public class PanelPiattoOrdinatoSelettore extends JPanel {
+class PanelPiattoOrdinatoSelettore extends JPanel {
 
 	private static final long serialVersionUID = 4372601481061137751L;
 	private PiattoOrdinato piattoOrdinato;
@@ -22,7 +22,7 @@ public class PanelPiattoOrdinatoSelettore extends JPanel {
 	private JButton btnMeno;
 	private JButton btnPiu;
 
-	public PanelPiattoOrdinatoSelettore(PiattoOrdinato piattoOrdinato) {
+	PanelPiattoOrdinatoSelettore(PiattoOrdinato piattoOrdinato) {
 
 		this.piattoOrdinato = piattoOrdinato;
 

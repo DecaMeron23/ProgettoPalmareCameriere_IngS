@@ -4,7 +4,7 @@
 package model.generated.tables.records;
 
 
-import model.generated.tables.Tavolo;
+import model.generated.tables.TavoloTables;
 
 import org.jooq.Field;
 import org.jooq.Record1;
@@ -88,17 +88,17 @@ public class TavoloRecord extends UpdatableRecordImpl<TavoloRecord> implements R
 
     @Override
     public Field<Integer> field1() {
-        return Tavolo.TAVOLO.NOME;
+        return TavoloTables.TAVOLO.NOME;
     }
 
     @Override
     public Field<Integer> field2() {
-        return Tavolo.TAVOLO.POSTI_MASSIMI;
+        return TavoloTables.TAVOLO.POSTI_MASSIMI;
     }
 
     @Override
     public Field<Integer> field3() {
-        return Tavolo.TAVOLO.STATO;
+        return TavoloTables.TAVOLO.STATO;
     }
 
     @Override
@@ -165,14 +165,14 @@ public class TavoloRecord extends UpdatableRecordImpl<TavoloRecord> implements R
      * Create a detached TavoloRecord
      */
     public TavoloRecord() {
-        super(Tavolo.TAVOLO);
+        super(TavoloTables.TAVOLO);
     }
 
     /**
      * Create a detached, initialised TavoloRecord
      */
     public TavoloRecord(Integer nome, Integer postiMassimi, Integer stato) {
-        super(Tavolo.TAVOLO);
+        super(TavoloTables.TAVOLO);
 
         setNome(nome);
         setPostiMassimi(postiMassimi);

@@ -4,7 +4,7 @@
 package model.generated.tables.records;
 
 
-import model.generated.tables.ResocontoTavolo;
+import model.generated.tables.ResocontoTavoloTables;
 
 import org.jooq.Field;
 import org.jooq.Record1;
@@ -74,12 +74,12 @@ public class ResocontoTavoloRecord extends UpdatableRecordImpl<ResocontoTavoloRe
 
     @Override
     public Field<Integer> field1() {
-        return ResocontoTavolo.RESOCONTO_TAVOLO.TAVOLO;
+        return ResocontoTavoloTables.RESOCONTO_TAVOLO.TAVOLO;
     }
 
     @Override
     public Field<Integer> field2() {
-        return ResocontoTavolo.RESOCONTO_TAVOLO.NUM_COPERTI;
+        return ResocontoTavoloTables.RESOCONTO_TAVOLO.NUM_COPERTI;
     }
 
     @Override
@@ -129,14 +129,14 @@ public class ResocontoTavoloRecord extends UpdatableRecordImpl<ResocontoTavoloRe
      * Create a detached ResocontoTavoloRecord
      */
     public ResocontoTavoloRecord() {
-        super(ResocontoTavolo.RESOCONTO_TAVOLO);
+        super(ResocontoTavoloTables.RESOCONTO_TAVOLO);
     }
 
     /**
      * Create a detached, initialised ResocontoTavoloRecord
      */
     public ResocontoTavoloRecord(Integer tavolo, Integer numCoperti) {
-        super(ResocontoTavolo.RESOCONTO_TAVOLO);
+        super(ResocontoTavoloTables.RESOCONTO_TAVOLO);
 
         setTavolo(tavolo);
         setNumCoperti(numCoperti);

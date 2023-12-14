@@ -1,0 +1,4 @@
+Created with UCDetector 2.0.0	2023-12-04 20:00:59	http://www.ucdetector.org/	Created by class: org.ucdetector.report.TextReport	
+Location	Description	Java	Marker	Author
+main.tavoloOccupato.panel.PanelPiattoOrdinatoSelettore.<init>(PanelPiattoOrdinatoSelettore.java:16)	Change visibility of Class "PanelPiattoOrdinatoSelettore" to default - May cause compile errors!	PanelPiattoOrdinatoSelettore	org.ucdetector.analyzeMarkerVisibilityDefault	
+main.tavoloOccupato.panel.PanelPiattoOrdinatoSelettore.PanelPiattoOrdinatoSelettore(PanelPiattoOrdinatoSelettore.java:25)	Change visibility of Constructor "PanelPiattoOrdinatoSelettore.PanelPiattoOrdinatoSelettore(PiattoOrdinato)" to default	PanelPiattoOrdinatoSelettore.PanelPiattoOrdinatoSelettore(PiattoOrdinato)	org.ucdetector.analyzeMarkerVisibilityDefault	

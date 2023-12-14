@@ -7,12 +7,12 @@ package model.generated;
 import java.util.Arrays;
 import java.util.List;
 
-import model.generated.tables.Componente;
-import model.generated.tables.Ordine;
-import model.generated.tables.Piatto;
-import model.generated.tables.PiattoOrdinato;
-import model.generated.tables.ResocontoTavolo;
-import model.generated.tables.Tavolo;
+import model.generated.tables.ComponenteTables;
+import model.generated.tables.OrdineTables;
+import model.generated.tables.PiattoTables;
+import model.generated.tables.PiattoOrdinatoTables;
+import model.generated.tables.ResocontoTavoloTables;
+import model.generated.tables.TavoloTables;
 
 import org.jooq.Catalog;
 import org.jooq.Table;
@@ -35,32 +35,32 @@ public class DefaultSchema extends SchemaImpl {
     /**
      * The table <code>COMPONENTE</code>.
      */
-    public final Componente COMPONENTE = Componente.COMPONENTE;
+    public final ComponenteTables COMPONENTE = ComponenteTables.COMPONENTE;
 
     /**
      * The table <code>ORDINE</code>.
      */
-    public final Ordine ORDINE = Ordine.ORDINE;
+    public final OrdineTables ORDINE = OrdineTables.ORDINE;
 
     /**
      * The table <code>PIATTO</code>.
      */
-    public final Piatto PIATTO = Piatto.PIATTO;
+    public final PiattoTables PIATTO = PiattoTables.PIATTO;
 
     /**
      * The table <code>PIATTO_ORDINATO</code>.
      */
-    public final PiattoOrdinato PIATTO_ORDINATO = PiattoOrdinato.PIATTO_ORDINATO;
+    public final PiattoOrdinatoTables PIATTO_ORDINATO = PiattoOrdinatoTables.PIATTO_ORDINATO;
 
     /**
      * The table <code>RESOCONTO_TAVOLO</code>.
      */
-    public final ResocontoTavolo RESOCONTO_TAVOLO = ResocontoTavolo.RESOCONTO_TAVOLO;
+    public final ResocontoTavoloTables RESOCONTO_TAVOLO = ResocontoTavoloTables.RESOCONTO_TAVOLO;
 
     /**
      * The table <code>TAVOLO</code>.
      */
-    public final Tavolo TAVOLO = Tavolo.TAVOLO;
+    public final TavoloTables TAVOLO = TavoloTables.TAVOLO;
 
     /**
      * No further instances allowed
@@ -78,12 +78,12 @@ public class DefaultSchema extends SchemaImpl {
     @Override
     public final List<Table<?>> getTables() {
         return Arrays.asList(
-            Componente.COMPONENTE,
-            Ordine.ORDINE,
-            Piatto.PIATTO,
-            PiattoOrdinato.PIATTO_ORDINATO,
-            ResocontoTavolo.RESOCONTO_TAVOLO,
-            Tavolo.TAVOLO
+            ComponenteTables.COMPONENTE,
+            OrdineTables.ORDINE,
+            PiattoTables.PIATTO,
+            PiattoOrdinatoTables.PIATTO_ORDINATO,
+            ResocontoTavoloTables.RESOCONTO_TAVOLO,
+            TavoloTables.TAVOLO
         );
     }
 }

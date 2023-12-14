@@ -4,11 +4,11 @@
 package model.generated;
 
 
-import model.generated.tables.Ordine;
-import model.generated.tables.Piatto;
-import model.generated.tables.PiattoOrdinato;
-import model.generated.tables.ResocontoTavolo;
-import model.generated.tables.Tavolo;
+import model.generated.tables.OrdineTables;
+import model.generated.tables.PiattoTables;
+import model.generated.tables.PiattoOrdinatoTables;
+import model.generated.tables.ResocontoTavoloTables;
+import model.generated.tables.TavoloTables;
 import model.generated.tables.records.OrdineRecord;
 import model.generated.tables.records.PiattoOrdinatoRecord;
 import model.generated.tables.records.PiattoRecord;
@@ -32,9 +32,9 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
-    public static final UniqueKey<OrdineRecord> ORDINE__PK_ORDINE = Internal.createUniqueKey(Ordine.ORDINE, DSL.name("pk_ORDINE"), new TableField[] { Ordine.ORDINE.NUM_ORDINE, Ordine.ORDINE.TAVOLO }, true);
-    public static final UniqueKey<PiattoRecord> PIATTO__PK_PIATTO = Internal.createUniqueKey(Piatto.PIATTO, DSL.name("pk_PIATTO"), new TableField[] { Piatto.PIATTO.NOME, Piatto.PIATTO.COMPONENTE }, true);
-    public static final UniqueKey<PiattoOrdinatoRecord> PIATTO_ORDINATO__PK_PIATTO_ORDINATO = Internal.createUniqueKey(PiattoOrdinato.PIATTO_ORDINATO, DSL.name("pk_PIATTO_ORDINATO"), new TableField[] { PiattoOrdinato.PIATTO_ORDINATO.NUM_PIATTO, PiattoOrdinato.PIATTO_ORDINATO.NUM_ORDINE, PiattoOrdinato.PIATTO_ORDINATO.TAVOLO }, true);
-    public static final UniqueKey<ResocontoTavoloRecord> RESOCONTO_TAVOLO__PK_RESOCONTO_TAVOLO = Internal.createUniqueKey(ResocontoTavolo.RESOCONTO_TAVOLO, DSL.name("pk_RESOCONTO_TAVOLO"), new TableField[] { ResocontoTavolo.RESOCONTO_TAVOLO.TAVOLO }, true);
-    public static final UniqueKey<TavoloRecord> TAVOLO__PK_TAVOLO = Internal.createUniqueKey(Tavolo.TAVOLO, DSL.name("pk_TAVOLO"), new TableField[] { Tavolo.TAVOLO.NOME }, true);
+    public static final UniqueKey<OrdineRecord> ORDINE__PK_ORDINE = Internal.createUniqueKey(OrdineTables.ORDINE, DSL.name("pk_ORDINE"), new TableField[] { OrdineTables.ORDINE.NUM_ORDINE, OrdineTables.ORDINE.TAVOLO }, true);
+    public static final UniqueKey<PiattoRecord> PIATTO__PK_PIATTO = Internal.createUniqueKey(PiattoTables.PIATTO, DSL.name("pk_PIATTO"), new TableField[] { PiattoTables.PIATTO.NOME, PiattoTables.PIATTO.COMPONENTE }, true);
+    public static final UniqueKey<PiattoOrdinatoRecord> PIATTO_ORDINATO__PK_PIATTO_ORDINATO = Internal.createUniqueKey(PiattoOrdinatoTables.PIATTO_ORDINATO, DSL.name("pk_PIATTO_ORDINATO"), new TableField[] { PiattoOrdinatoTables.PIATTO_ORDINATO.NUM_PIATTO, PiattoOrdinatoTables.PIATTO_ORDINATO.NUM_ORDINE, PiattoOrdinatoTables.PIATTO_ORDINATO.TAVOLO }, true);
+    public static final UniqueKey<ResocontoTavoloRecord> RESOCONTO_TAVOLO__PK_RESOCONTO_TAVOLO = Internal.createUniqueKey(ResocontoTavoloTables.RESOCONTO_TAVOLO, DSL.name("pk_RESOCONTO_TAVOLO"), new TableField[] { ResocontoTavoloTables.RESOCONTO_TAVOLO.TAVOLO }, true);
+    public static final UniqueKey<TavoloRecord> TAVOLO__PK_TAVOLO = Internal.createUniqueKey(TavoloTables.TAVOLO, DSL.name("pk_TAVOLO"), new TableField[] { TavoloTables.TAVOLO.NOME }, true);
 }

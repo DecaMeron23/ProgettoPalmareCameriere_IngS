@@ -4,12 +4,12 @@
 package model.generated;
 
 
-import model.generated.tables.Componente;
-import model.generated.tables.Ordine;
-import model.generated.tables.Piatto;
-import model.generated.tables.PiattoOrdinato;
-import model.generated.tables.ResocontoTavolo;
-import model.generated.tables.Tavolo;
+import model.generated.tables.ComponenteTables;
+import model.generated.tables.OrdineTables;
+import model.generated.tables.PiattoTables;
+import model.generated.tables.PiattoOrdinatoTables;
+import model.generated.tables.ResocontoTavoloTables;
+import model.generated.tables.TavoloTables;
 
 
 /**
@@ -21,30 +21,30 @@ public class Tables {
     /**
      * The table <code>COMPONENTE</code>.
      */
-    public static final Componente COMPONENTE = Componente.COMPONENTE;
+    public static final ComponenteTables COMPONENTE = ComponenteTables.COMPONENTE;
 
     /**
      * The table <code>ORDINE</code>.
      */
-    public static final Ordine ORDINE = Ordine.ORDINE;
+    public static final OrdineTables ORDINE = OrdineTables.ORDINE;
 
     /**
      * The table <code>PIATTO</code>.
      */
-    public static final Piatto PIATTO = Piatto.PIATTO;
+    public static final PiattoTables PIATTO = PiattoTables.PIATTO;
 
     /**
      * The table <code>PIATTO_ORDINATO</code>.
      */
-    public static final PiattoOrdinato PIATTO_ORDINATO = PiattoOrdinato.PIATTO_ORDINATO;
+    public static final PiattoOrdinatoTables PIATTO_ORDINATO = PiattoOrdinatoTables.PIATTO_ORDINATO;
 
     /**
      * The table <code>RESOCONTO_TAVOLO</code>.
      */
-    public static final ResocontoTavolo RESOCONTO_TAVOLO = ResocontoTavolo.RESOCONTO_TAVOLO;
+    public static final ResocontoTavoloTables RESOCONTO_TAVOLO = ResocontoTavoloTables.RESOCONTO_TAVOLO;
 
     /**
      * The table <code>TAVOLO</code>.
      */
-    public static final Tavolo TAVOLO = Tavolo.TAVOLO;
+    public static final TavoloTables TAVOLO = TavoloTables.TAVOLO;
 }

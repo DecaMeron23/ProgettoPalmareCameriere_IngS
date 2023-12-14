@@ -139,7 +139,7 @@ class FrameSelezioneCoperti extends JFrame {
 			int coperti = getIntLabel();
 			tavolo.setStato(StatoTavolo.OCCUPATO);
 			tavolo.resocontoTavolo = new ResocontoTavolo(coperti);
-			mainFrame.repaintPanelTavoli();
+			mainFrame.paintPanelTavoli();
 			dispose();
 		}
 	}

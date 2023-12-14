@@ -4,7 +4,7 @@
 package model.generated.tables.records;
 
 
-import model.generated.tables.Componente;
+import model.generated.tables.ComponenteTables;
 
 import org.jooq.Field;
 import org.jooq.Record1;
@@ -50,7 +50,7 @@ public class ComponenteRecord extends TableRecordImpl<ComponenteRecord> implemen
 
     @Override
     public Field<Integer> field1() {
-        return Componente.COMPONENTE.NOME;
+        return ComponenteTables.COMPONENTE.NOME;
     }
 
     @Override
@@ -83,14 +83,14 @@ public class ComponenteRecord extends TableRecordImpl<ComponenteRecord> implemen
      * Create a detached ComponenteRecord
      */
     public ComponenteRecord() {
-        super(Componente.COMPONENTE);
+        super(ComponenteTables.COMPONENTE);
     }
 
     /**
      * Create a detached, initialised ComponenteRecord
      */
     public ComponenteRecord(Integer nome) {
-        super(Componente.COMPONENTE);
+        super(ComponenteTables.COMPONENTE);
 
         setNome(nome);
         resetChangedOnNotNull();

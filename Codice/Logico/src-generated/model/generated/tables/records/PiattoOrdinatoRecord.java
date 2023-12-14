@@ -4,7 +4,7 @@
 package model.generated.tables.records;
 
 
-import model.generated.tables.PiattoOrdinato;
+import model.generated.tables.PiattoOrdinatoTables;
 
 import org.jooq.Field;
 import org.jooq.Record3;
@@ -130,32 +130,32 @@ public class PiattoOrdinatoRecord extends UpdatableRecordImpl<PiattoOrdinatoReco
 
     @Override
     public Field<Integer> field1() {
-        return PiattoOrdinato.PIATTO_ORDINATO.NUM_PIATTO;
+        return PiattoOrdinatoTables.PIATTO_ORDINATO.NUM_PIATTO;
     }
 
     @Override
     public Field<Integer> field2() {
-        return PiattoOrdinato.PIATTO_ORDINATO.NUM_ORDINE;
+        return PiattoOrdinatoTables.PIATTO_ORDINATO.NUM_ORDINE;
     }
 
     @Override
     public Field<Integer> field3() {
-        return PiattoOrdinato.PIATTO_ORDINATO.TAVOLO;
+        return PiattoOrdinatoTables.PIATTO_ORDINATO.TAVOLO;
     }
 
     @Override
     public Field<String> field4() {
-        return PiattoOrdinato.PIATTO_ORDINATO.COMMENTO;
+        return PiattoOrdinatoTables.PIATTO_ORDINATO.COMMENTO;
     }
 
     @Override
     public Field<Integer> field5() {
-        return PiattoOrdinato.PIATTO_ORDINATO.OCCORRENZE;
+        return PiattoOrdinatoTables.PIATTO_ORDINATO.OCCORRENZE;
     }
 
     @Override
     public Field<String> field6() {
-        return PiattoOrdinato.PIATTO_ORDINATO.PIATTO;
+        return PiattoOrdinatoTables.PIATTO_ORDINATO.PIATTO;
     }
 
     @Override
@@ -273,14 +273,14 @@ public class PiattoOrdinatoRecord extends UpdatableRecordImpl<PiattoOrdinatoReco
      * Create a detached PiattoOrdinatoRecord
      */
     public PiattoOrdinatoRecord() {
-        super(PiattoOrdinato.PIATTO_ORDINATO);
+        super(PiattoOrdinatoTables.PIATTO_ORDINATO);
     }
 
     /**
      * Create a detached, initialised PiattoOrdinatoRecord
      */
     public PiattoOrdinatoRecord(Integer numPiatto, Integer numOrdine, Integer tavolo, String commento, Integer occorrenze, String piatto) {
-        super(PiattoOrdinato.PIATTO_ORDINATO);
+        super(PiattoOrdinatoTables.PIATTO_ORDINATO);
 
         setNumPiatto(numPiatto);
         setNumOrdine(numOrdine);

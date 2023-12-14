@@ -4,7 +4,7 @@
 package model.generated.tables.records;
 
 
-import model.generated.tables.Piatto;
+import model.generated.tables.PiattoTables;
 
 import org.jooq.Field;
 import org.jooq.Record2;
@@ -88,17 +88,17 @@ public class PiattoRecord extends UpdatableRecordImpl<PiattoRecord> implements R
 
     @Override
     public Field<String> field1() {
-        return Piatto.PIATTO.NOME;
+        return PiattoTables.PIATTO.NOME;
     }
 
     @Override
     public Field<Integer> field2() {
-        return Piatto.PIATTO.PREZZO;
+        return PiattoTables.PIATTO.PREZZO;
     }
 
     @Override
     public Field<String> field3() {
-        return Piatto.PIATTO.COMPONENTE;
+        return PiattoTables.PIATTO.COMPONENTE;
     }
 
     @Override
@@ -165,14 +165,14 @@ public class PiattoRecord extends UpdatableRecordImpl<PiattoRecord> implements R
      * Create a detached PiattoRecord
      */
     public PiattoRecord() {
-        super(Piatto.PIATTO);
+        super(PiattoTables.PIATTO);
     }
 
     /**
      * Create a detached, initialised PiattoRecord
      */
     public PiattoRecord(String nome, Integer prezzo, String componente) {
-        super(Piatto.PIATTO);
+        super(PiattoTables.PIATTO);
 
         setNome(nome);
         setPrezzo(prezzo);
