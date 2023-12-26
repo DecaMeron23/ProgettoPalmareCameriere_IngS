@@ -41,7 +41,7 @@ public class CreateDB {
 				tables = meta.getTables(null, null, "PIATTO", null);
 				if (!tables.next()) {
 					// La tabella non esiste, quindi possiamo crearla
-					String str = "CREATE TABLE PIATTO (" + "NOME	TEXT," + "PREZZO	INT , "
+					String str = "CREATE TABLE PIATTO (" + "NOME	TEXT," + "PREZZO	DOUBLE , "
 							+ "COMPONENTE	TEXT, " + "PRIMARY KEY (NOME , COMPONENTE)" + ")";
 
 					stm.executeUpdate(str);
@@ -82,7 +82,7 @@ public class CreateDB {
 				tables = meta.getTables(null, null, "COMPONENTE", null);
 				if (!tables.next()) {
 					// La tabella non esiste, quindi possiamo crearla
-					String str = "CREATE TABLE COMPONENTE (" + "NOME	INT" + ")";
+					String str = "CREATE TABLE COMPONENTE (" + "NOME	TEXT" + ")";
 
 					stm.executeUpdate(str);
 					System.out.println("la tabella COMPONENTE è stata creata");

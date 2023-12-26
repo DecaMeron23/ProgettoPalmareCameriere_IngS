@@ -57,7 +57,7 @@ public class PiattoTables extends TableImpl<PiattoRecord> {
     /**
      * The column <code>PIATTO.PREZZO</code>.
      */
-    public final TableField<PiattoRecord, Integer> PREZZO = createField(DSL.name("PREZZO"), SQLDataType.INTEGER, this, "");
+    public final TableField<PiattoRecord, Double> PREZZO = createField(DSL.name("PREZZO"), SQLDataType.DOUBLE, this, "");
 
     /**
      * The column <code>PIATTO.COMPONENTE</code>.
@@ -151,14 +151,14 @@ public class PiattoTables extends TableImpl<PiattoRecord> {
     // -------------------------------------------------------------------------
 
     @Override
-    public Row3<String, Integer, String> fieldsRow() {
+    public Row3<String, Double, String> fieldsRow() {
         return (Row3) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function3<? super String, ? super Integer, ? super String, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function3<? super String, ? super Double, ? super String, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -166,7 +166,7 @@ public class PiattoTables extends TableImpl<PiattoRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function3<? super String, ? super Integer, ? super String, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function3<? super String, ? super Double, ? super String, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

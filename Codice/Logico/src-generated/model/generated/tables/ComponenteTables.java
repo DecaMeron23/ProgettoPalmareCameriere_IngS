@@ -50,7 +50,7 @@ public class ComponenteTables extends TableImpl<ComponenteRecord> {
     /**
      * The column <code>COMPONENTE.NOME</code>.
      */
-    public final TableField<ComponenteRecord, Integer> NOME = createField(DSL.name("NOME"), SQLDataType.INTEGER, this, "");
+    public final TableField<ComponenteRecord, String> NOME = createField(DSL.name("NOME"), SQLDataType.CLOB, this, "");
 
     private ComponenteTables(Name alias, Table<ComponenteRecord> aliased) {
         this(alias, aliased, null);
@@ -134,14 +134,14 @@ public class ComponenteTables extends TableImpl<ComponenteRecord> {
     // -------------------------------------------------------------------------
 
     @Override
-    public Row1<Integer> fieldsRow() {
+    public Row1<String> fieldsRow() {
         return (Row1) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function1<? super Integer, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function1<? super String, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -149,7 +149,7 @@ public class ComponenteTables extends TableImpl<ComponenteRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function1<? super Integer, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function1<? super String, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }
