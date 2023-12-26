@@ -6,6 +6,8 @@ package classi.tavolo;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jooq.impl.QOM.Cube;
+
 import classi.ordine.Ordine;
 
 /**
@@ -25,15 +27,30 @@ public class ResocontoTavolo {
     /** la lista ordini richiesti */
     private List<Ordine> listaOrdini;
     
+    private int counterOrdini = 0;
+    
     /**
      * Costruttore del ResocontoTavolo.
      *
      * @param num_coperti the num coperti
      */
     public ResocontoTavolo(int num_coperti) {
+    	this(num_coperti , new ArrayList<Ordine>() , 0);
+    }
+    
+    /**
+     * 
+     * Costruttore del ResocontoTavolo.
+     *
+     * @param num_coperti il  numero dei coperti
+     * @param listaOrdini la lista dei ordini effettuati
+     * @param counterOridni il counter per numerare gli ordini
+     */
+    public ResocontoTavolo(int num_coperti , List<Ordine> listaOrdini , int counterOrdini) {
 		super();
 		this.numCoperti = num_coperti;
-		listaOrdini = new ArrayList<Ordine>();
+		this.listaOrdini = listaOrdini;
+		this.counterOrdini = counterOrdini;
 	}
 
 	/**
@@ -44,7 +61,7 @@ public class ResocontoTavolo {
 	public int getNumCoperti() {
         return numCoperti;
     }
-
+	
     /**
      * prendi il prezzo totale.
      *
@@ -82,6 +99,22 @@ public class ResocontoTavolo {
      */
     public List<Ordine> getListaOrdini() {
 		return listaOrdini;
+	}
+
+	/**
+	 * questo metodo imposta la lista degli ordini
+	 * 
+	 * @param listaOrdini la lista degli ordini
+	 */
+	public void setListaOrdini(List<Ordine> listaOrdini) {
+		this.listaOrdini = listaOrdini;
+	}
+	
+	/**
+	 * @return il counter degli ordini
+	 */
+	public int getNumeroOrdine() {
+		return ++counterOrdini;
 	}
 
 //	/**

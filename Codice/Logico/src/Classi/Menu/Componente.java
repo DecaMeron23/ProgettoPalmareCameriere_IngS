@@ -3,6 +3,7 @@
  */
 package classi.menu;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,6 +27,13 @@ public class Componente {
 		super();
 		this.nome = nome;
 		this.listaPiatti = lista_piatti;
+	}
+	
+	/**
+	 * @param nome il nome del piatto
+	 */
+	public Componente(String nome) {
+		this(nome , new ArrayList<Piatto>());
 	}
 
 	/**
@@ -53,5 +61,14 @@ public class Componente {
 	 */
 	public void aggiungiPiatto(Piatto piatto) { // NO_UCD (unused code)
 		listaPiatti.add(piatto);
+	}
+
+	/**
+	 * 	QUesto metodo imposta la lista dei piatti 
+	 * 
+	 * @param piatti la lista dei piatti
+	 */
+	public void setListaPiatti(List<Piatto> piatti) {
+		listaPiatti = piatti;
 	}
 }

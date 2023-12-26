@@ -21,12 +21,17 @@ public class PiattoOrdinato {
 	private String commento;
 
 	/**
+	 * Id del piatto
+	 */
+	private int idPiatto;
+
+	/**
 	 * costuttore del piatto ordinato.
 	 *
 	 * @param piatto il piatto scelto
 	 */
-	public PiattoOrdinato(Piatto piatto) {
-		this("", piatto);
+	public PiattoOrdinato(Piatto piatto , int id) {
+		this("", piatto , id);
 	}
 
 	/**
@@ -34,11 +39,13 @@ public class PiattoOrdinato {
 	 *
 	 * @param commento il commento del piatto
 	 * @param piatto   il piatto scelto
+	 * @param id 
 	 */
-	public PiattoOrdinato(String commento, Piatto piatto) {
+	public PiattoOrdinato(String commento, Piatto piatto, int id) {
 		super();
 		this.commento = commento;
 		this.piatto = piatto;
+		this.idPiatto = id;
 	}
 
 	/**
@@ -105,5 +112,9 @@ public class PiattoOrdinato {
 	 */
 	public void setPiatto(Piatto piatto) {
 		this.piatto = piatto;
+	}
+
+	public int getIdPiatto() {			
+		return idPiatto;
 	}
 }
