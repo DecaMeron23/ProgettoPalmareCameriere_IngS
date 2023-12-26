@@ -2,6 +2,7 @@ package classi.dataBase;
 
 import java.util.List;
 
+import classi.enumerativi.StatoTavolo;
 import classi.menu.Componente;
 import classi.menu.Piatto;
 import classi.ordine.Ordine;
@@ -26,8 +27,8 @@ class Record2Class {
 	 * @param tavoloRecord il record del tavolo
 	 * @return il tavolo
 	 */
-	public static Tavolo tavolo(TavoloRecord tavoloRecord) {
-		return new Tavolo(tavoloRecord.getNome(), tavoloRecord.getPostiMassimi());
+	public static Tavolo tavolo(TavoloRecord tavoloRecord , ResocontoTavolo resconto) {
+		return new Tavolo(tavoloRecord.getNome(), tavoloRecord.getPostiMassimi(), StatoTavolo.getStato(tavoloRecord.getStato()) , resconto);
 	}
 
 	/**
@@ -54,8 +55,8 @@ class Record2Class {
 	 * @param resocontoTavoloRecord il resoconto del tavolo record da trasformare
 	 * @return il resoconto del tavolo
 	 */
-	public static ResocontoTavolo resocontoTavolo(ResocontoTavoloRecord resocontoTavoloRecord) {
-		return new ResocontoTavolo(resocontoTavoloRecord.getNumCoperti());
+	public static ResocontoTavolo resocontoTavolo(ResocontoTavoloRecord resocontoTavoloRecord , List<Ordine> listaOrdini) {
+		return new ResocontoTavolo(resocontoTavoloRecord.getNumCoperti() , listaOrdini , resocontoTavoloRecord.getCounterOrdini());
 	}
 
 	/**
@@ -67,9 +68,9 @@ class Record2Class {
 		return new Ordine(piatti, ordineRecord.getNumOrdine());
 	}
 
-	public static PiattoOrdinato piattoOrdinato(PiattoOrdinatoRecord pOrdinato , Piatto piatto) {
+	public static PiattoOrdinato piattoOrdinato(PiattoOrdinatoRecord piattoOrdinato , Piatto piatto) {
 		
-		return new PiattoOrdinato(pOrdinato.getCommento(), piatto, pOrdinato.getNumPiatto());
+		return new PiattoOrdinato(piattoOrdinato.getCommento(), piatto, piattoOrdinato.getNumPiatto() , piattoOrdinato.getOccorrenze());
 	}
 	
 }

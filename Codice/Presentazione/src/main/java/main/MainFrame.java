@@ -18,9 +18,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
+import classi.dataBase.DataService;
 import classi.enumerativi.StatoTavolo;
 import classi.menu.Componente;
 import classi.tavolo.Tavolo;
+import logico.Logico;
 import main.impostazioni.PanelImpostazioni;
 import main.tavoli.BottoneTavolo;
 import main.tavoli.PanelBottoniTavoli;
@@ -47,24 +49,22 @@ public class MainFrame extends JFrame {
 	/** The panel tavolo. */
 	// Panel_Bottoni_Tavoli panel_bottoni_tavoli;
 	JPanel panelTavolo; // NO_UCD (unused code)
-
-	/** la lista dei tavoli. */
-	private List<Tavolo> listaTavoli;
-
-	/** la lista dei componenti. */
-	private List<Componente> listaComponenti;
-
+	
 	/**
 	 * costruttore del frame.
 	 *
 	 * @param listaTavoli     la lista dei tavoli
 	 * @param listaComponenti la lista dei componenti
 	 */
-	MainFrame(List<Tavolo> listaTavoli, List<Componente> listaComponenti) {
+	MainFrame() {
 
-		this.listaTavoli = listaTavoli;
-		this.listaComponenti = listaComponenti;
-
+		addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // Esegui le azioni desiderate quando la finestra viene chiusa
+                Logico.eseguiAzioniDiChiusura();
+            }
+        });
 		setResizable(false);
 		setTitle("Palmare Cameriere");
 
@@ -91,7 +91,7 @@ public class MainFrame extends JFrame {
 
 		mainPanel.removeAll();
 
-		JScrollPane panelBottoniTavoli = new PanelBottoniTavoli(listaTavoli, new AzioneBtnTavoli());
+		JScrollPane panelBottoniTavoli = new PanelBottoniTavoli(new AzioneBtnTavoli());
 
 		mainPanel.add(panelBottoniTavoli);
 
@@ -121,7 +121,7 @@ public class MainFrame extends JFrame {
 			break;
 
 		case OCCUPATO:
-			JPanel panel = new PanelTavoloOccupato(tavolo, listaComponenti);
+			JPanel panel = new PanelTavoloOccupato(tavolo);
 			mainPanel.removeAll();
 			mainPanel.add(panel);
 			mainPanel.repaint();
@@ -207,7 +207,7 @@ public class MainFrame extends JFrame {
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			tavolo.setStato(StatoTavolo.LIBERO);
+			Logico.tavoloPulito(tavolo);
 			SwingUtilities.getWindowAncestor((JButton) (e.getSource())).dispose();
 			enableFrame(true);
 			paintPanelTavoli();

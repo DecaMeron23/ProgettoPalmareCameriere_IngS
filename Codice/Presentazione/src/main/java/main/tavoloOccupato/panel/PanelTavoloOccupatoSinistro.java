@@ -22,9 +22,11 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 
+import classi.dataBase.DataService;
 import classi.ordine.Ordine;
 import classi.ordine.PiattoOrdinato;
 import classi.tavolo.ResocontoTavolo;
+import logico.Logico;
 import main.FrameConfermaScelta;
 import main.MainFrame;
 
@@ -145,7 +147,8 @@ class PanelTavoloOccupatoSinistro extends JPanel {
 	 * aggiorniamo il panel sotto
 	 */
 	private void repaintPanelSotto() {
-		if (!panelTavoloOccupato.tavolo.resocontoTavolo.getListaOrdini().isEmpty()) {
+		
+		if (!DataService.getOrdini(panelTavoloOccupato.tavolo).isEmpty()) {
 			btnPagato.setEnabled(true);
 		}
 		// aggiorniamo il label per il prezzo
@@ -188,13 +191,13 @@ class PanelTavoloOccupatoSinistro extends JPanel {
 		DefaultListModel<String> modelPrezzo = new DefaultListModel<>();
 
 		// aggiunta coperti
-		int numCoperti = panelTavoloOccupato.tavolo.resocontoTavolo.getNumCoperti();
+		int numCoperti = DataService.getResocontoTavolo(panelTavoloOccupato.tavolo).getNumCoperti();
 		modelPiatto.addElement(numCoperti + "x Coperto");
 		modelPrezzo.addElement(formattaPrezzo(numCoperti * ResocontoTavolo.COSTO_COPERTO) + " €   ");
 
 		// aggiungiamo gli ordini
-		for (Ordine ordine : panelTavoloOccupato.tavolo.resocontoTavolo.getListaOrdini()) {
-			for (PiattoOrdinato piattoOrdinato : ordine.getListaPiattiOrdinati()) {
+		for (Ordine ordine : DataService.getOrdini(panelTavoloOccupato.tavolo)) {
+			for (PiattoOrdinato piattoOrdinato : DataService.getPiattiOridinati(panelTavoloOccupato.tavolo, ordine.getNumeroOrdine())) {
 
 				String strNomePiatto = piattoOrdinato.getQuantita() + "x " + piattoOrdinato.getPiatto().getNome();
 				String strCommento = piattoOrdinato.getCommento();
@@ -233,7 +236,7 @@ class PanelTavoloOccupatoSinistro extends JPanel {
 	 */
 	private void aggiornaPrezzoTotale() {
 		lblTotale.setText("Importo Totale: "
-				+ formattaPrezzo(panelTavoloOccupato.tavolo.resocontoTavolo.getPrezzoTotale()) + " €");
+				+ formattaPrezzo(DataService.getResocontoTavolo(panelTavoloOccupato.tavolo).getPrezzoTotale()) + " €");
 	}
 	
 	private void enable_frame(boolean bol) {
@@ -251,7 +254,7 @@ class PanelTavoloOccupatoSinistro extends JPanel {
 
 		public BottonePagato() {
 			super("Pagato");
-			boolean btnAttivare = !panelTavoloOccupato.tavolo.resocontoTavolo.getListaOrdini().isEmpty();
+			boolean btnAttivare = !DataService.getOrdini(panelTavoloOccupato.tavolo).isEmpty();
 			setEnabled(btnAttivare);
 			addActionListener(new ActionListenerBtnPagato());
 		}
@@ -269,8 +272,7 @@ class PanelTavoloOccupatoSinistro extends JPanel {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						// paghiamo il tavolo
-						panelTavoloOccupato.tavolo.pagato();
-						// riattiviamo il frame principale
+						Logico.pagaTavolo(panelTavoloOccupato.tavolo);
 						setEnabled(true);
 						// torniamo al panel tavoli
 						MainFrame frame =(MainFrame) SwingUtilities.getWindowAncestor(panelTavoloOccupato);
@@ -334,8 +336,8 @@ class PanelTavoloOccupatoSinistro extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setEnabled(false);
-				Ordine ordine = new Ordine(panelTavoloOccupato.listaPiattiOrdinati);
-				panelTavoloOccupato.tavolo.resocontoTavolo.aggingiOrdine(ordine);
+				Logico.inviaOrdine(panelTavoloOccupato.listaPiattiOrdinati , panelTavoloOccupato.tavolo);
+				// resettiamo la lista dei piatti oridinati.
 				panelTavoloOccupato.listaPiattiOrdinati = new ArrayList<PiattoOrdinato>();
 				repaintPanel();
 			}

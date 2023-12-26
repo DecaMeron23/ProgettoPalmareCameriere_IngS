@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import classi.dataBase.DataService;
 import classi.tavolo.Tavolo;
 
 public class PanelBottoniTavoli extends JScrollPane {
@@ -25,13 +26,13 @@ public class PanelBottoniTavoli extends JScrollPane {
 	 */
 	private JPanel panelPulsanti;
 
-	public PanelBottoniTavoli(List<Tavolo> listaTavolo, ActionListener actionListenerTavoli) {
+	public PanelBottoniTavoli(ActionListener actionListenerTavoli) {
 
 		// creaiamo il panel
 		panelPulsanti = new JPanel(new GridLayout(0, 3, 50, 50));
 
 		// creaiamo e aggiungiamo la lista dei bottoni dei tavoli
-		btnTavolo = addTavoli(listaTavolo, actionListenerTavoli);
+		btnTavolo = addTavoli(DataService.getTavoli(), actionListenerTavoli);
 
 		// impostazioni dello scroll pane
 		getVerticalScrollBar().setUnitIncrement(10);

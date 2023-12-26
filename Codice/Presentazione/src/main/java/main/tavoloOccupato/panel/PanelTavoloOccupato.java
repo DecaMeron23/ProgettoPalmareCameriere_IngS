@@ -7,7 +7,6 @@ import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
-import classi.menu.Componente;
 import classi.ordine.PiattoOrdinato;
 import classi.tavolo.Tavolo;
 import main.tavoloOccupato.TextAreaCommentoPiatto;
@@ -52,14 +51,13 @@ public class PanelTavoloOccupato extends JPanel {
 	 * @param tavolo: il tavolo a cui fa riferimento questo panel
 	 * @param lista_componenti: lista che contiene i diversi componenti
 	 */
-	public PanelTavoloOccupato(Tavolo tavolo, List<Componente> listaComponenti) {
-
+	public PanelTavoloOccupato(Tavolo tavolo) {		
 		this.tavolo = tavolo;
 		listaPiattiOrdinati = new ArrayList<>();
 
 		// creo i due panel
 		panelSx = new PanelTavoloOccupatoSinistro(this);
-		panelDx = new PanelTavoloOccupatoDestro(listaComponenti, this);
+		panelDx = new PanelTavoloOccupatoDestro(this);
 
 		// impostiamo il Layout del panel
 		setLayout(new BorderLayout());

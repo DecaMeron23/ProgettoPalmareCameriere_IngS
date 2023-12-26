@@ -27,14 +27,15 @@ public class Tavolo {
 	 * Costruttore del tavolo.
 	 *
 	 * @param nome             il nome del tavolo
-	 * @param num_post_massimi il numero dei posti massimi del tavolo
+	 * @param numPostiMassimi il numero dei posti massimi del tavolo
+	 * @param resconto 
 	 */
-	public Tavolo(int nome, int num_post_massimi) {
+	public Tavolo(int nome, int numPostiMassimi , StatoTavolo stato, ResocontoTavolo resconto) {
 		super();
+		this.resocontoTavolo = resconto;
 		this.nome = nome;
-		this.numPostiMassimi = num_post_massimi;
-		stato = StatoTavolo.LIBERO;
-
+		this.numPostiMassimi = numPostiMassimi;
+		this.stato = stato;
 	}
 
 	/**

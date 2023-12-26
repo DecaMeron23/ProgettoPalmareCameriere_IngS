@@ -44,7 +44,7 @@ class PanelPiattoOrdinatoSelettore extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			int quantita = piattoOrdinato.getQuantita();
-			piattoOrdinato.setQuantita(quantita++);
+			piattoOrdinato.setQuantita(quantita+1);
 			lblNumeroOrdini.setText("" + piattoOrdinato.getQuantita());
 		}
 
@@ -55,7 +55,7 @@ class PanelPiattoOrdinatoSelettore extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			int quantita = piattoOrdinato.getQuantita();
-			piattoOrdinato.setQuantita(quantita--);
+			piattoOrdinato.setQuantita(quantita-1);
 			lblNumeroOrdini.setText("" + piattoOrdinato.getQuantita());
 		}
 	}

@@ -21,6 +21,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import classi.dataBase.DataService;
 import classi.menu.Componente;
 import classi.menu.Piatto;
 import classi.ordine.PiattoOrdinato;
@@ -37,26 +38,23 @@ class PanelTavoloOccupatoDestro extends JPanel {
 
 	/** The lista panel componenti. */
 	private List<PanelComponente> listaPanelComponenti;
-	
-	/** The lista componenti. */
-	private List<Componente> listaComponenti;
-	
+
 	/** The panel tavolo occupato. */
 	private PanelTavoloOccupato panelTavoloOccupato;
-	
+
 	/** The commento piatto. */
 	private TextAreaCommentoPiatto commentoPiatto;
-	
+
 	/** The btn aggiungi. */
 	private JButton btnAggiungi;
 
 	/**
 	 * Instantiates a new panel tavolo occupato destro.
 	 *
-	 * @param listaComponenti the lista componenti
+	 * @param listaComponenti     the lista componenti
 	 * @param panelTavoloOccupato the panel tavolo occupato
 	 */
-	PanelTavoloOccupatoDestro(List<Componente> listaComponenti, PanelTavoloOccupato panelTavoloOccupato) {
+	PanelTavoloOccupatoDestro(PanelTavoloOccupato panelTavoloOccupato) {
 
 		this.panelTavoloOccupato = panelTavoloOccupato;
 
@@ -64,7 +62,6 @@ class PanelTavoloOccupatoDestro extends JPanel {
 		btnAggiungi = new JButton("Aggiungi");
 		btnAggiungi.addActionListener(new ActionListenerBtnAggiungi());
 
-		this.listaComponenti = listaComponenti;
 		JPanel panelDestroBasso = new JPanel();
 		JTabbedPane tabbedCoponenti = new JTabbedPane();
 
@@ -101,7 +98,7 @@ class PanelTavoloOccupatoDestro extends JPanel {
 	 */
 	private void aggiungiPanelComponenti(JTabbedPane tabbed) {
 		listaPanelComponenti = new ArrayList<>();
-		for (Componente comp : listaComponenti) {
+		for (Componente comp : DataService.getComponenti()) {
 			// creo il panel per la componente
 			PanelComponente panel = new PanelComponente(comp);
 			// aggiunto lo scrollPane alla componente
@@ -126,7 +123,7 @@ class PanelTavoloOccupatoDestro extends JPanel {
 	/**
 	 * Aggiungi elementi panel destro.
 	 *
-	 * @param tabbedCoponenti the tabbed coponenti
+	 * @param tabbedCoponenti  the tabbed coponenti
 	 * @param panelBassoDestro the panel basso destro
 	 */
 	private void aggiungiElementiPanelDestro(JTabbedPane tabbedCoponenti, JPanel panelBassoDestro) {
@@ -207,7 +204,7 @@ class PanelTavoloOccupatoDestro extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				BottonePiatto btn = (BottonePiatto) e.getSource();
 				if (panelTavoloOccupato.piattoSelezionato == null) {
-					panelTavoloOccupato.piattoSelezionato = new PiattoOrdinato(btn.getPiatto());
+					panelTavoloOccupato.piattoSelezionato = new PiattoOrdinato(btn.getPiatto() , 1); // da sistemare
 				} else {
 					if (panelTavoloOccupato.piattoSelezionato.getPiatto() == null) {
 						panelTavoloOccupato.piattoSelezionato.setPiatto(btn.getPiatto());

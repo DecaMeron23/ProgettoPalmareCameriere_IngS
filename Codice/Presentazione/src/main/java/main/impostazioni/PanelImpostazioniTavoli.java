@@ -19,6 +19,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 
+import classi.dataBase.DataService;
 import classi.tavolo.Tavolo;
 import main.FrameConfermaScelta;
 import main.tavoli.BottoneTavolo;
@@ -30,8 +31,6 @@ import main.tavoli.BottoneTavolo;
 class PanelImpostazioniTavoli extends JPanel {
 
 	private static final long serialVersionUID = 2122068881007738339L;
-
-	private List<Tavolo> listaTavolo = generaLista();
 
 	/**
 	 * Modello dei dati
@@ -99,14 +98,6 @@ class PanelImpostazioniTavoli extends JPanel {
 		add(panelSotto, BorderLayout.SOUTH);
 	}
 
-	private List<Tavolo> generaLista() {
-		List<Tavolo> list = new ArrayList<Tavolo>();
-		for (int i = 0; i < 2; i++) {
-			list.add(new Tavolo(i, 4));
-		}
-		return list;
-	}
-
 	/**
 	 * metodo che aggiorna i tavoli della JList
 	 */
@@ -116,7 +107,7 @@ class PanelImpostazioniTavoli extends JPanel {
 
 //		List<Tavolo> listaTavolo = model.getListaTavoli();
 
-		for (Tavolo tavolo : listaTavolo) {
+		for (Tavolo tavolo : DataService.getTavoli()) {
 			BottoneTavolo btn = new BottoneTavolo(tavolo);
 			btn.addActionListener(new ActionListener() {
 
@@ -132,7 +123,7 @@ class PanelImpostazioniTavoli extends JPanel {
 			panel.add(btn);
 		}
 
-		int pulsantiMancanti = 32 - listaTavolo.size();
+		int pulsantiMancanti = 32 - DataService.getTavoli().size();
 
 		if (pulsantiMancanti > 0) {
 			for (int i = 0; i < pulsantiMancanti; i++) {

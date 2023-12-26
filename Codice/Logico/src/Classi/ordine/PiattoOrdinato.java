@@ -30,8 +30,8 @@ public class PiattoOrdinato {
 	 *
 	 * @param piatto il piatto scelto
 	 */
-	public PiattoOrdinato(Piatto piatto , int id) {
-		this("", piatto , id);
+	public PiattoOrdinato(Piatto piatto , int quantita) {
+		this("", piatto , 0 , quantita);
 	}
 
 	/**
@@ -41,11 +41,12 @@ public class PiattoOrdinato {
 	 * @param piatto   il piatto scelto
 	 * @param id 
 	 */
-	public PiattoOrdinato(String commento, Piatto piatto, int id) {
+	public PiattoOrdinato(String commento, Piatto piatto, int id , int quantita) {
 		super();
 		this.commento = commento;
 		this.piatto = piatto;
 		this.idPiatto = id;
+		this.quantita = quantita;
 	}
 
 	/**
@@ -83,8 +84,9 @@ public class PiattoOrdinato {
 	public void setQuantita(int quantita) {
 		if (quantita < 0) {
 			this.quantita = 0;
+		} else {
+			this.quantita = quantita;
 		}
-		this.quantita = quantita;
 	}
 
 	/**
@@ -116,5 +118,9 @@ public class PiattoOrdinato {
 
 	public int getIdPiatto() {			
 		return idPiatto;
+	}
+
+	public void setIDPiatto(int i) {
+		idPiatto = i;
 	}
 }

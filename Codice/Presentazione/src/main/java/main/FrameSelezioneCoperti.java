@@ -19,6 +19,7 @@ import javax.swing.SwingConstants;
 import classi.enumerativi.StatoTavolo;
 import classi.tavolo.ResocontoTavolo;
 import classi.tavolo.Tavolo;
+import logico.Logico;
 
 /**
  * The Class Frame per selezionare il numero dei coperti.
@@ -137,8 +138,7 @@ class FrameSelezioneCoperti extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			int coperti = getIntLabel();
-			tavolo.setStato(StatoTavolo.OCCUPATO);
-			tavolo.resocontoTavolo = new ResocontoTavolo(coperti);
+			Logico.occupaTavolo(tavolo , coperti);
 			mainFrame.paintPanelTavoli();
 			dispose();
 		}
