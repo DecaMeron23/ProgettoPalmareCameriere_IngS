@@ -106,4 +106,8 @@ public class Ordine {
 		return ++counterPiatto;
 	}
 
+	public int getCounter() {
+		return counterPiatto;
+	}
+
 }

@@ -12,11 +12,11 @@ import model.generated.tables.records.OrdineRecord;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function2;
+import org.jooq.Function3;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row2;
+import org.jooq.Row3;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -58,6 +58,11 @@ public class OrdineTables extends TableImpl<OrdineRecord> {
      * The column <code>ORDINE.TAVOLO</code>.
      */
     public final TableField<OrdineRecord, Integer> TAVOLO = createField(DSL.name("TAVOLO"), SQLDataType.INTEGER, this, "");
+
+    /**
+     * The column <code>ORDINE.COUNTER_PIATTO_ORDINATO</code>.
+     */
+    public final TableField<OrdineRecord, Integer> COUNTER_PIATTO_ORDINATO = createField(DSL.name("COUNTER_PIATTO_ORDINATO"), SQLDataType.INTEGER, this, "");
 
     private OrdineTables(Name alias, Table<OrdineRecord> aliased) {
         this(alias, aliased, null);
@@ -142,18 +147,18 @@ public class OrdineTables extends TableImpl<OrdineRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row2 type methods
+    // Row3 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row2<Integer, Integer> fieldsRow() {
-        return (Row2) super.fieldsRow();
+    public Row3<Integer, Integer, Integer> fieldsRow() {
+        return (Row3) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function2<? super Integer, ? super Integer, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function3<? super Integer, ? super Integer, ? super Integer, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -161,7 +166,7 @@ public class OrdineTables extends TableImpl<OrdineRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function2<? super Integer, ? super Integer, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function3<? super Integer, ? super Integer, ? super Integer, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

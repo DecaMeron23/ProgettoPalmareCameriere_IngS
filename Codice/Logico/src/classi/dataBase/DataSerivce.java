@@ -30,6 +30,7 @@ import model.generated.tables.records.PiattoRecord;
 import model.generated.tables.records.ResocontoTavoloRecord;
 import model.generated.tables.records.TavoloRecord;
 
+
 /**
  * 
  */
@@ -296,7 +297,7 @@ public class DataSerivce {
 	}
 
 	/**
-	 * Questo metodo trasforma una lista di componenti recorc in lista di componenti
+	 * Questo metodo trasforma una lista di componenti record in lista di componenti
 	 * 
 	 * @param listaRecords la lista dei componenti record
 	 * @return lista di componenti

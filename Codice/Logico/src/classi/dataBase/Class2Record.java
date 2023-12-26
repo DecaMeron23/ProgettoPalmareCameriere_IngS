@@ -51,7 +51,7 @@ class Class2Record {
 	 * @return il record dell'ordine
 	 */
 	public static OrdineRecord ordine(Ordine o , Tavolo t) {
-		return new OrdineRecord(o.getNumeroOrdine(), t.getNome());
+		return new OrdineRecord(o.getNumeroOrdine(), t.getNome() , o.getCounter());
 	}
 
 	public static PiattoOrdinatoRecord piattoOrdinato(PiattoOrdinato piatto , Ordine o , Tavolo t) {
@@ -64,7 +64,7 @@ class Class2Record {
 	 * @return il resoconto del tavolo
 	 */
 	public static ResocontoTavoloRecord resocontoTavolo(ResocontoTavolo r, Tavolo t) {
-		return new ResocontoTavoloRecord(t.getNome(), r.getNumCoperti());
+		return new ResocontoTavoloRecord(t.getNome(), r.getNumCoperti(), r.getCounter());
 	}
 	
 }

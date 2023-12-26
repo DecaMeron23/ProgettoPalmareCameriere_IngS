@@ -94,7 +94,7 @@ public class CreateDB {
 				tables = meta.getTables(null, null, "RESOCONTO_TAVOLO", null);
 				if (!tables.next()) {
 					// La tabella non esiste, quindi possiamo crearla
-					String str = "CREATE TABLE RESOCONTO_TAVOLO (" + "TAVOLO	INT PRIMARY KEY, " + "NUM_COPERTI INT" + "COUNTER_ORDINI INT" +  ")";
+					String str = "CREATE TABLE RESOCONTO_TAVOLO (" + "TAVOLO	INT PRIMARY KEY, " + "NUM_COPERTI INT, COUNTER_ORDINI INT" +  ")";
 
 					stm.executeUpdate(str);
 					System.out.println("la tabella RESOCONTO_TAVOLO è stata creata");

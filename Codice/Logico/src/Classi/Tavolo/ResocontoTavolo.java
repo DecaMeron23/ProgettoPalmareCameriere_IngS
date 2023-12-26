@@ -117,6 +117,13 @@ public class ResocontoTavolo {
 		return ++counterOrdini;
 	}
 
+	/**
+	 * @return il numero attuale del counter
+	 */
+	public int getCounter() {
+		return counterOrdini;
+	}
+
 //	/**
 //	 * @return il tavolo a cui si riferisce il resoconto
 //	 */

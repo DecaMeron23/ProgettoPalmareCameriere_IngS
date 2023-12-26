@@ -12,11 +12,11 @@ import model.generated.tables.records.ResocontoTavoloRecord;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function2;
+import org.jooq.Function3;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row2;
+import org.jooq.Row3;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -58,6 +58,11 @@ public class ResocontoTavoloTables extends TableImpl<ResocontoTavoloRecord> {
      * The column <code>RESOCONTO_TAVOLO.NUM_COPERTI</code>.
      */
     public final TableField<ResocontoTavoloRecord, Integer> NUM_COPERTI = createField(DSL.name("NUM_COPERTI"), SQLDataType.INTEGER, this, "");
+
+    /**
+     * The column <code>RESOCONTO_TAVOLO.COUNTER_ORDINI</code>.
+     */
+    public final TableField<ResocontoTavoloRecord, Integer> COUNTER_ORDINI = createField(DSL.name("COUNTER_ORDINI"), SQLDataType.INTEGER, this, "");
 
     private ResocontoTavoloTables(Name alias, Table<ResocontoTavoloRecord> aliased) {
         this(alias, aliased, null);
@@ -142,18 +147,18 @@ public class ResocontoTavoloTables extends TableImpl<ResocontoTavoloRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row2 type methods
+    // Row3 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row2<Integer, Integer> fieldsRow() {
-        return (Row2) super.fieldsRow();
+    public Row3<Integer, Integer, Integer> fieldsRow() {
+        return (Row3) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function2<? super Integer, ? super Integer, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function3<? super Integer, ? super Integer, ? super Integer, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -161,7 +166,7 @@ public class ResocontoTavoloTables extends TableImpl<ResocontoTavoloRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function2<? super Integer, ? super Integer, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function3<? super Integer, ? super Integer, ? super Integer, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }
