@@ -82,7 +82,7 @@ public class CreateDB {
 				tables = meta.getTables(null, null, "COMPONENTE", null);
 				if (!tables.next()) {
 					// La tabella non esiste, quindi possiamo crearla
-					String str = "CREATE TABLE COMPONENTE (" + "NOME	TEXT" + ")";
+					String str = "CREATE TABLE COMPONENTE ( NOME	TEXT PRIMARY KEY )";
 
 					stm.executeUpdate(str);
 					System.out.println("la tabella COMPONENTE è stata creata");

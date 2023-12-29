@@ -110,4 +110,9 @@ public class Tavolo {
 	public String toString() {
 		return "Tavolo n° " + nome + ", numero posti: " + numPostiMassimi;
 	}
+	
+	public boolean equals(Tavolo t2) {
+		Tavolo t1 = this;
+		return t1.nome == t2.nome;
+	}
 }

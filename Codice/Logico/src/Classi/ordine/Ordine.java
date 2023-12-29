@@ -7,8 +7,6 @@ package classi.ordine;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.management.monitor.CounterMonitorMBean;
-
 /**
  * Classe che raggruppa tutti i piatti ordinati.
  */
@@ -81,7 +79,7 @@ public class Ordine {
 	private void aggiornaPrezzoParziale() {
 		double prezzo = 0;
 		for (PiattoOrdinato piatto_ordinato : listaPiattiOrdinati) {
-			prezzo += prezzo + piatto_ordinato.getPrezzo() * piatto_ordinato.getQuantita();
+			prezzo += piatto_ordinato.getPrezzo();
 		}
 		prezzoParziale = prezzo;
 	}

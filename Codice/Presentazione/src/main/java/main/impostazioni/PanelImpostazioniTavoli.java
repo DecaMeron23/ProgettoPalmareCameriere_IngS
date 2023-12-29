@@ -1,6 +1,7 @@
 package main.impostazioni;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
@@ -8,8 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,8 +18,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 
+import org.jooq.impl.QOM.Log;
+
 import classi.dataBase.DataService;
+import classi.enumerativi.StatoTavolo;
 import classi.tavolo.Tavolo;
+import logico.Logico;
 import main.FrameConfermaScelta;
 import main.tavoli.BottoneTavolo;
 
@@ -35,7 +38,7 @@ class PanelImpostazioniTavoli extends JPanel {
 	/**
 	 * Modello dei dati
 	 */
-	//private InterfaceModel model;
+	// private InterfaceModel model;
 
 	/**
 	 * Data Base
@@ -80,7 +83,7 @@ class PanelImpostazioniTavoli extends JPanel {
 		lblTavoloSelezionato = new JLabel();
 
 		// aggiorniamo la JList
-		aggiornaListTavoli(panelSopra);
+		aggiornaListTavoli();
 
 		// aggiungo action listener
 		btnAggiungi.addActionListener(new ActionBtnAggiungiTavolo());
@@ -101,27 +104,53 @@ class PanelImpostazioniTavoli extends JPanel {
 	/**
 	 * metodo che aggiorna i tavoli della JList
 	 */
-	private void aggiornaListTavoli(JPanel panel) {
+	private void aggiornaListTavoli() {
 
 		panelSopra.removeAll();
 
-//		List<Tavolo> listaTavolo = model.getListaTavoli();
-
 		for (Tavolo tavolo : DataService.getTavoli()) {
 			BottoneTavolo btn = new BottoneTavolo(tavolo);
+			btn.aggiornaStato();
+
+			if (tavoloSelezionato != null && tavoloSelezionato.equals(tavolo)) {
+				btn.setBackground(Color.CYAN);
+			}
+
 			btn.addActionListener(new ActionListener() {
 
+				/**
+				 * Action listener per il pulsante tavolo
+				 */
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					tavoloSelezionato = ((BottoneTavolo) e.getSource()).getTavolo();
-					btnModifica.setEnabled(true);
-					btnElimina.setEnabled(true);
-					lblTavoloSelezionato.setText("Tavolo Selezionato n° " + tavoloSelezionato.getNome());
+					// possiamo selezionare il tavolo solo se è libero
+					if (tavolo.getStato().equals(StatoTavolo.LIBERO)) {
+						Boolean bool;
+						int nome;
+
+						if (tavoloSelezionato != null && tavoloSelezionato.equals(tavolo)) {
+							tavoloSelezionato = null;
+							bool = false;
+							nome = 0;
+						} else {
+							tavoloSelezionato = ((BottoneTavolo) e.getSource()).getTavolo();
+							bool = true;
+							nome = tavoloSelezionato.getNome();
+						}
+						aggiornaListTavoli();
+
+						aggiornaPulsanti(bool);
+
+						lblTavoloSelezionato.setText("Tavolo Selezionato n° " + (nome == 0 ? "" : "" + nome));
+					}
 				}
+
 			});
 
-			panel.add(btn);
+			panelSopra.add(btn);
 		}
+
+		// aggiungiamo pulsanti invisibili per mantenere la forma dei pulsanti
 
 		int pulsantiMancanti = 32 - DataService.getTavoli().size();
 
@@ -130,18 +159,27 @@ class PanelImpostazioniTavoli extends JPanel {
 				JButton btn = new JButton("");
 				btn.setVisible(false);
 				btn.setEnabled(false);
-				panel.add(btn);
+				panelSopra.add(btn);
 			}
 		}
 
 		lblTavoloSelezionato.setText("Tavolo Selezionato n° ");
 
-		btnModifica.setEnabled(false);
-		btnElimina.setEnabled(false);
+		aggiornaPulsanti(false);
 
 		repaint();
 		revalidate();
 
+	}
+
+	/**
+	 * Metodo utilizzato per aggiornare i pulsanti Modifica e Elimina
+	 * 
+	 * @param bool se true attiva i pulsanti, sennò li disattiva
+	 */
+	private void aggiornaPulsanti(Boolean bool) {
+		btnModifica.setEnabled(bool);
+		btnElimina.setEnabled(bool);
 	}
 
 	private void enableFrame(boolean bool) {
@@ -154,6 +192,19 @@ class PanelImpostazioniTavoli extends JPanel {
 	}
 
 	/**
+	 * classe che implementa Action listener utilizzata dal bottone aggiungi tavolo
+	 */
+	private class ActionBtnAggiungiTavolo implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			new FrameAggiungiModificaTavolo(FrameAggiungiModificaTavolo.AGGIUNGI);
+			enableFrame(false);
+		}
+
+	}
+
+	/**
 	 * Classe che implementa Action Listener, utilizzata dal bottone modifica tavolo
 	 */
 	private class ActionBtnModificaTavolo implements ActionListener {
@@ -161,7 +212,7 @@ class PanelImpostazioniTavoli extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// creiamo il frame di modifica
-			new FrameAggiungiModificaTavolo(tavoloSelezionato, FrameAggiungiModificaTavolo.MODIFICA);
+			new FrameAggiungiModificaTavolo(FrameAggiungiModificaTavolo.MODIFICA);
 			enableFrame(false);
 		}
 	}
@@ -179,8 +230,13 @@ class PanelImpostazioniTavoli extends JPanel {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					JFrame frame = (JFrame) SwingUtilities.getWindowAncestor((JButton) e.getSource());
-					// rimoviamo il tavolo TODO
-					aggiornaListTavoli(panelSopra);
+					
+					try {
+						Logico.eliminaTavolo(tavoloSelezionato);
+					} catch (Exception ex) {	
+						System.out.println("Il tavolo non esite");
+					}
+					aggiornaListTavoli();
 					frame.dispose();
 					enableFrame(true);
 				}
@@ -211,31 +267,20 @@ class PanelImpostazioniTavoli extends JPanel {
 	}
 
 	/**
-	 * classe che implementa Action listener utilizzata dal bottone aggiungi tavolo
-	 */
-	private class ActionBtnAggiungiTavolo implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			new FrameAggiungiModificaTavolo(null, FrameAggiungiModificaTavolo.AGGIUNGI);
-			enableFrame(false);
-		}
-
-	}
-
-	/**
 	 * Frame per le modifiche della lista dei tavoli
 	 */
 	private class FrameAggiungiModificaTavolo extends JFrame {
 
 		private static final long serialVersionUID = 1L;
+		
 
 		public static final int AGGIUNGI = 0;
 		public static final int MODIFICA = 1;
 
-		public FrameAggiungiModificaTavolo(Tavolo tavolo, int tipo) {
+		public FrameAggiungiModificaTavolo(int tipo) {
 
-			String titolo = (tipo == MODIFICA ? ("Modifica Tavolo n°" + tavolo.getNome()) : "Aggiungi Tavolo");
+			
+			String titolo = (tipo == MODIFICA ? ("Modifica Tavolo n°" + tavoloSelezionato.getNome()) : "Aggiungi Tavolo");
 
 			// inizzializzazione Frame
 			setTitle(titolo);
@@ -269,13 +314,14 @@ class PanelImpostazioniTavoli extends JPanel {
 			JPanel panelPrincipale = new JPanel(new GridLayout(0, 2, 10, 60));
 			JPanel panelPulsanti = new JPanel(new GridLayout(0, 2, 75, 75));
 
-			// creo i label e text area
+			// creo i label e text area per il nome del tavolo
 			JLabel lblNomeTavolo = new JLabel("Tavolo n° ");
-			String strNomeTavolo = (tipo == AGGIUNGI ? "" : "" + tavolo.getNome());
+			String strNomeTavolo = (tipo == AGGIUNGI ? "" : "" + tavoloSelezionato.getNome());
 			JTextArea txtAreaNomeTavolo = new JTextArea(strNomeTavolo);
 
+			// creo i label e text area per posti del tavolo
 			JLabel lblPostiTavolo = new JLabel("Tavolo n° ");
-			String strPostiTavolo = (tipo == AGGIUNGI ? "" : "" + tavolo.getNumPostiMassimi());
+			String strPostiTavolo = (tipo == AGGIUNGI ? "" : "" + tavoloSelezionato.getNumPostiMassimi());
 			JTextArea txtAreaPostiTavolo = new JTextArea(strPostiTavolo);
 
 			// creazione dei pulsanti
@@ -291,14 +337,59 @@ class PanelImpostazioniTavoli extends JPanel {
 					enableFrame(true);
 				}
 			};
-			// TODO
 			ActionListener actConferma = new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					// TODO aggiungere al DB
-					dispose();
-					enableFrame(true);
+
+					int nomeTavolo = 0;
+					int numeroPosti = 0;
+					boolean noEccezioni = true;
+
+					// blocco try catch per verificare se non si verificano problemi con il parse
+					// del nome e dei posti del tavolo
+					try {
+						nomeTavolo = Integer.parseInt(txtAreaNomeTavolo.getText());
+						numeroPosti = Integer.parseInt(txtAreaPostiTavolo.getText());
+					} catch (Exception ex) {
+						noEccezioni = false;
+						System.out.println("Il nome del tavolo e in numero dei posti devono essere dei numeri interi");
+						// TODO aggiungere un label che indica l'errore
+					}
+
+					// se non ci sono state eccezzioni aggiungiamo/modifichiamo il tavolo
+					if (noEccezioni) {
+						// creiamo il tavolo
+						Tavolo tavolo = new Tavolo(nomeTavolo, numeroPosti, StatoTavolo.LIBERO, null);
+
+						// se il tipo di modifica è AGGIUNGI tavolo
+						if (tipo == AGGIUNGI) {
+							// eseguiamo il try catch per verificare se ci sono problemi durante l'aggiunta
+							// del tavolo
+							try {
+								// aggiungiamo il tavolo
+								Logico.aggiungiTavolo(tavolo);
+							} catch (Exception ex) {
+								noEccezioni = false;
+								System.out.println("Il tavolo con questo nome esiste esiste già");
+								// TODO aggiungere un label che indica l'errore
+							}
+							// Se il tipo di modifica è MODIFICA tavolo
+						} else if (tipo == MODIFICA) {
+							// aggiorniamo il tavolo
+							Logico.modificaTavolo(tavoloSelezionato , tavolo);
+						}
+					}
+					// Se durante l'esecuzione di questo metodo NON si sono verificate eccezzioni
+					// allora chiudiamo il frame
+					if (noEccezioni) {
+						// togliamo la selezione al tavolo
+						tavoloSelezionato = null;
+						// aggiorniamo la lista dei tavoli
+						aggiornaListTavoli();
+						dispose();
+						enableFrame(true);
+					}
 				}
 			};
 
@@ -313,8 +404,8 @@ class PanelImpostazioniTavoli extends JPanel {
 			panelPrincipale.add(txtAreaPostiTavolo);
 
 			// aggiungiamo i componenti al panel pulsanti
-			panelPulsanti.add(btnConferma);
 			panelPulsanti.add(btnAnnulla);
+			panelPulsanti.add(btnConferma);
 
 			// aggiungiamo i panel al content pane
 			getContentPane().add(panelPrincipale, BorderLayout.CENTER);

@@ -17,6 +17,7 @@ import classi.ordine.Ordine;
 import classi.ordine.PiattoOrdinato;
 import classi.tavolo.ResocontoTavolo;
 import classi.tavolo.Tavolo;
+import io.r2dbc.spi.Result;
 import mainPackage.CreateDB;
 import model.generated.tables.ComponenteTables;
 import model.generated.tables.OrdineTables;
@@ -31,6 +32,9 @@ import model.generated.tables.records.PiattoRecord;
 import model.generated.tables.records.ResocontoTavoloRecord;
 import model.generated.tables.records.TavoloRecord;
 
+/**
+ * 
+ */
 /**
  * 
  */
@@ -57,7 +61,8 @@ public class DataService {
 	 * @return lista dei tavoli
 	 */
 	public static List<Tavolo> getTavoli() {
-		List<TavoloRecord> listaRecord = create.selectFrom(TavoloTables.TAVOLO).fetchInto(TavoloRecord.class);
+		List<TavoloRecord> listaRecord = create.selectFrom(TavoloTables.TAVOLO).orderBy(TavoloTables.TAVOLO.NOME.asc())
+				.fetchInto(TavoloRecord.class);
 		return toListaTavoli(listaRecord);
 	}
 
@@ -131,8 +136,9 @@ public class DataService {
 	 */
 	public static List<Componente> getComponenti() {
 		List<ComponenteRecord> listaRecords = create.selectFrom(ComponenteTables.COMPONENTE)
-				.fetchInto(ComponenteRecord.class);
+				.orderBy(ComponenteTables.COMPONENTE.NOME.asc()).fetchInto(ComponenteRecord.class);
 		return toListComponente(listaRecords);
+		//
 	}
 
 	/**
@@ -144,6 +150,11 @@ public class DataService {
 		ComponenteRecord componenteRecord = Class2Record.componente(c);
 		int result = create.insertInto(ComponenteTables.COMPONENTE).set(componenteRecord).execute();
 		System.out.println("Inserimento componente: " + result);
+
+		List<Piatto> listaPiatti = c.getListaPiatti();
+		for (Piatto piatto : listaPiatti) {
+			inserisciPiatto(piatto, c);
+		}
 	}
 
 	/**
@@ -176,7 +187,7 @@ public class DataService {
 		}
 
 		List<Ordine> listaOrdini = getOrdini(t);
-		ResocontoTavolo resocontoTavolo = Record2Class.resocontoTavolo(listaResoconti.get(0) , listaOrdini);
+		ResocontoTavolo resocontoTavolo = Record2Class.resocontoTavolo(listaResoconti.get(0), listaOrdini);
 		return resocontoTavolo;
 
 	}
@@ -185,6 +196,11 @@ public class DataService {
 		ResocontoTavoloRecord resocontoRecord = Class2Record.resocontoTavolo(r, t);
 		int result = create.insertInto(ResocontoTavoloTables.RESOCONTO_TAVOLO).set(resocontoRecord).execute();
 		System.out.println("Inserimento resoconto tavolo: " + result);
+
+		List<Ordine> listaOrdini = r.getListaOrdini();
+		for (Ordine ordine : listaOrdini) {
+			inserisciOrdine(ordine, t);
+		}
 	}
 
 	/**
@@ -219,10 +235,10 @@ public class DataService {
 	public static void inserisciOrdine(Ordine o, Tavolo t) {
 		OrdineRecord ordineRecord = Class2Record.ordine(o, t);
 		int result = create.insertInto(OrdineTables.ORDINE).set(ordineRecord).execute();
+
 		for (PiattoOrdinato piatto : o.getListaPiattiOrdinati()) {
 			inserisciPiattoOrdinato(piatto, o, t);
 		}
-
 		System.out.println("Inserimento Ordine: " + result);
 
 	}
@@ -332,15 +348,47 @@ public class DataService {
 
 	/**
 	 * Questo metodo aggiorna il resoconto del tavolo
-	 * 	
+	 * 
 	 * @param resoconto il resoconto nuovo
-	 * @param tavolo il tavolo del resconto
+	 * @param tavolo    il tavolo del resconto
 	 */
 	public static void aggiornaResoconto(ResocontoTavolo resoconto, Tavolo tavolo) {
 		int result = create.update(ResocontoTavoloTables.RESOCONTO_TAVOLO)
 				.set(Class2Record.resocontoTavolo(resoconto, tavolo))
 				.where(ResocontoTavoloTables.RESOCONTO_TAVOLO.TAVOLO.eq(tavolo.getNome())).execute();
-		System.out.println("aggiorna resoconto tavolo: "+  result);
+		System.out.println("aggiorna resoconto tavolo: " + result);
+
+	}
+
+	/**
+	 * Questo metodo aggiorna il nome della componente
+	 * 
+	 * @param compVecchia la componente da aggiornare
+	 * @param compNuova   la nuova componente
+	 */
+	public static void aggiornaNomeComponente(Componente compVecchia, Componente compNuova) {
+		int result = create.update(ComponenteTables.COMPONENTE)
+				.set(ComponenteTables.COMPONENTE.NOME, compNuova.getNome())
+				.where(ComponenteTables.COMPONENTE.NOME.eq(compVecchia.getNome())).execute();
+		System.out.println("aggiornamento nome componente: " + result);
+
+		List<Piatto> listaPiatti = getPiatti(compVecchia);
+		for (Piatto piatto : listaPiatti) {
+			aggiornaComponenteDelPiatto(piatto, compVecchia, compNuova);
+		}
+
+	}
+
+	/**
+	 * @param piatto      il piatto da aggiornare
+	 * @param compVecchia la vecchia componente
+	 * @param compNuova   la nuova componenre
+	 */
+	private static void aggiornaComponenteDelPiatto(Piatto piatto, Componente compVecchia, Componente compNuova) {
+		int result = create.update(PiattoTables.PIATTO).set(PiattoTables.PIATTO.COMPONENTE, compNuova.getNome())
+				.where(PiattoTables.PIATTO.NOME.eq(piatto.getNome()))
+				.and(PiattoTables.PIATTO.COMPONENTE.eq(compVecchia.getNome())).execute();
+		System.out.println("aggiornamento nome della componente del piatto: " + result);
 
 	}
 }

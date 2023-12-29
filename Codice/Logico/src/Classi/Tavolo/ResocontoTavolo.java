@@ -6,9 +6,6 @@ package classi.tavolo;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jooq.impl.QOM.Cube;
-
-import classi.dataBase.DataService;
 import classi.ordine.Ordine;
 
 /**

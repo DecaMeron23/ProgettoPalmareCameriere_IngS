@@ -1,0 +1,6 @@
+Created with UCDetector 2.0.0	2023-12-28 09:11:28	http://www.ucdetector.org/	Created by class: org.ucdetector.report.TextReport	
+Location	Description	Java	Marker	Author
+main.BarraMenu.btnTavoli(BarraMenu.java:23)	Change visibility of Field "BarraMenu.btnTavoli" to private	BarraMenu.btnTavoli	org.ucdetector.analyzeMarkerVisibilityPrivate	
+main.BarraMenu.btnImpostazioni(BarraMenu.java:24)	Change visibility of Field "BarraMenu.btnImpostazioni" to private	BarraMenu.btnImpostazioni	org.ucdetector.analyzeMarkerVisibilityPrivate	
+main.tavoloOccupato.LabelOrdine.<init>(LabelOrdine.java:7)	Class "LabelOrdine" has 0 references	LabelOrdine	org.ucdetector.analyzeMarkerReference	
+main.tavoloOccupato.panel.PanelTavoloOccupato.aggiungiPiatto(PanelTavoloOccupato.java:88)	Change visibility of Method "PanelTavoloOccupato.aggiungiPiatto(TextAreaCommentoPiatto)" to default	PanelTavoloOccupato.aggiungiPiatto(TextAreaCommentoPiatto)	org.ucdetector.analyzeMarkerVisibilityDefault	

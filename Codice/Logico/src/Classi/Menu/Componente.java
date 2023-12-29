@@ -71,4 +71,17 @@ public class Componente {
 	public void setListaPiatti(List<Piatto> piatti) {
 		listaPiatti = piatti;
 	}
+	
+	/**
+	 * @param comp2 la componente con cui ci confrontiamo
+	 * @return true se hanno lo stesso nome sennò false
+	 */
+	public boolean equals(Componente comp2) {
+		Componente comp1 = this;
+		return comp1.getNome().equals(comp2.getNome());
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 }

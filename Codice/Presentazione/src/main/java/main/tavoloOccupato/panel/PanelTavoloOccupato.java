@@ -85,7 +85,7 @@ public class PanelTavoloOccupato extends JPanel {
 	/**
 	 * @param commento_piatto: commento del piatto selezionato
 	 */
-	public void aggiungiPiatto(TextAreaCommentoPiatto commentoPiatto) {
+	void aggiungiPiatto(TextAreaCommentoPiatto commentoPiatto) {
 		// aggiungiamo il commento(se inseirito) nel piatto_ordinato_attuale
 		piattoSelezionato.setCommento(commentoPiatto.getText());
 		// resettiamo i commenti

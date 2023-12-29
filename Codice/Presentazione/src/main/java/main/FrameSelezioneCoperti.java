@@ -16,8 +16,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import classi.enumerativi.StatoTavolo;
-import classi.tavolo.ResocontoTavolo;
 import classi.tavolo.Tavolo;
 import logico.Logico;
 

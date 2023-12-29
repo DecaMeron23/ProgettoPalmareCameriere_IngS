@@ -10,7 +10,7 @@ class PanelImpostazioniDestro extends JPanel {
 	private JPanel[] panelImpostazioni;
 
 	public PanelImpostazioniDestro() {
-
+		
 		// creazione panel
 		JPanel panelTavoli = new PanelImpostazioniTavoli();
 		JPanel panelComponenti = new PanelImpostazioniComponenti();

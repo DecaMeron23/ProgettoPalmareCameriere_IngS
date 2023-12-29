@@ -4,13 +4,17 @@ import java.util.List;
 
 import classi.dataBase.DataService;
 import classi.enumerativi.StatoTavolo;
+import classi.menu.Componente;
 import classi.ordine.Ordine;
 import classi.ordine.PiattoOrdinato;
 import classi.tavolo.ResocontoTavolo;
 import classi.tavolo.Tavolo;
 
 /**
- * Parte logica
+ * Parte logica della applicazione
+ */
+/**
+ * 
  */
 public class Logico {
 
@@ -39,10 +43,11 @@ public class Logico {
 	}
 
 	/**
-	 * Questo metodo riceve una lista di piatti e un tavolo, poi crea un nuovo ordine e lo mette le DB
+	 * Questo metodo riceve una lista di piatti e un tavolo, poi crea un nuovo
+	 * ordine e lo mette le DB
 	 * 
 	 * @param listaPiattiOrdinati la lista dei piatti da aggiungere all'ordine
-	 * @param tavolo il tavolo a cui si aggiunge l'ordine
+	 * @param tavolo              il tavolo a cui si aggiunge l'ordine
 	 */
 	public static void inviaOrdine(List<PiattoOrdinato> listaPiattiOrdinati, Tavolo tavolo) {
 		ResocontoTavolo resoconto = DataService.getResocontoTavolo(tavolo);
@@ -52,7 +57,7 @@ public class Logico {
 			piattoOrdinato.setIDPiatto(i++);
 		}
 		Ordine ordine = new Ordine(listaPiattiOrdinati, resoconto.getNumeroOrdine());
-		DataService.aggiornaResoconto(resoconto , tavolo);
+		DataService.aggiornaResoconto(resoconto, tavolo);
 		DataService.inserisciOrdine(ordine, tavolo);
 	}
 
@@ -75,4 +80,65 @@ public class Logico {
 		DataService.aggiornaStatoTavolo(tavolo, StatoTavolo.LIBERO);
 	}
 
+	/**
+	 * Questo metodo aggiunge al DB un nuovo tavolo
+	 * 
+	 * @param tavolo il tavolo da aggiungere al data base
+	 * @throws Exception in caso il tavolo che si vuole aggiungere è già
+	 *                          presente nel DB
+	 */
+	public static void aggiungiTavolo(Tavolo tavolo) throws Exception {
+		DataService.inserisciTavolo(tavolo);
+	}
+
+	/**
+	 * Questo metodo prevede la modifica del tavolo
+	 * 
+	 * @param tavolo il tavolo da modificare
+	 */
+	public static void modificaTavolo(Tavolo tavoloVecchio, Tavolo tavoloNuovo) {
+		DataService.eliminaTavolo(tavoloVecchio);
+		DataService.inserisciTavolo(tavoloNuovo);
+
+	}
+
+	/**
+	 * Questo metodo serve per eliminare dal DB un tavolo
+	 * 
+	 * @param tavolo il tavolo da eliminare
+	 * @throws RuntimeException in caso il tavolo da eliminare non esiste
+	 */
+	public static void eliminaTavolo(Tavolo tavolo) throws Exception {
+		DataService.eliminaTavolo(tavolo);
+	}
+
+	/**
+	 * @param compVecchia componente vecchia
+	 * @param compNuova componente nuova
+	 * @throws Exception
+	 */
+	public static void modificaComponente(Componente compVecchia, Componente compNuova) throws Exception{
+		DataService.aggiornaNomeComponente(compVecchia , compNuova);
+	}
+
+	/**
+	 * Questo metodo prevede l'aggiunta della componente
+	 * 
+	 * @param componente la componente da eliminare
+	 * @throws Exception in caso la componente non esistesse
+	 */
+	public static void eliminaCompondente(Componente componente) throws Exception{
+		DataService.eliminaComponente(componente);
+	}
+
+	/**
+	 * Questo metodo serve ad aggingere una nuovoa componente
+	 * 
+	 * @param componente la componente da aggiungere
+	 * @throws Exception in caso esistesse già la componente
+	 */
+	public static void aggiungiComponente(Componente componente) throws Exception{
+		DataService.inserisciComponente(componente);
+	}
+	
 }

@@ -10,7 +10,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JMenuBar;
-import javax.swing.SwingUtilities;
 
 /**
  * Class Barra Menu.
@@ -20,8 +19,8 @@ class BarraMenu extends JMenuBar {
 	/** Constant serialVersionUID. */
 	private static final long serialVersionUID = 5682216914516074221L;
 
-	JButton btnTavoli;
-	JButton btnImpostazioni;
+	private JButton btnTavoli;
+	private JButton btnImpostazioni;
 	
 	/**
 	 * costruttore della barra menu.
