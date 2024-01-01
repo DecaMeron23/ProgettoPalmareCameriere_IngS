@@ -1,0 +1,3 @@
+Created with UCDetector 2.0.0	2024-01-01 11:16:11	http://www.ucdetector.org/	Created by class: org.ucdetector.report.TextReport	
+Location	Description	Java	Marker	Author
+classi.ordine.Ordine.Ordine(Ordine.java:36)	Change visibility of Constructor "Ordine.Ordine(List<PiattoOrdinato>,int,int)" to private	Ordine.Ordine(List<PiattoOrdinato>,int,int)	org.ucdetector.analyzeMarkerVisibilityPrivate	

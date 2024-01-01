@@ -148,7 +148,7 @@ class PanelImpostazioniSinistro extends JPanel {
 		private JLabel lblErrore;
 
 		public FinestraModificaCoperto() {
-
+			
 			setSize(new Dimension(300, 200));
 
 			setTitle("Modifica Coperto");
@@ -156,7 +156,8 @@ class PanelImpostazioniSinistro extends JPanel {
 			setLocationRelativeTo(null); // Posiziona al centro dello schermo
 			setVisible(true);
 			setAlwaysOnTop(true);
-
+			setResizable(false);
+			
 			JPanel panelPrincipale = new JPanel(new BorderLayout());
 
 			JPanel panelModifica = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 0));
@@ -231,6 +232,11 @@ class PanelImpostazioniSinistro extends JPanel {
 			});
 
 			addWindowListener(new WindowAdapter() {
+				@Override
+				public void windowClosing(WindowEvent e) {
+					enableFrame(true);
+				}
+				
 				@Override
 				public void windowClosed(WindowEvent e) {
 					enableFrame(true);

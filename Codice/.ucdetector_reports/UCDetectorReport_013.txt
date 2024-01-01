@@ -1,0 +1,7 @@
+Created with UCDetector 2.0.0	2024-01-01 11:14:10	http://www.ucdetector.org/	Created by class: org.ucdetector.report.TextReport	
+Location	Description	Java	Marker	Author
+classi.dataBase.GenerateCode.<init>(GenerateCode.java:12)	Class "GenerateCode" has 0 references	GenerateCode	org.ucdetector.analyzeMarkerReference	
+classi.ordine.Ordine.Ordine(Ordine.java:36)	Change visibility of Constructor "Ordine.Ordine(List<PiattoOrdinato>,int,int)" to private	Ordine.Ordine(List<PiattoOrdinato>,int,int)	org.ucdetector.analyzeMarkerVisibilityPrivate	
+classi.tavolo.Tavolo.pagato(Tavolo.java:99)	Method "Tavolo.pagato()" has 0 references	Tavolo.pagato()	org.ucdetector.analyzeMarkerReference	
+classi.tavolo.Tavolo.resocontoTavolo(Tavolo.java:24)	Change visibility of Field "Tavolo.resocontoTavolo" to private	Tavolo.resocontoTavolo	org.ucdetector.analyzeMarkerVisibilityPrivate	
+classi.tavolo.Tavolo.resocontoTavolo(Tavolo.java:24)	Field "Tavolo.resocontoTavolo" is never read	Tavolo.resocontoTavolo	org.ucdetector.analyzeMarkerReference	

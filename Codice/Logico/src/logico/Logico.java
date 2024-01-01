@@ -30,12 +30,16 @@ public class Logico {
 	public static void occupaTavolo(Tavolo tavolo, int coperti) throws Exception {
 
 		if (coperti <= 0) {
-			throw new Exception();
+			throw new Exception("Numero di Coperti Negativi");
 		}
 
 		if (coperti > tavolo.getNumPostiMassimi()) {
-			throw new Exception();
+			throw new Exception("Numero di coperti superiori a numero Massimo");
 		}
+		if (!tavolo.getStato().equals(StatoTavolo.LIBERO)) {
+			throw new Exception("Il tavolo deve essere libero per essere occupato");
+		}
+
 		ResocontoTavolo resocontoTavolo = new ResocontoTavolo(coperti);
 		DataService.inserisciResocontoTavolo(resocontoTavolo, tavolo);
 		DataService.aggiornaStatoTavolo(tavolo, StatoTavolo.OCCUPATO);
@@ -92,7 +96,7 @@ public class Logico {
 		if (t == null) {
 			throw new Exception("Tavolo non esiste");
 		}
-		if(!t.getStato().equals(StatoTavolo.DA_PULIRE)) {
+		if (!t.getStato().equals(StatoTavolo.DA_PULIRE)) {
 			throw new Exception("Il Tavolo non è da Pulire");
 		}
 		DataService.aggiornaStatoTavolo(tavolo, StatoTavolo.LIBERO);
@@ -107,8 +111,8 @@ public class Logico {
 	 */
 	public static void aggiungiTavolo(Tavolo tavolo) throws Exception {
 		Tavolo t = DataService.getTavolo(tavolo);
-		
-		if(t != null) {
+
+		if (t != null) {
 			throw new Exception("Il tavolo esiste già");
 		}
 		DataService.inserisciTavolo(tavolo);
@@ -120,7 +124,17 @@ public class Logico {
 	 * @param tavolo il tavolo da modificare
 	 */
 	public static void modificaTavolo(Tavolo tavoloVecchio, Tavolo tavoloNuovo) throws Exception {
-		DataService.aggiornaTavolo(tavoloVecchio , tavoloNuovo);
+		// verifichiamo se il nome è cambiato
+		if(tavoloNuovo.getNome() != tavoloVecchio.getNome()) {
+			//se esiste un tavolo con lo stesso nome lanciamo una eccezione
+			if(DataService.getTavolo(tavoloNuovo) != null) {
+				throw new Exception("Esiste già un tavolo con questo nome!");
+			}
+		}
+		
+		
+		
+		DataService.aggiornaTavolo(tavoloVecchio, tavoloNuovo);
 
 	}
 
@@ -132,11 +146,11 @@ public class Logico {
 	 */
 	public static void eliminaTavolo(Tavolo tavolo) throws Exception {
 		Tavolo t = DataService.getTavolo(tavolo);
-		
-		if(t == null) {
+
+		if (t == null) {
 			throw new Exception("Il tavolo non esiste");
 		}
-		
+
 		DataService.eliminaTavolo(tavolo);
 	}
 
@@ -197,11 +211,11 @@ public class Logico {
 	 */
 	public static void eliminaPiatto(Piatto piattoSelezionato, Componente componente) throws Exception {
 		Piatto p = DataService.getPiatto(piattoSelezionato, componente);
-		
-		if(p == null) {
+
+		if (p == null) {
 			throw new Exception("Il Piatto non esiste");
 		}
-		
+
 		DataService.eliminaPiatto(piattoSelezionato, componente);
 	}
 
@@ -253,11 +267,11 @@ public class Logico {
 	 */
 	public static void decrementaPrecendeza(Componente componente) {
 		List<Componente> listaComponenti = DataService.getComponenti();
-		
+
 		componente = DataService.getComponente(componente);
-		
+
 		int sizeList = listaComponenti.size();
-		
+
 		// se la componente è l'ultima non si fa nulla
 		if (componente.getPrecendenza() < sizeList) {
 			Componente componente1 = listaComponenti.get(componente.getPrecendenza() - 1);
@@ -281,7 +295,6 @@ public class Logico {
 		double prezzoCoperto = DataService.getPrezzoCoperto();
 		return numeroCoperti * prezzoCoperto;
 	}
-	
 
 	/**
 	 * Questo metodo aggiorna il prezzo del coperto

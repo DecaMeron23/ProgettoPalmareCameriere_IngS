@@ -9,7 +9,8 @@ import org.jooq.meta.jaxb.Target;
 
 import mainPackage.CreateDB;
 
-public class GenerateCode {
+
+class GenerateCode { // NO_UCD (unused code)
 	public static void main(String[] args) throws Exception {
 		Jdbc jdbc = new Jdbc().withDriver("org.sqlite.JDBC").withUrl(CreateDB.DB_URL);
 		Database database = new Database().withName("org.jooq.meta.sqlite.SQLiteDatabase")

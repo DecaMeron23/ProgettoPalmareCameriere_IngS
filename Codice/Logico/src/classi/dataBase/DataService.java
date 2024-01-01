@@ -306,7 +306,7 @@ public class DataService {
 	private static List<Tavolo> toListaTavoli(List<TavoloRecord> listaRecord) {
 		List<Tavolo> listaTavoli = new ArrayList<Tavolo>();
 		for (TavoloRecord tavoloRecord : listaRecord) {
-			ResocontoTavolo resoconto = getResocontoTavolo(new Tavolo(tavoloRecord.getNome(), 0, null, null));
+			ResocontoTavolo resoconto = getResocontoTavolo(new Tavolo(tavoloRecord.getNome(), 0, null));
 			listaTavoli.add(Record2Class.tavolo(tavoloRecord, resoconto));
 		}
 		return listaTavoli;
@@ -459,7 +459,7 @@ public class DataService {
 	 * @param tavoloVecchio il vecchio tavolo
 	 * @param tavoloNuovo   il nuovo tavolo
 	 */
-	public static void aggiornaTavolo(Tavolo tavoloVecchio, Tavolo tavoloNuovo) {
+	public static void aggiornaTavolo(Tavolo tavoloVecchio, Tavolo tavoloNuovo){
 		TavoloRecord tavoloRecord = Class2Record.tavolo(tavoloNuovo);
 		int result = create.update(TavoloTables.TAVOLO).set(tavoloRecord)
 				.where(TavoloTables.TAVOLO.NOME.eq(tavoloVecchio.getNome())).execute();

@@ -427,7 +427,7 @@ class PanelImpostazioniTavoli extends JPanel {
 				// se non ci sono state eccezzioni aggiungiamo/modifichiamo il tavolo
 				if (noEccezioni) {
 					// creiamo il tavolo
-					Tavolo tavolo = new Tavolo(nomeTavolo, numeroPosti, StatoTavolo.LIBERO, null);
+					Tavolo tavolo = new Tavolo(nomeTavolo, numeroPosti, StatoTavolo.LIBERO);
 
 					// se il tipo di modifica è AGGIUNGI tavolo
 					if (tipo == AGGIUNGI) {
@@ -447,6 +447,7 @@ class PanelImpostazioniTavoli extends JPanel {
 						try {
 							Logico.modificaTavolo(tavoloSelezionato, tavolo);
 						} catch (Exception e1) {
+							noEccezioni = false;
 							sendErrore("Il tavolo n° " + nomeTavolo + " esiste già");
 						}
 					}

@@ -1,0 +1,3 @@
+Created with UCDetector 2.0.0	2024-01-01 11:14:53	http://www.ucdetector.org/	Created by class: org.ucdetector.report.TextReport	
+Location	Description	Java	Marker	Author
+classi.dataBase.GenerateCode.<init>(GenerateCode.java:13)	Class "GenerateCode" has 0 references	GenerateCode	org.ucdetector.analyzeMarkerReference	

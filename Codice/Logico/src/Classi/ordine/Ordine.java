@@ -33,7 +33,7 @@ public class Ordine {
 	 *
 	 * @param listaPiattiOrdinati la lista dei piatti ordinati
 	 */
-	public Ordine(List<PiattoOrdinato> listaPiattiOrdinati, int numeroOrdine, int counterPiatto) {
+	private Ordine(List<PiattoOrdinato> listaPiattiOrdinati, int numeroOrdine, int counterPiatto) {
 		this.counterPiatto = counterPiatto;
 		this.listaPiattiOrdinati = listaPiattiOrdinati;
 		this.numeroOrdine = numeroOrdine;

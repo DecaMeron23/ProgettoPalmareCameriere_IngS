@@ -36,15 +36,14 @@ public class MainFrame extends JFrame {
 	private JPanel mainPanel;
 
 	/** The btn tavoli. */
-	// TODO from UCDetector: Field "MainFrame.btnTavoli" has 0 references
-	JButton btnTavoli; // NO_UCD (unused code)
+	JButton btnTavoli; 
 
 	/** The btn impostazioni. */
-	JButton btnImpostazioni; // NO_UCD (unused code)
+	JButton btnImpostazioni;
 
 	/** The panel tavolo. */
 	// Panel_Bottoni_Tavoli panel_bottoni_tavoli;
-	JPanel panelTavolo; // NO_UCD (unused code)
+	JPanel panelTavolo;
 	
 	/**
 	 * costruttore del frame.
@@ -196,7 +195,11 @@ public class MainFrame extends JFrame {
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			Logico.tavoloPulito(tavolo);
+			try {
+				Logico.tavoloPulito(tavolo);
+			} catch (Exception e1) {
+				System.err.println(e1.getMessage());
+			}
 			SwingUtilities.getWindowAncestor((JButton) (e.getSource())).dispose();
 			enableFrame(true);
 			paintPanelTavoli();

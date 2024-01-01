@@ -13,13 +13,13 @@ public class TextAreaCommentoPiatto extends JTextArea {
 
 	public TextAreaCommentoPiatto() {
 		this("");
-		setFont(new Font(getFont().getName(), Font.PLAIN, 20));
 	}
 
 	public TextAreaCommentoPiatto(String commentoIniziale) {
 		super(commentoIniziale);
 		this.commentoIniziale = commentoIniziale;
 		addMouseListener(new ActionClickTextField());
+		setFont(new Font(getFont().getName(), Font.PLAIN, 20));
 	}
 
 	public String getText() {

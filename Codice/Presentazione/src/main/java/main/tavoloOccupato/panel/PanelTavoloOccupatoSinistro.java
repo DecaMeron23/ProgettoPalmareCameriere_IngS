@@ -285,7 +285,11 @@ class PanelTavoloOccupatoSinistro extends JPanel {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						// paghiamo il tavolo
-						Logico.pagaTavolo(panelTavoloOccupato.tavolo);
+						try {
+							Logico.pagaTavolo(panelTavoloOccupato.tavolo);
+						} catch (Exception e1) {
+							System.err.println(e1.getMessage());;
+						}
 						// torniamo al panel tavoli
 						MainFrame frame =(MainFrame) SwingUtilities.getWindowAncestor(panelTavoloOccupato);
 						frame.paintPanelTavoli();

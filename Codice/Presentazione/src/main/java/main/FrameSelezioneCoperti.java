@@ -136,7 +136,11 @@ class FrameSelezioneCoperti extends JDialog {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			int coperti = getIntLabel();
-			Logico.occupaTavolo(tavolo , coperti);
+			try {
+				Logico.occupaTavolo(tavolo , coperti);
+			} catch (Exception e1) {
+				System.err.println(e1.getMessage());
+			}
 			mainFrame.paintPanelTavoli();
 			dispose();
 		}

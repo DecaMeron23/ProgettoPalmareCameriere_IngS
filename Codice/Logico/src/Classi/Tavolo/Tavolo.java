@@ -20,9 +20,6 @@ public class Tavolo {
 	/** Stato del tavolo */
 	private StatoTavolo stato;
 
-	/** il resoconto del tavolo */
-	public ResocontoTavolo resocontoTavolo;
-
 	/**
 	 * Costruttore del tavolo.
 	 *
@@ -30,9 +27,8 @@ public class Tavolo {
 	 * @param numPostiMassimi il numero dei posti massimi del tavolo
 	 * @param resconto 
 	 */
-	public Tavolo(int nome, int numPostiMassimi , StatoTavolo stato, ResocontoTavolo resconto) {
+	public Tavolo(int nome, int numPostiMassimi , StatoTavolo stato) {
 		super();
-		this.resocontoTavolo = resconto;
 		this.nome = nome;
 		this.numPostiMassimi = numPostiMassimi;
 		this.stato = stato;
@@ -93,13 +89,6 @@ public class Tavolo {
 		this.nome = nome;
 	}
 
-	/**
-	 * Libera il tavolo e segna che il tavolo è da pulire.
-	 */
-	public void pagato() {
-		setStato(StatoTavolo.DA_PULIRE);
-		resocontoTavolo = null;
-	}
 
 	/**
 	 * metodo toString
@@ -111,6 +100,10 @@ public class Tavolo {
 		return "Tavolo n° " + nome + ", numero posti: " + numPostiMassimi;
 	}
 	
+	/**
+	 * @param t2 il tavolo da conforntare 
+	 * @return true se il nome dei due tavoli sono uguali, sennò false
+	 */
 	public boolean equals(Tavolo t2) {
 		Tavolo t1 = this;
 		return t1.nome == t2.nome;

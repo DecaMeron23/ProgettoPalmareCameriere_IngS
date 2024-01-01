@@ -22,7 +22,7 @@ class LogicoTest {
 
 	@Test
 	void testOccupaTavolo() {
-		Tavolo tavoloTest = new Tavolo(999999999, 5, StatoTavolo.LIBERO, null);
+		Tavolo tavoloTest = new Tavolo(999999999, 5, StatoTavolo.LIBERO);
 		DataService.inserisciTavolo(tavoloTest);
 
 		int numeroCoperti1 = 2;
@@ -76,7 +76,7 @@ class LogicoTest {
 		listaPiatti.add(p2);
 		listaPiatti.add(p3);
 
-		Tavolo tavoloTest = new Tavolo(999999, 2, StatoTavolo.LIBERO, null);
+		Tavolo tavoloTest = new Tavolo(999999, 2, StatoTavolo.LIBERO);
 
 		try {
 			Logico.aggiungiTavolo(tavoloTest);
@@ -130,7 +130,7 @@ class LogicoTest {
 		listaPiatti.add(p2);
 		listaPiatti.add(p3);
 
-		Tavolo tavoloTest = new Tavolo(999999, 2, StatoTavolo.LIBERO, null);
+		Tavolo tavoloTest = new Tavolo(999999, 2, StatoTavolo.LIBERO);
 
 		try {
 			Logico.aggiungiTavolo(tavoloTest);
@@ -163,7 +163,7 @@ class LogicoTest {
 
 	@Test
 	void testTavoloPulito() {
-		Tavolo tavoloTest = new Tavolo(99999, 52, StatoTavolo.DA_PULIRE, null);
+		Tavolo tavoloTest = new Tavolo(99999, 52, StatoTavolo.DA_PULIRE);
 
 		try {
 			Logico.aggiungiTavolo(tavoloTest);
@@ -190,7 +190,7 @@ class LogicoTest {
 
 	@Test
 	void testAggiungiTavolo() {
-		Tavolo tavoloTest = new Tavolo(99999, 52, StatoTavolo.DA_PULIRE, null);
+		Tavolo tavoloTest = new Tavolo(99999, 52, StatoTavolo.DA_PULIRE);
 
 		try {
 			Logico.aggiungiTavolo(tavoloTest);
@@ -209,9 +209,9 @@ class LogicoTest {
 
 	@Test
 	void testModificaTavolo() {
-		Tavolo tavoloTest1 = new Tavolo(99999, 52, StatoTavolo.DA_PULIRE, null);
-		Tavolo tavoloTest2 = new Tavolo(99999, 50, StatoTavolo.DA_PULIRE, null);
-		Tavolo tavoloTest3 = new Tavolo(9999, 52, StatoTavolo.DA_PULIRE, null);
+		Tavolo tavoloTest1 = new Tavolo(99999, 52, StatoTavolo.DA_PULIRE);
+		Tavolo tavoloTest2 = new Tavolo(99999, 50, StatoTavolo.DA_PULIRE);
+		Tavolo tavoloTest3 = new Tavolo(9999, 52, StatoTavolo.DA_PULIRE);
 
 		try {
 			Logico.aggiungiTavolo(tavoloTest1);
@@ -239,7 +239,7 @@ class LogicoTest {
 
 	@Test
 	void testEliminaTavolo() {
-		Tavolo tavoloTest1 = new Tavolo(99999, 52, StatoTavolo.DA_PULIRE, null);
+		Tavolo tavoloTest1 = new Tavolo(99999, 52, StatoTavolo.DA_PULIRE);
 
 		try {
 			Logico.aggiungiTavolo(tavoloTest1);
@@ -517,7 +517,7 @@ class LogicoTest {
 		
 		Logico.setPrezzoCoperto(prezzoCopertoTest);
 		
-		Tavolo tavolo = new Tavolo(9999, 50, StatoTavolo.LIBERO , null);
+		Tavolo tavolo = new Tavolo(9999, 50, StatoTavolo.LIBERO);
 
 		try {
 			Logico.aggiungiTavolo(tavolo);

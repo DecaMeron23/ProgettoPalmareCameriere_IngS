@@ -28,7 +28,7 @@ class Record2Class {
 	 * @return il tavolo
 	 */
 	public static Tavolo tavolo(TavoloRecord tavoloRecord , ResocontoTavolo resconto) {
-		return new Tavolo(tavoloRecord.getNome(), tavoloRecord.getPostiMassimi(), StatoTavolo.getStato(tavoloRecord.getStato()) , resconto);
+		return new Tavolo(tavoloRecord.getNome(), tavoloRecord.getPostiMassimi(), StatoTavolo.getStato(tavoloRecord.getStato()));
 	}
 
 	/**
