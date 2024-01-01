@@ -8,13 +8,22 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -22,6 +31,9 @@ import javax.swing.event.DocumentListener;
 import classi.dataBase.DataService;
 import classi.menu.Componente;
 import logico.Logico;
+import main.FrameConfermaScelta;
+import main.MainFrame;
+import main.impostazioni.PanelImpostazioniComponenti.PanelModificaComponente.PanelRiordinaComponenti;
 
 class PanelImpostazioniComponenti extends JPanel {
 
@@ -41,6 +53,8 @@ class PanelImpostazioniComponenti extends JPanel {
 	 * panel contentente la parte principale delle modifiche
 	 */
 	PanelModificaComponente panelSopraSud;
+
+	public PanelRiordinaComponenti panelRiordinaComponenti;
 
 	public PanelImpostazioniComponenti() {
 
@@ -70,6 +84,8 @@ class PanelImpostazioniComponenti extends JPanel {
 
 		JTextArea txtAggiungi = new JTextArea();
 		JButton btnAggiungi = new JButton("Aggiungi");
+		btnAggiungi.setEnabled(false);
+		btnAggiungi.setFont(new Font(getFont().getName(), Font.PLAIN, 20));
 		btnAggiungi.addActionListener(new ActionListener() {
 
 			@Override
@@ -84,7 +100,7 @@ class PanelImpostazioniComponenti extends JPanel {
 
 				}
 				txtAggiungi.setText("");
-				aggiornaPulsantiComponenti();
+				aggiornaFrame();
 			}
 
 			private void startTimer() {
@@ -159,6 +175,15 @@ class PanelImpostazioniComponenti extends JPanel {
 	}
 
 	/**
+	 * 
+	 */
+	private void aggiornaFrame() {
+		panelRiordinaComponenti.aggiornaModel();
+		panelSopraSud.aggiornaElementi();
+		aggiornaPulsantiComponenti();
+	}
+
+	/**
 	 * Metodo che aggiorna i pulsanti delle componenti
 	 */
 	private void aggiornaPulsantiComponenti() {
@@ -168,20 +193,22 @@ class PanelImpostazioniComponenti extends JPanel {
 		for (Componente componente : DataService.getComponenti()) {
 			String nomeComponente = componente.getNome();
 			JButton btn = new JButton(nomeComponente);
-			btn.setPreferredSize(new Dimension(100, 30));
+			btn.setPreferredSize(new Dimension(150, 30));
+			btn.setFont(new Font(getFont().getName(), Font.PLAIN, 15));
 			btn.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 
 					if (componenteSelezionata != null && componenteSelezionata.equals(componente)) {
 						componenteSelezionata = null;
+						panelSopraSud.textComponente.setEnabled(false);
 					} else {
 						componenteSelezionata = componente;
+						panelSopraSud.textComponente.setEnabled(true);
 					}
 
-					panelSopraSud.aggiornaElementi();
+					aggiornaFrame();
 					panelSopraSud.btnSalva.setEnabled(false);
-					aggiornaPulsantiComponenti();
 
 				}
 			});
@@ -193,6 +220,14 @@ class PanelImpostazioniComponenti extends JPanel {
 			}
 
 			panelSopraCenter.add(btn);
+		}
+	}
+
+	protected void enableFrame(boolean bool) {
+		MainFrame frame = (MainFrame) SwingUtilities.getWindowAncestor(this);
+		frame.setEnabled(bool);
+		if (bool) {
+			frame.toFront();
 		}
 	}
 
@@ -221,7 +256,6 @@ class PanelImpostazioniComponenti extends JPanel {
 		 */
 		JButton btnElimina;
 
-		// TODO
 		public PanelModificaComponente() {
 			super(new BorderLayout());
 			setPreferredSize(new Dimension(900, 400));
@@ -229,8 +263,9 @@ class PanelImpostazioniComponenti extends JPanel {
 			// creazione delle componenti del panel
 			// textArea per il nome della componente
 			textComponente = new JTextArea();
+			textComponente.setEnabled(false);
 			textComponente.setFont(new Font("Arial", Font.PLAIN, 18));
-			textComponente.setPreferredSize(new Dimension(350 , 25));
+			textComponente.setPreferredSize(new Dimension(350, 25));
 
 			textComponente.getDocument().addDocumentListener(new DocumentListener() {
 				@Override
@@ -251,8 +286,10 @@ class PanelImpostazioniComponenti extends JPanel {
 				private void updateButtonState() {
 					if (componenteSelezionata == null) {
 						btnSalva.setEnabled(false);
+						textComponente.setEditable(false);
 					} else {
 						btnSalva.setEnabled(!textComponente.getText().equals(componenteSelezionata.getNome()));
+						textComponente.setEditable(true);
 					}
 				}
 			});
@@ -270,6 +307,7 @@ class PanelImpostazioniComponenti extends JPanel {
 			lblErrore.setForeground(Color.RED);
 			// bottone salva
 			btnSalva = new JButton("Salva");
+			btnSalva.setFont(new Font(getFont().getName(), Font.PLAIN, 20));
 			btnSalva.addActionListener(new ActionListener() {
 
 				@Override
@@ -290,8 +328,7 @@ class PanelImpostazioniComponenti extends JPanel {
 						lblErrore.setText("Assegnare un nome alla componente per salvare!");
 						startTimer();
 					}
-					aggiornaElementi();
-					aggiornaPulsantiComponenti();
+					aggiornaFrame();
 				}
 
 				private void startTimer() {
@@ -310,38 +347,73 @@ class PanelImpostazioniComponenti extends JPanel {
 			});
 			// bottone elimina
 			btnElimina = new JButton("Elimina");
+			btnElimina.setFont(new Font(getFont().getName(), Font.PLAIN, 20));
 			btnElimina.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					try {
-						Logico.eliminaCompondente(componenteSelezionata);
-					} catch (Exception e1) {
-					}
-					componenteSelezionata = null;
 
-					aggiornaElementi();
-					aggiornaPulsantiComponenti();
+					ActionListener actSi = new ActionListener() {
 
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							try {
+								Logico.eliminaCompondente(componenteSelezionata);
+							} catch (Exception e1) {
+							}
+							componenteSelezionata = null;
+							aggiornaFrame();
+							JDialog frame = (JDialog) SwingUtilities.getWindowAncestor((JButton) e.getSource());
+							frame.dispose();
+						}
+					};
+
+					ActionListener actNo = new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							JDialog frame = (JDialog) SwingUtilities.getWindowAncestor((JButton) e.getSource());
+							frame.dispose();
+						}
+					};
+
+					WindowAdapter winAp = new WindowAdapter() {
+						@Override
+						public void windowClosed(WindowEvent e) {
+							enableFrame(true);
+						}
+					};
+
+					new FrameConfermaScelta("Eliminazione Componente", "Sicuro di eliminare la componente?", actSi,
+							actNo, winAp);
+					enableFrame(false);
 				}
 			});
 
 			aggiornaElementi();
 
 			JPanel alto = new JPanel();
-			JPanel centro = new JPanel(new FlowLayout(10));
-			JPanel bassoBasso = new JPanel(new FlowLayout(10));
+			JPanel centroSopra = new JPanel(new FlowLayout(10));
+			JPanel centro = new JPanel(new GridLayout(0, 1));
+			panelRiordinaComponenti = new PanelRiordinaComponenti();
+			JPanel centrobottoni = new JPanel(new FlowLayout(10));
 			JPanel basso = new JPanel(new GridLayout(0, 1));
+			JPanel centroBasso = new JPanel(new GridLayout(0, 1));
 
 			alto.add(lblComponenteAttuale);
-			centro.add(lblModifica);
-			centro.add(textComponente);
 
-			bassoBasso.add(btnElimina);
-			bassoBasso.add(btnSalva);
+			centroSopra.add(lblModifica);
+			centroSopra.add(textComponente);
 
-			basso.add(lblErrore);
-			basso.add(bassoBasso);
+			centrobottoni.add(btnElimina);
+			centrobottoni.add(btnSalva);
+
+			centroBasso.add(lblErrore);
+			centroBasso.add(centrobottoni);
+
+			centro.add(centroSopra);
+			centro.add(centroBasso);
+
+			basso.add(panelRiordinaComponenti);
 
 			add(alto, BorderLayout.NORTH);
 			add(centro, BorderLayout.CENTER);
@@ -370,5 +442,88 @@ class PanelImpostazioniComponenti extends JPanel {
 
 		}
 
+		class PanelRiordinaComponenti extends JPanel {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+			private DefaultListModel<String> listModel;
+			private JList<String> componentiList;
+
+			public PanelRiordinaComponenti() {
+				// Creazione del modello della lista
+				listModel = new DefaultListModel<>();
+				aggiornaModel();
+
+				// Creazione della lista con il modello
+				componentiList = new JList<>(listModel);
+				componentiList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+				componentiList.setFont(new Font("Arial", Font.PLAIN, 18));
+
+				// Creazione dei bottoni per spostare gli elementi su e giù
+				JButton suButton = new JButton("Su");
+				JButton giuButton = new JButton("Giù");
+
+				// Aggiunta degli ActionListener ai bottoni
+				suButton.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Componente componente = getComponenteSelezionata();
+						int indexAttuale = componentiList.getSelectedIndex();
+						if (componente != null) {
+							Logico.incrementaPrecendeza(componente);
+							aggiornaFrame();
+							componentiList.setSelectedIndex(indexAttuale - 1);
+						}
+					}
+				});
+
+				giuButton.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Componente componente = getComponenteSelezionata();
+						int indexAttuale = componentiList.getSelectedIndex();
+						if (componente != null) {
+							Logico.decrementaPrecendeza(componente);
+							aggiornaFrame();
+							componentiList.setSelectedIndex(indexAttuale + 1);
+						}
+					}
+				});
+
+				// Creazione del pannello per i bottoni
+				JPanel buttonPanel = new JPanel(new GridLayout(2, 1, 0, 20));
+				buttonPanel.add(suButton);
+				buttonPanel.add(giuButton);
+
+				// Creazione del layout principale
+				setLayout(new BorderLayout());
+				add(new JScrollPane(componentiList), BorderLayout.CENTER);
+				add(buttonPanel, BorderLayout.EAST);
+			}
+
+			/**
+			 * @return la componente selezionate dalla JList, null se nessu elemento è
+			 *         selezionato
+			 */
+			protected Componente getComponenteSelezionata() {
+				int index = componentiList.getSelectedIndex();
+
+				if (index < 0) {
+					return null;
+				}
+				return DataService.getComponenti().get(index);
+			}
+
+			void aggiornaModel() {
+				listModel.clear();
+				List<String> nomiComponenti = new ArrayList<String>();
+				for (Componente componente : DataService.getComponenti()) {
+					nomiComponenti.add(componente.getNome());
+				}
+				listModel.addAll(nomiComponenti);
+			}
+
+		}
 	}
 }

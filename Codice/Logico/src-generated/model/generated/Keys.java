@@ -4,11 +4,13 @@
 package model.generated;
 
 
+import model.generated.tables.ComponenteTables;
 import model.generated.tables.OrdineTables;
 import model.generated.tables.PiattoTables;
 import model.generated.tables.PiattoOrdinatoTables;
 import model.generated.tables.ResocontoTavoloTables;
 import model.generated.tables.TavoloTables;
+import model.generated.tables.records.ComponenteRecord;
 import model.generated.tables.records.OrdineRecord;
 import model.generated.tables.records.PiattoOrdinatoRecord;
 import model.generated.tables.records.PiattoRecord;
@@ -32,6 +34,7 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
+    public static final UniqueKey<ComponenteRecord> COMPONENTE__PK_COMPONENTE = Internal.createUniqueKey(ComponenteTables.COMPONENTE, DSL.name("pk_COMPONENTE"), new TableField[] { ComponenteTables.COMPONENTE.NOME }, true);
     public static final UniqueKey<OrdineRecord> ORDINE__PK_ORDINE = Internal.createUniqueKey(OrdineTables.ORDINE, DSL.name("pk_ORDINE"), new TableField[] { OrdineTables.ORDINE.NUM_ORDINE, OrdineTables.ORDINE.TAVOLO }, true);
     public static final UniqueKey<PiattoRecord> PIATTO__PK_PIATTO = Internal.createUniqueKey(PiattoTables.PIATTO, DSL.name("pk_PIATTO"), new TableField[] { PiattoTables.PIATTO.NOME, PiattoTables.PIATTO.COMPONENTE }, true);
     public static final UniqueKey<PiattoOrdinatoRecord> PIATTO_ORDINATO__PK_PIATTO_ORDINATO = Internal.createUniqueKey(PiattoOrdinatoTables.PIATTO_ORDINATO, DSL.name("pk_PIATTO_ORDINATO"), new TableField[] { PiattoOrdinatoTables.PIATTO_ORDINATO.NUM_PIATTO, PiattoOrdinatoTables.PIATTO_ORDINATO.NUM_ORDINE, PiattoOrdinatoTables.PIATTO_ORDINATO.TAVOLO }, true);

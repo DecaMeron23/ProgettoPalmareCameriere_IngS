@@ -13,27 +13,33 @@ public class Componente {
 
 	/** nome del componente. */
 	private String nome;
-	
+
 	/** Lista dei piatti che contiene il componente */
 	private List<Piatto> listaPiatti;
 
 	/**
+	 * La precedenza con cui vengono visualizzate le componenti
+	 */
+	private int precendenza;
+
+	/**
 	 * Costruttore
 	 *
-	 * @param nome il nome del componente
+	 * @param nome         il nome del componente
 	 * @param lista_piatti la lista dei piatti contenuti nel componente
 	 */
-	public Componente(String nome, List<Piatto> lista_piatti) {
+	public Componente(String nome, List<Piatto> lista_piatti, int precedenza) {
 		super();
 		this.nome = nome;
 		this.listaPiatti = lista_piatti;
+		this.setPrecendenza(precedenza);
 	}
-	
+
 	/**
 	 * @param nome il nome del piatto
 	 */
 	public Componente(String nome) {
-		this(nome , new ArrayList<Piatto>());
+		this(nome, new ArrayList<Piatto>(), 2000);
 	}
 
 	/**
@@ -64,14 +70,14 @@ public class Componente {
 	}
 
 	/**
-	 * 	QUesto metodo imposta la lista dei piatti 
+	 * QUesto metodo imposta la lista dei piatti
 	 * 
 	 * @param piatti la lista dei piatti
 	 */
 	public void setListaPiatti(List<Piatto> piatti) {
 		listaPiatti = piatti;
 	}
-	
+
 	/**
 	 * @param comp2 la componente con cui ci confrontiamo
 	 * @return true se hanno lo stesso nome sennò false
@@ -83,5 +89,19 @@ public class Componente {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	/**
+	 * @return the precendenza
+	 */
+	public int getPrecendenza() {
+		return precendenza;
+	}
+
+	/**
+	 * @param precendenza the precendenza to set
+	 */
+	public void setPrecendenza(int precendenza) {
+		this.precendenza = precendenza;
 	}
 }

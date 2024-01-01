@@ -5,6 +5,7 @@ package model.generated;
 
 
 import model.generated.tables.ComponenteTables;
+import model.generated.tables.CopertoTables;
 import model.generated.tables.OrdineTables;
 import model.generated.tables.PiattoTables;
 import model.generated.tables.PiattoOrdinatoTables;
@@ -22,6 +23,11 @@ public class Tables {
      * The table <code>COMPONENTE</code>.
      */
     public static final ComponenteTables COMPONENTE = ComponenteTables.COMPONENTE;
+
+    /**
+     * The table <code>COPERTO</code>.
+     */
+    public static final CopertoTables COPERTO = CopertoTables.COPERTO;
 
     /**
      * The table <code>ORDINE</code>.

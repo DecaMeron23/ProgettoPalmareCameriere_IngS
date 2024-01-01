@@ -17,15 +17,16 @@ import classi.ordine.Ordine;
 import classi.ordine.PiattoOrdinato;
 import classi.tavolo.ResocontoTavolo;
 import classi.tavolo.Tavolo;
-import io.r2dbc.spi.Result;
 import mainPackage.CreateDB;
 import model.generated.tables.ComponenteTables;
+import model.generated.tables.CopertoTables;
 import model.generated.tables.OrdineTables;
 import model.generated.tables.PiattoOrdinatoTables;
 import model.generated.tables.PiattoTables;
 import model.generated.tables.ResocontoTavoloTables;
 import model.generated.tables.TavoloTables;
 import model.generated.tables.records.ComponenteRecord;
+import model.generated.tables.records.CopertoRecord;
 import model.generated.tables.records.OrdineRecord;
 import model.generated.tables.records.PiattoOrdinatoRecord;
 import model.generated.tables.records.PiattoRecord;
@@ -81,6 +82,12 @@ public class DataService {
 	public static void eliminaTavolo(Tavolo tavolo) {
 		int result = create.deleteFrom(TavoloTables.TAVOLO).where(TavoloTables.TAVOLO.NOME.eq(tavolo.getNome()))
 				.execute();
+		ResocontoTavolo r = getResocontoTavolo(tavolo);
+
+		if (r != null) {
+			eliminaRescontoTavolo(tavolo);
+		}
+
 		System.out.println("Eliminazione Tavolo: " + result);
 	}
 
@@ -90,7 +97,8 @@ public class DataService {
 	 */
 	public static List<Piatto> getPiatti(Componente c) {
 		List<PiattoRecord> listaRecord = create.selectFrom(PiattoTables.PIATTO)
-				.where(PiattoTables.PIATTO.COMPONENTE.eq(c.getNome())).fetchInto(PiattoRecord.class);
+				.where(PiattoTables.PIATTO.COMPONENTE.eq(c.getNome())).orderBy(PiattoTables.PIATTO.PREZZO.asc())
+				.fetchInto(PiattoRecord.class);
 
 		return toListaPiatti(listaRecord);
 	}
@@ -136,7 +144,7 @@ public class DataService {
 	 */
 	public static List<Componente> getComponenti() {
 		List<ComponenteRecord> listaRecords = create.selectFrom(ComponenteTables.COMPONENTE)
-				.orderBy(ComponenteTables.COMPONENTE.NOME.asc()).fetchInto(ComponenteRecord.class);
+				.orderBy(ComponenteTables.COMPONENTE.PRECEDENZA.asc()).fetchInto(ComponenteRecord.class);
 		return toListComponente(listaRecords);
 		//
 	}
@@ -391,4 +399,102 @@ public class DataService {
 		System.out.println("aggiornamento nome della componente del piatto: " + result);
 
 	}
+
+	/**
+	 * Metodo che modifica un piatto
+	 * 
+	 * @param piattoVecchio il vecchio piatto
+	 * @param piattoNuovo   il nuovo piatto
+	 * @param componente    la componente del piatto
+	 */
+	public static void modificaPiatto(Piatto piattoVecchio, Piatto piattoNuovo, Componente componente) {
+		PiattoRecord piattoRecord = Class2Record.piatto(piattoNuovo, componente);
+		int result = create.update(PiattoTables.PIATTO).set(piattoRecord)
+				.where(PiattoTables.PIATTO.NOME.eq(piattoVecchio.getNome())).execute();
+		System.out.println("Aggiornamento piatto: " + result);
+	}
+
+	/**
+	 * Questo metodo aggiorna la precedenza delle componenti
+	 * 
+	 * @param componente la componente nuova
+	 */
+	public static void aggiornaPrecedenzaComponente(Componente componente) {
+		int result = create.update(ComponenteTables.COMPONENTE)
+				.set(ComponenteTables.COMPONENTE.PRECEDENZA, componente.getPrecendenza())
+				.where(ComponenteTables.COMPONENTE.NOME.eq(componente.getNome())).execute();
+
+		System.out.println("Aggiornamento precedenza componente: " + result);
+	}
+
+	public static double getPrezzoCoperto() {
+		CopertoRecord copertoRecord = create.selectFrom(CopertoTables.COPERTO).fetchInto(CopertoRecord.class).get(0);
+		return copertoRecord.getPrezzo();
+	}
+
+	public static void aggiornaPrezzoCoperto(double prezzoNuovo) {
+		int result = create.update(CopertoTables.COPERTO).set(CopertoTables.COPERTO.PREZZO, prezzoNuovo).execute();
+		System.out.println("Aggiornamento prezzo del coperto:" + result);
+	}
+
+	/**
+	 * @param tavolo il tavolo da cercare
+	 * @return il tavolo del data base, se esiste sennò null
+	 */
+	public static Tavolo getTavolo(Tavolo tavolo) {
+
+		List<Tavolo> listaTavolo = getTavoli();
+		for (Tavolo t : listaTavolo) {
+			if (t.equals(tavolo)) {
+				return t;
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * Questo metodo aggiorna le caratteristiche di un tavolo
+	 * 
+	 * @param tavoloVecchio il vecchio tavolo
+	 * @param tavoloNuovo   il nuovo tavolo
+	 */
+	public static void aggiornaTavolo(Tavolo tavoloVecchio, Tavolo tavoloNuovo) {
+		TavoloRecord tavoloRecord = Class2Record.tavolo(tavoloNuovo);
+		int result = create.update(TavoloTables.TAVOLO).set(tavoloRecord)
+				.where(TavoloTables.TAVOLO.NOME.eq(tavoloVecchio.getNome())).execute();
+		System.out.println("Aggiornamento tavolo: " + result);
+
+	}
+
+	/**
+	 * @param componente la componente che vogliamo prendere da data base
+	 * @return la componente a DB se esiste, sennò null
+	 */
+	public static Componente getComponente(Componente componente) {
+		List<Componente> list = getComponenti();
+		for (Componente c : list) {
+			if (c.equals(componente)) {
+				return c;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * @param piatto     il piatto da cercare a DB
+	 * @param componente la componente del piatto
+	 * @return il piatto a DB se esiste, sennò null
+	 */
+	public static Piatto getPiatto(Piatto piatto, Componente componente) {
+		List<Piatto> list = getPiatti(componente);
+
+		for (Piatto p : list) {
+			if (p.equals(piatto)) {
+				return p;
+			}
+		}
+		return null;
+	}
+
 }

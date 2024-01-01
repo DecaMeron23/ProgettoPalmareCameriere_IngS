@@ -9,6 +9,7 @@ import javax.swing.JSplitPane;
 
 import classi.ordine.PiattoOrdinato;
 import classi.tavolo.Tavolo;
+import main.MainFrame;
 import main.tavoloOccupato.TextAreaCommentoPiatto;
 
 /**
@@ -46,17 +47,19 @@ public class PanelTavoloOccupato extends JPanel {
 	 * Panel destro, serve per aggiungere piatti all'ordine attuale ed eventuali commenti
 	 */
 	private PanelTavoloOccupatoDestro panelDx;
+	
 
 	/**
+	 * @param mainFrame 
 	 * @param tavolo: il tavolo a cui fa riferimento questo panel
 	 * @param lista_componenti: lista che contiene i diversi componenti
 	 */
-	public PanelTavoloOccupato(Tavolo tavolo) {		
+	public PanelTavoloOccupato(Tavolo tavolo, MainFrame mainFrame) {		
 		this.tavolo = tavolo;
 		listaPiattiOrdinati = new ArrayList<>();
 
 		// creo i due panel
-		panelSx = new PanelTavoloOccupatoSinistro(this);
+		panelSx = new PanelTavoloOccupatoSinistro(this , mainFrame);
 		panelDx = new PanelTavoloOccupatoDestro(this);
 
 		// impostiamo il Layout del panel
@@ -97,4 +100,5 @@ public class PanelTavoloOccupato extends JPanel {
 		// aggiorniamo il panel
 		repaintPanel();
 	}
+	
 }

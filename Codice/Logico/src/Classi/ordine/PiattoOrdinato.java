@@ -123,4 +123,12 @@ public class PiattoOrdinato {
 	public void setIDPiatto(int i) {
 		idPiatto = i;
 	}
+	
+	/**
+	 * @param p il Piatto ordinato da confrontare
+	 * @return true se il piatto, la quantità e il commento sono uguali, sennò false
+	 */
+	public boolean equals(PiattoOrdinato p) {
+		return this.piatto.equals(p.getPiatto()) && this.quantita == p.quantita && this.commento.equals(p.getCommento());
+	}
 }

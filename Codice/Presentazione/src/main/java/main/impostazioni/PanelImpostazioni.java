@@ -1,7 +1,6 @@
 package main.impostazioni;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,12 +16,6 @@ public class PanelImpostazioni extends JPanel {
 	private static final int DIVIDER_LOCATION = 300;
 
 	private static final long serialVersionUID = 5685747632097901109L;
-
-// TODO from UCDetector: Constant "PanelImpostazioni.TAVOLI" has 0 references
-	static final int TAVOLI = 0; // NO_UCD (unused code)
-	static final int COMPONENTI = 1; // NO_UCD (unused code)
-	static final int PIATTI = 2; // NO_UCD (unused code)
-
 		
 	/**
 	 * Panel Sinistro contenente i bottoni

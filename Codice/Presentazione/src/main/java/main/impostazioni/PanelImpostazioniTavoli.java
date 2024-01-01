@@ -3,6 +3,7 @@ package main.impostazioni;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -11,14 +12,14 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
-
-import org.jooq.impl.QOM.Log;
+import javax.swing.Timer;
 
 import classi.dataBase.DataService;
 import classi.enumerativi.StatoTavolo;
@@ -66,29 +67,34 @@ class PanelImpostazioniTavoli extends JPanel {
 	public PanelImpostazioniTavoli() {
 
 		setLayout(new BorderLayout());
-		panelSopra = new JPanel(new GridLayout(0, 4, 100, 50));
+		panelSopra = new JPanel(new GridLayout(0, 3, 100, 40));
 		JPanel panelSotto = new JPanel(new GridLayout(0, 3, 75, 75));
 
 		JScrollPane jScrollPane = new JScrollPane();
 		jScrollPane.setViewportView(panelSopra);
 		jScrollPane.setPreferredSize(new Dimension(900, 700));
 		jScrollPane.getVerticalScrollBar().setUnitIncrement(10);
+		jScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
 		// creiamo la classe che si occupa del DB, la Jlist con tutti i tavoli
 		// db = new ModificheDB();
 		btnAggiungi = new JButton("Aggiungi Tavolo");
+		btnAggiungi.setFont(new Font(getFont().getName(), Font.PLAIN, 20));
 		btnModifica = new JButton("Modifica Tavolo");
+		btnModifica.setFont(new Font(getFont().getName(), Font.PLAIN, 20));
 		btnElimina = new JButton("Elimina Tavolo");
+		btnElimina.setFont(new Font(getFont().getName(), Font.PLAIN, 20));
 
 		lblTavoloSelezionato = new JLabel();
+		lblTavoloSelezionato.setFont(new Font(getFont().getName(), Font.PLAIN, 25));
 
 		// aggiorniamo la JList
 		aggiornaListTavoli();
 
 		// aggiungo action listener
 		btnAggiungi.addActionListener(new ActionBtnAggiungiTavolo());
-		btnElimina.addActionListener(new ActionBtnEliminaTavolo());
 		btnModifica.addActionListener(new ActionBtnModificaTavolo());
+		btnElimina.addActionListener(new ActionBtnEliminaTavolo());
 
 		// aggiungiamo gli elementi
 		panelSotto.add(btnAggiungi);
@@ -152,7 +158,7 @@ class PanelImpostazioniTavoli extends JPanel {
 
 		// aggiungiamo pulsanti invisibili per mantenere la forma dei pulsanti
 
-		int pulsantiMancanti = 32 - DataService.getTavoli().size();
+		int pulsantiMancanti = 21 - DataService.getTavoli().size();
 
 		if (pulsantiMancanti > 0) {
 			for (int i = 0; i < pulsantiMancanti; i++) {
@@ -182,6 +188,11 @@ class PanelImpostazioniTavoli extends JPanel {
 		btnElimina.setEnabled(bool);
 	}
 
+	/**
+	 * Questo metodo attiva o disattiva il mainFrame
+	 * 
+	 * @param bool il valore booleano, se false disattiva il mainFrame
+	 */
 	private void enableFrame(boolean bool) {
 		JFrame frame = ((JFrame) SwingUtilities.getWindowAncestor(this));
 		frame.setEnabled(bool);
@@ -229,16 +240,15 @@ class PanelImpostazioniTavoli extends JPanel {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					JFrame frame = (JFrame) SwingUtilities.getWindowAncestor((JButton) e.getSource());
-					
+					JDialog frame = (JDialog) SwingUtilities.getWindowAncestor((JButton) e.getSource());
+					frame.dispose();
+
 					try {
 						Logico.eliminaTavolo(tavoloSelezionato);
-					} catch (Exception ex) {	
+					} catch (Exception ex) {
 						System.out.println("Il tavolo non esite");
 					}
 					aggiornaListTavoli();
-					frame.dispose();
-					enableFrame(true);
 				}
 			};
 
@@ -246,22 +256,21 @@ class PanelImpostazioniTavoli extends JPanel {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					JFrame frame = (JFrame) SwingUtilities.getWindowAncestor((JButton) e.getSource());
+					JDialog frame = (JDialog) SwingUtilities.getWindowAncestor((JButton) e.getSource());
 					frame.dispose();
-					enableFrame(true);
 				}
 			};
 
 			WindowAdapter closeWindAdapter = new WindowAdapter() {
 				@Override
-				public void windowClosed(WindowEvent e) {
+				public void windowClosing(WindowEvent e) {
 					enableFrame(true);
 				}
 			};
 
 			// apriamo il frame che chiede la conferma
-			new FrameConfermaScelta("bah", "Sicuro di chiudere il tavolo n° " + tavoloSelezionato.getNome(), actSi,
-					actNo, closeWindAdapter);
+			new FrameConfermaScelta("Eliminazione Tavolo",
+					"Sicuro di eliminare il tavolo n° " + tavoloSelezionato.getNome(), actSi, actNo, closeWindAdapter);
 			enableFrame(false);
 		}
 	}
@@ -269,18 +278,27 @@ class PanelImpostazioniTavoli extends JPanel {
 	/**
 	 * Frame per le modifiche della lista dei tavoli
 	 */
-	private class FrameAggiungiModificaTavolo extends JFrame {
+	private class FrameAggiungiModificaTavolo extends JDialog {
 
 		private static final long serialVersionUID = 1L;
-		
 
 		public static final int AGGIUNGI = 0;
 		public static final int MODIFICA = 1;
 
-		public FrameAggiungiModificaTavolo(int tipo) {
+		private JTextArea txtAreaNomeTavolo;
 
-			
-			String titolo = (tipo == MODIFICA ? ("Modifica Tavolo n°" + tavoloSelezionato.getNome()) : "Aggiungi Tavolo");
+		private JTextArea txtAreaPostiTavolo;
+
+		private JLabel lblErrore;
+
+		private int tipo;
+
+		public FrameAggiungiModificaTavolo(int tipologia) {
+
+			this.tipo = tipologia;
+
+			String titolo = (tipo == MODIFICA ? ("Modifica Tavolo n°" + tavoloSelezionato.getNome())
+					: "Aggiungi Tavolo");
 
 			// inizzializzazione Frame
 			setTitle(titolo);
@@ -311,18 +329,23 @@ class PanelImpostazioniTavoli extends JPanel {
 			setLocation(x, y);
 
 			// creo i panel
-			JPanel panelPrincipale = new JPanel(new GridLayout(0, 2, 10, 60));
+			JPanel panelPrincipale = new JPanel(new GridLayout(0, 2, 10, 50));
 			JPanel panelPulsanti = new JPanel(new GridLayout(0, 2, 75, 75));
+			JPanel panelPulsantiMain = new JPanel(new GridLayout(0, 1, 10, 10));
 
 			// creo i label e text area per il nome del tavolo
 			JLabel lblNomeTavolo = new JLabel("Tavolo n° ");
 			String strNomeTavolo = (tipo == AGGIUNGI ? "" : "" + tavoloSelezionato.getNome());
-			JTextArea txtAreaNomeTavolo = new JTextArea(strNomeTavolo);
+			txtAreaNomeTavolo = new JTextArea(strNomeTavolo);
 
 			// creo i label e text area per posti del tavolo
-			JLabel lblPostiTavolo = new JLabel("Tavolo n° ");
+			JLabel lblPostiTavolo = new JLabel("N° posti ");
 			String strPostiTavolo = (tipo == AGGIUNGI ? "" : "" + tavoloSelezionato.getNumPostiMassimi());
-			JTextArea txtAreaPostiTavolo = new JTextArea(strPostiTavolo);
+			txtAreaPostiTavolo = new JTextArea(strPostiTavolo);
+
+			// Creazione label Errore
+			lblErrore = new JLabel();
+			lblErrore.setForeground(Color.red);
 
 			// creazione dei pulsanti
 			JButton btnConferma = new JButton("Conferma");
@@ -337,61 +360,8 @@ class PanelImpostazioniTavoli extends JPanel {
 					enableFrame(true);
 				}
 			};
-			ActionListener actConferma = new ActionListener() {
 
-				@Override
-				public void actionPerformed(ActionEvent e) {
-
-					int nomeTavolo = 0;
-					int numeroPosti = 0;
-					boolean noEccezioni = true;
-
-					// blocco try catch per verificare se non si verificano problemi con il parse
-					// del nome e dei posti del tavolo
-					try {
-						nomeTavolo = Integer.parseInt(txtAreaNomeTavolo.getText());
-						numeroPosti = Integer.parseInt(txtAreaPostiTavolo.getText());
-					} catch (Exception ex) {
-						noEccezioni = false;
-						System.out.println("Il nome del tavolo e in numero dei posti devono essere dei numeri interi");
-						// TODO aggiungere un label che indica l'errore
-					}
-
-					// se non ci sono state eccezzioni aggiungiamo/modifichiamo il tavolo
-					if (noEccezioni) {
-						// creiamo il tavolo
-						Tavolo tavolo = new Tavolo(nomeTavolo, numeroPosti, StatoTavolo.LIBERO, null);
-
-						// se il tipo di modifica è AGGIUNGI tavolo
-						if (tipo == AGGIUNGI) {
-							// eseguiamo il try catch per verificare se ci sono problemi durante l'aggiunta
-							// del tavolo
-							try {
-								// aggiungiamo il tavolo
-								Logico.aggiungiTavolo(tavolo);
-							} catch (Exception ex) {
-								noEccezioni = false;
-								System.out.println("Il tavolo con questo nome esiste esiste già");
-								// TODO aggiungere un label che indica l'errore
-							}
-							// Se il tipo di modifica è MODIFICA tavolo
-						} else if (tipo == MODIFICA) {
-							// aggiorniamo il tavolo
-							Logico.modificaTavolo(tavoloSelezionato , tavolo);
-						}
-					}
-					// Se durante l'esecuzione di questo metodo NON si sono verificate eccezzioni
-					// allora chiudiamo il frame
-					if (noEccezioni) {
-						// togliamo la selezione al tavolo
-						tavoloSelezionato = null;
-						// aggiorniamo la lista dei tavoli
-						aggiornaListTavoli();
-						dispose();
-						enableFrame(true);
-					}
-				}
-			};
+			ActionListener actConferma = new ActionListenerConferma();
 
 			// aggiungiamo gli action listener ai bottoni
 			btnConferma.addActionListener(actConferma);
@@ -407,12 +377,106 @@ class PanelImpostazioniTavoli extends JPanel {
 			panelPulsanti.add(btnAnnulla);
 			panelPulsanti.add(btnConferma);
 
+			panelPulsantiMain.add(lblErrore);
+			panelPulsantiMain.add(panelPulsanti);
+
 			// aggiungiamo i panel al content pane
 			getContentPane().add(panelPrincipale, BorderLayout.CENTER);
-			getContentPane().add(panelPulsanti, BorderLayout.SOUTH);
+			getContentPane().add(panelPulsantiMain, BorderLayout.SOUTH);
 
 			setAlwaysOnTop(true);
 			setVisible(true);
 		}
+
+		/**
+		 * Classe che implementa l'action listener per il pulsante conferma
+		 */
+		class ActionListenerConferma implements ActionListener {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				int nomeTavolo = 0;
+				int numeroPosti = 0;
+				boolean noEccezioni = true;
+
+				String nomeTavoloStr = txtAreaNomeTavolo.getText().trim();
+				String numeroPostiStr = txtAreaPostiTavolo.getText().trim();
+
+				if (nomeTavoloStr.isBlank() || numeroPostiStr.isBlank()) {
+					sendErrore("Inserire un valore intero!!");
+					noEccezioni = false;
+				}
+
+				// blocco try catch per verificare se non si verificano problemi con il parse
+				// del nome e dei posti del tavolo
+				if (noEccezioni) {
+					try {
+						nomeTavolo = Integer.parseInt(nomeTavoloStr);
+						numeroPosti = Integer.parseInt(numeroPostiStr);
+					} catch (Exception ex) {
+						noEccezioni = false;
+						sendErrore("Utilizzare numeri interi!!");
+					}
+				}
+				if ((numeroPosti <= 0 || nomeTavolo <= 0) && noEccezioni) {
+					sendErrore("Numeri minori o uguali di 0!!");
+					noEccezioni = false;
+				}
+
+				// se non ci sono state eccezzioni aggiungiamo/modifichiamo il tavolo
+				if (noEccezioni) {
+					// creiamo il tavolo
+					Tavolo tavolo = new Tavolo(nomeTavolo, numeroPosti, StatoTavolo.LIBERO, null);
+
+					// se il tipo di modifica è AGGIUNGI tavolo
+					if (tipo == AGGIUNGI) {
+						// eseguiamo il try catch per verificare se ci sono problemi durante l'aggiunta
+						// del tavolo
+						try {
+							// aggiungiamo il tavolo
+							Logico.aggiungiTavolo(tavolo);
+						} catch (Exception ex) {
+							noEccezioni = false;
+							sendErrore("Il tavolo n° " + nomeTavolo + " esiste già");
+
+						}
+						// Se il tipo di modifica è MODIFICA tavolo
+					} else if (tipo == MODIFICA) {
+						// aggiorniamo il tavolo
+						try {
+							Logico.modificaTavolo(tavoloSelezionato, tavolo);
+						} catch (Exception e1) {
+							sendErrore("Il tavolo n° " + nomeTavolo + " esiste già");
+						}
+					}
+				}
+				// Se durante l'esecuzione di questo metodo NON si sono verificate eccezzioni
+				// allora chiudiamo il frame
+				if (noEccezioni) {
+					// togliamo la selezione al tavolo
+					tavoloSelezionato = null;
+					// aggiorniamo la lista dei tavoli
+					aggiornaListTavoli();
+					dispose();
+					enableFrame(true);
+				}
+			}
+
+			private void sendErrore(String string) {
+				lblErrore.setText(string);
+				int delay = 10000; // 10 secondi in millisecondi
+				Timer timer = new Timer(delay, new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						lblErrore.setText("");
+					}
+				});
+				timer.setRepeats(false); // Imposta il timer per eseguire l'azione solo una volta
+				timer.start();
+			}
+
+		}
 	}
+
 }

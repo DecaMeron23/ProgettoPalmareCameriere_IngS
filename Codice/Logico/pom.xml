@@ -42,6 +42,11 @@
         <artifactId>sqlite-jdbc</artifactId>
         <version>3.34.0</version> <!-- Sostituisci con l'ultima versione disponibile -->
     </dependency>
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-api</artifactId>
+        <version>5.8.1</version>
+    </dependency>
   
   </dependencies>
 </project>

@@ -22,7 +22,7 @@ public class Ordine {
 	 * Il numero dell'ordine;
 	 */
 	private int numeroOrdine;
-	
+
 	/**
 	 * Il contatore per i piatti ordinati
 	 */
@@ -33,22 +33,21 @@ public class Ordine {
 	 *
 	 * @param listaPiattiOrdinati la lista dei piatti ordinati
 	 */
-	public Ordine(List<PiattoOrdinato> listaPiattiOrdinati, int numeroOrdine , int counterPiatto) {
+	public Ordine(List<PiattoOrdinato> listaPiattiOrdinati, int numeroOrdine, int counterPiatto) {
 		this.counterPiatto = counterPiatto;
 		this.listaPiattiOrdinati = listaPiattiOrdinati;
 		this.numeroOrdine = numeroOrdine;
 		eliminaOccorrenzeZero();
 		aggiornaPrezzoParziale();
 	}
-	
+
 	/**
 	 * @param listaPiattiOrdinati la lista dei piatti ordinati
-	 * @param numeroOrdine il numero dell'ordine
+	 * @param numeroOrdine        il numero dell'ordine
 	 */
 	public Ordine(List<PiattoOrdinato> listaPiattiOrdinati, int numeroOrdine) {
 		this(listaPiattiOrdinati, numeroOrdine, 0);
 	}
-	
 
 	/**
 	 * Elimina tutti i piatti ordinati che hanno le quantità poste a zero.
@@ -99,7 +98,7 @@ public class Ordine {
 	public int getNumeroOrdine() {
 		return numeroOrdine;
 	}
-	
+
 	public int getIDPiatto() {
 		return ++counterPiatto;
 	}

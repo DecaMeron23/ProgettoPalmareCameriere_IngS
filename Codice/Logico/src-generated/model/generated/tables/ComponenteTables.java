@@ -7,20 +7,22 @@ package model.generated.tables;
 import java.util.function.Function;
 
 import model.generated.DefaultSchema;
+import model.generated.Keys;
 import model.generated.tables.records.ComponenteRecord;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function1;
+import org.jooq.Function2;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row1;
+import org.jooq.Row2;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
+import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
 import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
@@ -51,6 +53,11 @@ public class ComponenteTables extends TableImpl<ComponenteRecord> {
      * The column <code>COMPONENTE.NOME</code>.
      */
     public final TableField<ComponenteRecord, String> NOME = createField(DSL.name("NOME"), SQLDataType.CLOB, this, "");
+
+    /**
+     * The column <code>COMPONENTE.PRECEDENZA</code>.
+     */
+    public final TableField<ComponenteRecord, Integer> PRECEDENZA = createField(DSL.name("PRECEDENZA"), SQLDataType.INTEGER, this, "");
 
     private ComponenteTables(Name alias, Table<ComponenteRecord> aliased) {
         this(alias, aliased, null);
@@ -88,6 +95,11 @@ public class ComponenteTables extends TableImpl<ComponenteRecord> {
     @Override
     public Schema getSchema() {
         return aliased() ? null : DefaultSchema.DEFAULT_SCHEMA;
+    }
+
+    @Override
+    public UniqueKey<ComponenteRecord> getPrimaryKey() {
+        return Keys.COMPONENTE__PK_COMPONENTE;
     }
 
     @Override
@@ -130,18 +142,18 @@ public class ComponenteTables extends TableImpl<ComponenteRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row1 type methods
+    // Row2 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row1<String> fieldsRow() {
-        return (Row1) super.fieldsRow();
+    public Row2<String, Integer> fieldsRow() {
+        return (Row2) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function1<? super String, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function2<? super String, ? super Integer, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -149,7 +161,7 @@ public class ComponenteTables extends TableImpl<ComponenteRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function1<? super String, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function2<? super String, ? super Integer, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

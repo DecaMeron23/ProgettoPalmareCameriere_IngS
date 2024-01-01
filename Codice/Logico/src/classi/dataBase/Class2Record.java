@@ -43,7 +43,7 @@ class Class2Record {
 	 * @return la componente record
 	 */
 	public static ComponenteRecord componente(Componente c) {
-		return new ComponenteRecord(c.getNome());
+		return new ComponenteRecord(c.getNome() , c.getPrecendenza());
 	}
 
 	/**

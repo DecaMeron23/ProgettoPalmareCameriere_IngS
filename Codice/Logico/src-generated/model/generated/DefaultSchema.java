@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import model.generated.tables.ComponenteTables;
+import model.generated.tables.CopertoTables;
 import model.generated.tables.OrdineTables;
 import model.generated.tables.PiattoTables;
 import model.generated.tables.PiattoOrdinatoTables;
@@ -36,6 +37,11 @@ public class DefaultSchema extends SchemaImpl {
      * The table <code>COMPONENTE</code>.
      */
     public final ComponenteTables COMPONENTE = ComponenteTables.COMPONENTE;
+
+    /**
+     * The table <code>COPERTO</code>.
+     */
+    public final CopertoTables COPERTO = CopertoTables.COPERTO;
 
     /**
      * The table <code>ORDINE</code>.
@@ -79,6 +85,7 @@ public class DefaultSchema extends SchemaImpl {
     public final List<Table<?>> getTables() {
         return Arrays.asList(
             ComponenteTables.COMPONENTE,
+            CopertoTables.COPERTO,
             OrdineTables.ORDINE,
             PiattoTables.PIATTO,
             PiattoOrdinatoTables.PIATTO_ORDINATO,

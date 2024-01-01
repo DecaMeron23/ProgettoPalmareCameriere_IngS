@@ -53,14 +53,7 @@ public class MainFrame extends JFrame {
 	 * @param listaComponenti la lista dei componenti
 	 */
 	MainFrame() {
-
-		addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                // Esegui le azioni desiderate quando la finestra viene chiusa
-                Logico.eseguiAzioniDiChiusura();
-            }
-        });
+		
 		setResizable(false);
 		setTitle("Palmare Cameriere");
 
@@ -70,7 +63,7 @@ public class MainFrame extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-		setUndecorated(false);
+		setUndecorated(true);
 
 		paintPanelTavoli();
 
@@ -117,7 +110,7 @@ public class MainFrame extends JFrame {
 			break;
 
 		case OCCUPATO:
-			JPanel panel = new PanelTavoloOccupato(tavolo);
+			PanelTavoloOccupato panel = new PanelTavoloOccupato(tavolo , this);
 			mainPanel.removeAll();
 			mainPanel.add(panel);
 			mainPanel.repaint();

@@ -2,6 +2,7 @@ package main.tavoloOccupato.panel;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +15,6 @@ import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -25,7 +25,6 @@ import javax.swing.SwingUtilities;
 import classi.dataBase.DataService;
 import classi.ordine.Ordine;
 import classi.ordine.PiattoOrdinato;
-import classi.tavolo.ResocontoTavolo;
 import logico.Logico;
 import main.FrameConfermaScelta;
 import main.MainFrame;
@@ -73,10 +72,18 @@ class PanelTavoloOccupatoSinistro extends JPanel {
 	private PanelTavoloOccupato panelTavoloOccupato;
 
 	/**
+	 * Il mainFrame
+	 */
+	public MainFrame mainFrame;
+
+	/**
+	 * @param mainFrame 
 	 * @param panel_tavolo_occupato: panel principale
 	 */
-	public PanelTavoloOccupatoSinistro(PanelTavoloOccupato panelTavoloOccupato) {
-
+	public PanelTavoloOccupatoSinistro(PanelTavoloOccupato panelTavoloOccupato, MainFrame mainFrame) {
+		
+		this.mainFrame = mainFrame;
+ 
 		this.panelTavoloOccupato = panelTavoloOccupato;
 
 		JPanel panelSopra = new JPanel(new BorderLayout());
@@ -88,10 +95,13 @@ class PanelTavoloOccupatoSinistro extends JPanel {
 		panelPulsanteLabelSotto = new JPanel();
 
 		btnInvia = new BottoneInvia();
+		btnInvia.setFont(new Font(getFont().getName(), Font.PLAIN, 20));
 		btnPagato = new BottonePagato();
+		btnPagato.setFont(new Font(getFont().getName(), Font.PLAIN, 20));
 
 		lblTotale = new JLabel();
 
+		
 		JScrollPane scrollSopra = new JScrollPane(panelSopra);
 		JScrollPane scrollSotto = new JScrollPane(panelSotto);
 
@@ -107,9 +117,9 @@ class PanelTavoloOccupatoSinistro extends JPanel {
 		scrollSopra.getViewport().setPreferredSize(new Dimension(50, 50));
 		scrollSotto.getViewport().setPreferredSize(new Dimension(50, 50));
 
-		panelPulsanteLabelSotto.setLayout(new GridLayout(0, 3));
-		panelPulsanteLabelSotto.add(btnPagato);
-		panelPulsanteLabelSotto.add(lblTotale);
+		panelPulsanteLabelSotto.setLayout(new BorderLayout());
+		panelPulsanteLabelSotto.add(btnPagato ,BorderLayout.WEST );
+		panelPulsanteLabelSotto.add(lblTotale , BorderLayout.EAST);
 
 		panelSotto.add(panelPulsanteLabelSotto, BorderLayout.SOUTH);
 
@@ -129,7 +139,7 @@ class PanelTavoloOccupatoSinistro extends JPanel {
 	 *         cifre decimali
 	 */
 	private String formattaPrezzo(double numero) {
-		DecimalFormat formato = new DecimalFormat("0.00");
+		DecimalFormat formato = new DecimalFormat("#,##0.00");
 		String numeroFormattato = formato.format(numero);
 		return numeroFormattato;
 	}
@@ -193,7 +203,8 @@ class PanelTavoloOccupatoSinistro extends JPanel {
 		// aggiunta coperti
 		int numCoperti = DataService.getResocontoTavolo(panelTavoloOccupato.tavolo).getNumCoperti();
 		modelPiatto.addElement(numCoperti + "x Coperto");
-		modelPrezzo.addElement(formattaPrezzo(numCoperti * ResocontoTavolo.COSTO_COPERTO) + " €   ");
+		double prezzoTotaleCoperto = Logico.calcolaPrezzoCoperto(panelTavoloOccupato.tavolo) ;
+		modelPrezzo.addElement(formattaPrezzo(prezzoTotaleCoperto) + " €   ");
 
 		// aggiungiamo gli ordini
 		for (Ordine ordine : DataService.getOrdini(panelTavoloOccupato.tavolo)) {
@@ -237,12 +248,14 @@ class PanelTavoloOccupatoSinistro extends JPanel {
 	private void aggiornaPrezzoTotale() {
 		lblTotale.setText("Importo Totale: "
 				+ formattaPrezzo(DataService.getResocontoTavolo(panelTavoloOccupato.tavolo).getPrezzoTotale()) + " €");
+		lblTotale.setFont(new Font(getFont().getName(), Font.PLAIN, 15));
 	}
 	
-	private void enable_frame(boolean bol) {
-		JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(panelTavoloOccupato);
-		frame.setAlwaysOnTop(bol);
-		frame.setEnabled(bol);
+	private void enableFrame(boolean bool) {
+		if(bool) {
+			mainFrame.toFront();			
+		}
+		mainFrame.setEnabled(bool);
 	}
 
 	/**
@@ -264,7 +277,7 @@ class PanelTavoloOccupatoSinistro extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// disabilitiamo il frame
-				setEnabled(false);
+				enableFrame(false);
 				
 				// creaiamo gli action listener necessari
 				ActionListener actSi = new ActionListener() {
@@ -273,7 +286,6 @@ class PanelTavoloOccupatoSinistro extends JPanel {
 					public void actionPerformed(ActionEvent e) {
 						// paghiamo il tavolo
 						Logico.pagaTavolo(panelTavoloOccupato.tavolo);
-						setEnabled(true);
 						// torniamo al panel tavoli
 						MainFrame frame =(MainFrame) SwingUtilities.getWindowAncestor(panelTavoloOccupato);
 						frame.paintPanelTavoli();
@@ -287,15 +299,14 @@ class PanelTavoloOccupatoSinistro extends JPanel {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						JComponent componente = (JComponent) e.getSource();
-						SwingUtilities.getWindowAncestor(componente).dispose();
-						setEnabled(true);
+						SwingUtilities.getWindowAncestor(componente).dispose();	
 					}
 				};
 				
 				WindowAdapter adapter = new WindowAdapter() {
 					@Override
 					public void windowClosed(WindowEvent e) {
-						enable_frame(true);
+						enableFrame(true);
 					}
 				};
 
@@ -306,10 +317,6 @@ class PanelTavoloOccupatoSinistro extends JPanel {
 			/**
 			 * @param bool: valore se true abilitiamo il frame mentre lo disabilitiamo se l'opposto
 			 */
-			private void setEnabled(boolean bool) {
-				JFrame frame = (JFrame)SwingUtilities.getWindowAncestor(panelTavoloOccupato);
-				frame.setEnabled(bool);
-			}
 
 		}
 	}

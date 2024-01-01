@@ -1,5 +1,6 @@
 package main.tavoloOccupato;
 
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -12,6 +13,7 @@ public class TextAreaCommentoPiatto extends JTextArea {
 
 	public TextAreaCommentoPiatto() {
 		this("");
+		setFont(new Font(getFont().getName(), Font.PLAIN, 20));
 	}
 
 	public TextAreaCommentoPiatto(String commentoIniziale) {

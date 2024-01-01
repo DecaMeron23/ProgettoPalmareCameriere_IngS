@@ -60,10 +60,12 @@ class PanelTavoloOccupatoDestro extends JPanel {
 
 		commentoPiatto = new TextAreaCommentoPiatto("Commenti vanno Qui!!");
 		btnAggiungi = new JButton("Aggiungi");
+		btnAggiungi.setFont(new Font(getFont().getName(), Font.PLAIN, 20));
 		btnAggiungi.addActionListener(new ActionListenerBtnAggiungi());
 
 		JPanel panelDestroBasso = new JPanel();
 		JTabbedPane tabbedCoponenti = new JTabbedPane();
+		tabbedCoponenti.setFont(new Font(getFont().getName(), Font.PLAIN, 20));
 
 		verificaBtnAggiungi();
 
@@ -164,13 +166,24 @@ class PanelTavoloOccupatoDestro extends JPanel {
 		void aggiungiBtnPiatti(List<Piatto> listaPiatti) {
 			List<BottonePiatto> listaBottoniPiatti = new ArrayList<>();
 			for (Piatto piatto : listaPiatti) {
-				BottonePiatto btn = new BottonePiatto(piatto.getNome(), piatto);
+				BottonePiatto btn = new BottonePiatto(piatto);
 				btn.addActionListener(new ActionPulsantePiatto());
-				btn.setPreferredSize(new Dimension(100, 100));
-				btn.setFont(new Font("Verdana", Font.BOLD, 20));
+				btn.setPreferredSize(new Dimension(100, 50));
 				add(btn);
 				listaBottoniPiatti.add(btn);
 			}
+			
+			int pulsantiMancanti = 13 - listaPiatti.size();
+			if (pulsantiMancanti > 0) {
+				for (int i = 0; i < pulsantiMancanti; i++) {
+					JButton btn = new JButton();
+					btn.setPreferredSize(new Dimension(100, 50));
+					btn.setVisible(false);
+					btn.setEnabled(false);
+					add(btn);
+				}
+			}
+			
 			this.listaBottoniPiatti = listaBottoniPiatti;
 		}
 

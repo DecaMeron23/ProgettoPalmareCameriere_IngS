@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -20,7 +20,7 @@ import javax.swing.SwingConstants;
 /**
  * The Class Frame per la conferma della scelta.
  */
-public class FrameConfermaScelta extends JFrame {
+public class FrameConfermaScelta extends JDialog {
 
 	/** Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;

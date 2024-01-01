@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
@@ -22,7 +22,7 @@ import logico.Logico;
 /**
  * The Class Frame per selezionare il numero dei coperti.
  */
-class FrameSelezioneCoperti extends JFrame {
+class FrameSelezioneCoperti extends JDialog {
 
 	/** Constant serialVersionUID. */
 	private static final long serialVersionUID = 6266921115114034123L;

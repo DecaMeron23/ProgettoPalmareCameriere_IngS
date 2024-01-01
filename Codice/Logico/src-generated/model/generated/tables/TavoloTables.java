@@ -6,10 +6,6 @@ package model.generated.tables;
 
 import java.util.function.Function;
 
-import model.generated.DefaultSchema;
-import model.generated.Keys;
-import model.generated.tables.records.TavoloRecord;
-
 import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Function3;
@@ -26,6 +22,10 @@ import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
 import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
+
+import model.generated.DefaultSchema;
+import model.generated.Keys;
+import model.generated.tables.records.TavoloRecord;
 
 
 /**
