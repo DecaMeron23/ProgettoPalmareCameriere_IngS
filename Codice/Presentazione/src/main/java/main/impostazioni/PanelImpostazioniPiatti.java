@@ -148,9 +148,13 @@ class PanelImpostazioniPiatti extends JPanel {
 
 		// creiamo i bottoni
 		JButton btnAggiungi = new JButton("Aggiungi");
-		btnAggiungi.addActionListener(e -> {
-			new FrameAggiungiModificaPiatto(FrameAggiungiModificaPiatto.AGGIUNGI);
-			enableFrame(false);
+		btnAggiungi.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new FrameAggiungiModificaPiatto(FrameAggiungiModificaPiatto.AGGIUNGI);
+				enableFrame(false);
+			}
 		});
 		btnModifica = new JButton("Modifica");
 		btnModifica.addActionListener(e -> {

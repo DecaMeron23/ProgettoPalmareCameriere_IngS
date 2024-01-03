@@ -33,12 +33,7 @@ import model.generated.tables.records.PiattoRecord;
 import model.generated.tables.records.ResocontoTavoloRecord;
 import model.generated.tables.records.TavoloRecord;
 
-/**
- * 
- */
-/**
- * 
- */
+
 public class DataService {
 
 	private static Connection conn;
