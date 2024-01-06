@@ -160,7 +160,14 @@ class PanelTavoloOccupatoSinistro extends JPanel {
 		
 		if (!DataService.getOrdini(panelTavoloOccupato.tavolo).isEmpty()) {
 			btnPagato.setEnabled(true);
+		} else {
+			btnPagato.setEnabled(false);
 		}
+		
+		if(!panelTavoloOccupato.listaPiattiOrdinati.isEmpty()) {
+			btnPagato.setEnabled(false);
+		}
+		
 		// aggiorniamo il label per il prezzo
 		aggiornaPrezzoTotale();
 		// aggiorniamo lo storico ordini

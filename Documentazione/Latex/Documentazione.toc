@@ -15,3 +15,23 @@
 \contentsline {section}{\numberline {1.12}Budget}{11}{section.1.12}%
 \contentsline {section}{\numberline {1.13}Cambiamenti}{11}{section.1.13}%
 \contentsline {section}{\numberline {1.14}Consegna}{11}{section.1.14}%
+\contentsline {chapter}{\numberline {2}Specifiche dei Requisiti}{13}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Introduzione}{13}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Obiettivo}{13}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Scopo}{13}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Definizione del dizionario}{13}{subsection.2.1.3}%
+\contentsline {section}{\numberline {2.2}Descrizione Globale Del Sistema}{14}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Funzioni del prodotto}{14}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Caratteristiche dell'utente}{15}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Vincoli}{15}{subsection.2.2.3}%
+\contentsline {section}{\numberline {2.3}Requisiti specifici}{15}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Requisiti Interfacce utente}{15}{subsection.2.3.1}%
+\contentsline {subsubsection}{Generale}{15}{section*.2}%
+\contentsline {subsubsection}{Colorazione Tavoli}{15}{section*.3}%
+\contentsline {subsubsection}{Ordinazione}{16}{section*.4}%
+\contentsline {subsubsection}{Impostazioni}{17}{section*.5}%
+\contentsline {section}{\numberline {2.4}MoSCoW}{19}{section.2.4}%
+\contentsline {subsubsection}{Must have}{19}{section*.6}%
+\contentsline {subsubsection}{Should have}{19}{section*.7}%
+\contentsline {subsubsection}{Could have}{19}{section*.8}%
+\contentsline {subsubsection}{Won't have}{19}{section*.9}%

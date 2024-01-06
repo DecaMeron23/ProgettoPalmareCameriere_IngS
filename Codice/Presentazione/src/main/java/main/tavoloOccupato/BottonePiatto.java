@@ -19,7 +19,7 @@ public class BottonePiatto extends JButton {
 		setLayout(new BorderLayout());
 		
 		JLabel lblNome = new JLabel(piatto.getNome());
-		int size = 20;
+		int size = 23;
 		lblNome.setFont(new Font(getFont().getName(), Font.PLAIN, size));
 		
 		double prezzo = piatto.getPrezzo();
