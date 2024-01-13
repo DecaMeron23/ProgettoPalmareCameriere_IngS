@@ -5,6 +5,7 @@
 \hyphenation{mate-mati-ca recu-perare}
 \usepackage{hyperref}
 \usepackage{graphicx}
+\usepackage{float}
 
 \title{Documentazione}
 \author{Benedetta Vitale - Emilio Meroni}
@@ -61,13 +62,12 @@ L'ultimo livello, quello di \textit{Presentazione}, sarà quello visto dall'uten
 Il progetto verrà suddiviso in:
 \begin{itemize}
     \item \textbf{Documentazione}; questa parte verrà svolta da entrambe le figure coinvolte nel progetto.
-    \item \textbf{Progettazione desing}; parte eseguita da Benedetta, che apprezza particolarmente questo ambito.
-    \item \textbf{Codifica desing}; questa porzione verrà eseguita principalmente da Emilio, dato che ha una maggiore esperienza sulla programmazione.
+    \item \textbf{Progettazione design}; parte eseguita da Benedetta, che apprezza particolarmente questo ambito.
+    \item \textbf{Codifica design}; questa porzione verrà eseguita principalmente da Emilio, dato che ha una maggiore esperienza sulla programmazione.
     \item \textbf{Codifica parte logica} e \textbf{data base}; le quali verranno scritte sia da Benedetta e sia da Emilio.
 \end{itemize}
 
 \section{Standard, Linee guida, Procedure}
-
 Per la parte della stesura della documentazione si è scelto di utilizzare un tool molto utile nella scrittura di documenti professionali, \textit{LaTeX}. Scelta quasi obbligata, derivata dall'utilizzo di \textit{GitHub} insieme al programma di scrittura precedente \textit{Microsoft Word}; il quale ha causato difficoltà nei "merge" su \textit{GitHub}.\\
 
 Mentre, per la parte di \textit{codifica} abbiamo scelto di utilizzare lo standard definito da \textit{Java}\footnote{Standard di Java si possono trovare su questo \href{https://www.oracle.com/java/technologies/javase/codeconventions-contents.html}{\underline{sito}}}. In primo luogo perché l'IDE utilizzato per la parte di programmazione è \textit{Eclipse}, il quale fornisce strumenti per la formattazione e nominazione di metodi in modo automatico secondo gli standard di \textit{Java}; inoltre, non avendo entrambi molta esperienza ci è venuto comodo utilizzare uno dei pochi standard di codificha che conosciamo.\\
@@ -125,7 +125,7 @@ In particolare abbiamo evidenziato quattro qualità che il sistema dovrà possed
 I moduli presenti in questo progetto, come già anticipato parzialmente nella sezione \ref{sez: organizzazioneProgetto}, saranno:
 \begin{itemize}
     \item \textbf{Documentazione}
-    \item \textbf{Codifica desing}
+    \item \textbf{Codifica design}
     \item \textbf{Codifica parte logica}
     \item \textbf{Codifica data base}
 \end{itemize}
@@ -178,7 +178,7 @@ Per quanto riguarda i metodi di consegna si dovrà condividere con il professore
 \subsection{Obiettivo}
 L'obiettivo di questa applicazione sarà quello di diminuire i tempi di ordinazione aiutando  il personale in sala con la gestione delle comande.
 \subsection{Scopo}
-Questa applicazione principalmente dovrà prendere ordinazioni e calcolare l'importo totale. Avere una organizzazione dei tavoli sapendo in qualsiasi momento lo stato di essi. avendo anche la possibilità (ad inizio o fine giornata) di modificare tutti i servizi che dispone per una maggiore organizzazione ai futuri cambiamenti che il ristorante adotterà all'interno di esso (es aggiunta di tavoli, di menù , ecc.)
+Questa applicazione principalmente dovrà prendere ordinazioni e calcolare l'importo totale. Avere una organizzazione dei tavoli sapendo in qualsiasi momento lo stato di essi. Avendo anche la possibilità (a inizio o fine giornata) di modificare tutti i servizi che dispone per una maggiore organizzazione ai futuri cambiamenti che il ristorante adotterà all'interno di esso (es aggiunta di tavoli, di menù, ecc.)
 \subsection{Definizione del dizionario}
 \begin{itemize}
     \item \textbf{Componenti}: sono sezioni di menù nei quali, al loro interno, contengono le diverse pietanze per quella specifica componente. Ad esempio: la pietanza “spaghetti alla carbonara” si trova all'interno della componente “primi”.
@@ -187,7 +187,7 @@ Questa applicazione principalmente dovrà prendere ordinazioni e calcolare l'imp
 \end{itemize}
 \section{Descrizione Globale Del Sistema}
 \subsection{Funzioni del prodotto}
-In questa sezione descriviamo le funzioni che gli utenti potranno fare:
+In questa sezione descriviamo le funzioni che gli utenti potranno fare [Use case diagram a figura: \ref{fig: useCase}]:
 \begin{enumerate}
 
 
@@ -200,13 +200,16 @@ In questa sezione descriviamo le funzioni che gli utenti potranno fare:
           \begin{itemize}
               \item \textbf{Modificare la sala}: la modifica della sala comprende operazioni di modifica dei nomi e posti a sedere, l'eliminazione e l'aggiunta dei tavoli.
               \item \textbf{Modifiche piatti e componenti}: Questa funzione servirà a modificare, aggiungere ed eliminare componenti e piatti:
-              \item \textbf{Piatti}: si considereranno modifiche sia sul nome sia sul prezzo
-              \item \textbf{Componenti}: Modifica del nome della componente
+              \begin{itemize}
+                \item \textbf{Piatti}: si considereranno modifiche sia sul nome sia sul prezzo
+                \item \textbf{Componenti}: Modifica del nome della componente 
+              \end{itemize}
               \item \textbf{Modificare il prezzo del coperto}: si potrà modificare il prezzo che si desidererà per il coperto.
           \end{itemize}
 \end{enumerate}
+
 \subsection{Caratteristiche dell'utente}
-Gli utenti saranno il cameriere e il caposala, i quali potranno accedere all'applicazione per assegnare tavoli, prendere ordinazioni e cambiare stato del tavolo. Solo il caposala, inoltre, potrà accedere alla sezioni delle impostazioni, nella quale potrà modificare la quantità dei tavoli, delle componenti, dei piatti e il costo del coperto.
+Gli utenti saranno il cameriere e il caposala, i quali potranno accedere all'applicazione per assegnare tavoli, prendere ordinazioni e cambiare stato del tavolo. Solo il caposala, inoltre, potrà accedere alle sezioni delle impostazioni, nella quale potrà modificare la quantità dei tavoli, delle componenti, dei piatti e il costo del coperto.
 
 \subsection{Vincoli}
 Di seguito elenchiamo i vincoli che dovranno esserci:
@@ -220,41 +223,128 @@ Di seguito elenchiamo i vincoli che dovranno esserci:
 \section{Requisiti specifici}
 \subsection{Requisiti Interfacce utente}
 \subsubsection{Generale}
-All'apertura si ha un interfaccia scorrevole con le diverse icone dei tavoli, con il nome e il numero dei posti del tavolo. Il tavolo è colorato di rosso se è occupato, di verde se è libero e di arancione se deve essere pulito.
+All'apertura si ha un interfaccia scorrevole con le diverse icone dei tavoli [Figure: \ref{vistaTavoli} idealizzazione della grafia, \ref{UML: SM-grafica} state machine], con il nome e il numero dei posti del tavolo. Il tavolo è colorato di rosso se è occupato, di verde se è libero e di arancione se deve essere pulito.
 In ogni schermata rimane sempre: in alto a destra i pulsanti “Impostazioni” e “Chiudi”, in alto a sinistra un pulsante “Tavoli” per ritornare alla pagina principale dei tavoli.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.5 \linewidth]{../Documentazione/Drawio/VistaTavoli.png}
+    \caption{Vista dei Tavoli}
+    \label{vistaTavoli}
+\end{figure}
+
 \subsubsection{Colorazione Tavoli}
-Se il tavolo è verde, il cameriere potrà schiacciarlo dove si aprirà una schermata pop-up in cui inserisce il numero di coperti (quindi ci sarà un pulsante in cui c'è il numero al centro, in basso il “+” e in alto il “-”; si può aggiungere il numero dei coperti finché non si raggiunge il numero dei posti massimi selezionati per quel tavolo) e salvandolo tramite il pulsante “salva” il tavolo diventa rosso. Mentre se il tavolo che ha schiacciato era arancione si aprirà una schermata pop-up dove ci sarà un tasto con su scritto “pulito”, che se schiacciato il tavolo diventerà da arancione a verde. Al momento che le persone hanno pagato il cameriere clicca nel loro tavolo rosso e ci sarà in basso a sinistra, in fondo al resoconto delle loro ordinazioni, un pulsante con su scritto “pagato” e quando questo viene schiacciato il tavolo diventa da rosso ad arancione.
+Se il tavolo è verde, il cameriere potrà schiacciarlo dove si aprirà una schermata pop-up in cui inserisce il numero di coperti, saranno due pulsanti e in messo un numero, in basso il “+” e in alto il “-”, salvandolo tramite il pulsante “salva” il tavolo diventa rosso [Figura: \ref{UML: SM-GraficaCoperto} state machine].
+
+Mentre se il tavolo che si è schiacciato è arancione si aprirà una schermata pop-up dove ci sarà un tasto con su scritto “pulito”, che se schiacciato il tavolo diventerà da arancione a verde.
+
+Al momento che le persone hanno pagato, il cameriere cliccherà, nel loro tavolo, il pulsante pagato (nella sezione ordinazione, figura: \ref{Ordinazione}). Allora il tavolo diventa da rosso ad arancione [Figura: \ref{UML: SM-Tavolo} state machine tavolo].
 \subsubsection{Ordinazione}
-Per i tavoli rossi, la schermata sarà divisa in due, dove la colonna a sinistra sarà molto più stretta rispetto a quella di destra.
+Per i tavoli rossi, la schermata sarà divisa in due, dove la colonna a sinistra sarà molto più stretta rispetto a quella di destra [Figure: \ref{Ordinazione} idealizzazione grafica, \ref{UML: SM-GraficaOrdinazioni} state machine].
+\medskip
+\\Nella colonna di destra ci sarà la sezione del menù con relativa aggiunta dei piatti; questa colonna sarà a sua volta divisa in due righe, di cui quella in alto sarà molto più grande (circa 90\%) rispetto a quella in basso (circa 10\%). Quella di sopra sarà dedicata alla selezione dei menù, mentre quella di sotto è fissa ed è la sezione dei commenti.
 
-Nella colonna di destra ci sarà tutta la sezione del menù con relativa aggiunta dei piatti; questa colonna di destra sarà a sua volta divisa in due, ma in due righe di cui quella in alto sarà molto più grande (circa 90\%) rispetto a quella in basso (circa 10\%) dato che quella di sopra sarà dedicata alle selezione dei menù, mentre quella di sotto è fissa ed è la sezione dei commenti.
+Il menù avrà diversi pulsanti le componenti (figura: \ref{Ordinazione} in alto a destra). A seconda della componente selezionata si visualizzano i diversi piatti con i relativi prezzi. Dopo la selezione del piatto, a cui si può aggiungere un commento, si dovrà dar l'invio con il pulsante “Aggiungi”  il quale si troverà accanto alla sezione commenti.
+\medskip
+\\Schiacciato il tasto "aggiungi" il piatto apparirà nella colonna dei \textit{piatti in ordinazione} (figura: \ref{Ordinazione} in alto a sinistra) e accanto al nome del piatto avrà i pulsanti “+” e ”$-$”, per aggiungere o diminuire la portata (se il cliente ha cambiato idea e non vuole più un piatto)[Figura: \ref{PiattoOrdinato}]. Il tasto “pagato” (figura: \ref{Ordinazione} in basso a sinistra) nel momento in cui si sta prendendo le ordinazioni non sarà possibile azionarlo, visto che questo tasto si potrà schiacciare dopo che tutte le ordinazioni siano state inviate tramite il pulsante “invia”.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 0.5 \linewidth]{../Documentazione/Drawio/PiattoOrdinato.png}
+    \caption{Vista Piatto Ordinato}
+    \label{PiattoOrdinato}
+\end{figure}
 
-Il menù (la seconda colonna in alto dei tavoli rossi) avrà diversi pulsanti in alto con le sue diverse componenti. A seconda della componente selezionata si visualizzano i diversi piatti con i relativi prezzi. Esempio: il cameriere prendendo le ordinazioni va sui primi, quindi schiaccia il tasto in alto “primi” e gli compaiono tutti i piatti che potranno scorrere, dopo seleziona il piatto richiesto dal cliente a cui può aggiungere un commento e poi schiaccia il un tasto con scritto “aggiungi” che sarà accanto alla sezione commenti, schiacciando il tasto aggiungi il piatto apparirà nella colonna di sinistra e accanto al nome del piatto avrà i pulsanti “+” e ”$-$” per aggiungere o diminuire la portata (se il cliente ha cambiato idea e non vuole più un piatto, basta diminuire la porzione di quel piatto e farlo diventare a zero, così una volta inviato l'ordine quel piatto non apparirà). Il tasto “pagato” nel momento in cui si sta prendendo le ordinazioni non sarà possibile azionarlo, visto che questo tasto si potrà schiacciare dopo che tutte le ordinazioni fatte siano state inviate tramite il pulsante “invia”; una volta che gli ordini sono stati inviati non apparirà più la modifica dei “+”/$-$”, ma solo il loro costo accanto al nome del piatto ordinato (esempio: se hanno ordinato due piatti dello stesso tipo, quindi il cameriere avrà schiacciato il tastino +, una volta schiacciato il pulsante “invia” si avrà nel resoconto il nome del piatto con accanto la scritta “x2” e il prezzo accanto sarà il prezzo del singolo piatto moltiplicato per 2). Il tasto invia non sarà disponibile se non ci sono stati aggiunte all'ordine (quindi: se al momento che il cameriere chiede se vogliono i dolci e nessuno li vuole il tasto invia non è disponibile dato che non c'è stata una aggiunta all'ordine, invece il tasto “pagato” sarà disponibile visto che non hanno ordinato nulla d'altro). In conclusione o è attivo il pulsante “invia” o è attivo il pulsante “pagato”.
+Una volta inviato gli ordini si potranno vedere i piatti inviati nella sezione "resoconto"(figura: \ref{Ordinazione} in basso a sinistra). Inoltre, il tasto invia non sarà disponibile se non ci sono stati aggiunte all'ordine. In conclusione o è attivo il pulsante “invia” o è attivo il pulsante “pagato”.
 
-Quando i singoli piatti vengono inviati, nel resoconto, oltre alle quantità si avrà anche il commento se inserito.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 0.7 \linewidth]{../Documentazione/Drawio/Ordinazione.png}
+    \caption{Vista delle ordinazioni}
+    \label{Ordinazione}
+\end{figure}
 
-La colonna di sinistra sarà divisa in due righe, inizialmente quella relativa al resoconto (in basso) avrà solo il costo dei coperti con il relativo totale. Man mano che ci saranno aggiunte, le ordinazioni appariranno nella sezione di ordinazione in corso (in alto) con la possibilità di aumentare o diminuire le porzioni. Per concludere le ordinazioni il cameriere dovrà schiacciare il tasto “invia” che sarà sotto alla sezione di ordinazioni in corso. Quando il cameriere tornerà allo stesso tavolo per fare ulteriori ordinazioni, la colonna di sinistra avrà in alto nulla e in basso il resoconto dei piatti ordinati in precedenza col relativo prezzo, sotto ai piatti ordinati il totale in grassetto e sotto al totale il tasto “pagato” attivo. Questi piatti essendo stati inviati in precedenza non possono più essere modificati. Se il cameriere la prima volta che è andato a prendere le ordinazioni ha cancellato un piatto ordinato (quindi dopo averlo selezionato e aggiunto alla colonna di sinistra ha diminuito la quantità del piatto a zero) questo non risulta nel resoconto. Se i clienti vorranno prendere altre ordinazioni, il cameriere, come per la prima ordinazione, seleziona i piatti richiesti e questi, una volta aggiunti, appariranno a partire dall'alto nella sezione delle ordinazioni in corso con la possibilità, per ognuno di questi nuovi piatti aggiunti all'ordinazione, di aumentare e diminuire le porzioni; ma una volta inserite nuove ordinazioni, non sarà più attivo il pulsante “pagato”, ma sarà attivo il pulsante “invia”.
+Se le pietanze ordinate sono tante, le parti di sinistra, quella alta e bassa, potranno scorrere e con esse i relativi pulsanti, “pagato” e "invia" (quindi per schiacciarli bisognerà scorrere fino in fondo, tale da visualizzare tutti gli ordini).
 
-Se le pietanze che sono state ordinate sono tante, la parte di sinistra può scorrere anche in giù e il pulsante “pagato” sarà comunque sotto il totale, come il tasto “invia” che sarà comunque sotto a tutti i piatti appena aggiunti (quindi per schiacciarli bisognerà scorrere così per non fare sbagli se si schiaccia male).
 \subsubsection{Impostazioni}
-Al click del pulsante impostazioni comparirà una schermata pop-up per effettuare il login (credenziali solo per i caposala), se le credenziali saranno corrette verrà aperta la sezione delle impostazioni.
+Al click del pulsante impostazioni comparirà una schermata pop-up per effettuare il login[Figura: \ref{Log-in}], se le credenziali saranno corrette verrà aperta la sezione delle impostazioni.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.5 \linewidth]{../Documentazione/Drawio/VistaLog-in.png}
+    \caption{Vista Login}
+    \label{Log-in}
+\end{figure}
 
-Quando si aprirà la schermata delle impostazioni si avranno quindi varie sezioni. Una volta selezionata una sezione essa si amplierà.
+Quando si aprirà la schermata delle impostazioni si avranno quindi varie sezioni [Figura: \ref{impostazioni} idealizzazione grafia, \ref{UML: SM-GraficaImpostazioni} state machine]. Una volta selezionata una sezione essa si amplierà.
 
-La prima sezione sarà la sezione: “Tavoli”. Aperta questa sezione al centro si visualizzano tutti i tavoli colorati in base al loro stato, dei quali solo quelli verdi potranno essere selezionati, sopra questa schermata ci sarà una scritta che indicherà quale tavolo abbiamo selezionato, mentre in fondo avremo tre pulsanti “Aggiungi Tavolo”, “Modifica Tavolo” e “Elimina Tavolo” (gli ultimi due saranno attivi solo se un tavolo verrà selezionato).
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 0.45 \linewidth]{../Documentazione/Drawio/Impostazioni.png}
+    \caption{Vista delle impostazioni}
+    \label{impostazioni}
+\end{figure}
 
-Una volta cliccati i tasti Aggiungi/Modifica comparirà una schermata pop-up la quale chiederà il nome del tavolo e il numero di posti. Mentre, per il tasto elimina comparirà una schermata pop-up per la conferma dell'eliminazione.
+La prima sezione sarà la sezione: “\textit{Tavoli}”. Aperta questa sezione al centro si visualizzano tutti i tavoli colorati in base al loro stato, sopra questa schermata ci sarà una scritta che indicherà quale tavolo si è selezionato, mentre in fondo ci saranno tre pulsanti “\textit{Aggiungi}”, “\textit{Modifica}” e “\textit{Elimina}” [Figura: \ref{ImpostazioniTavolo}].
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.5 \linewidth]{../Documentazione/Drawio/ImpostazioniTavolo.png}
+    \caption{Vista delle impostazioni dei tavoli}
+    \label{ImpostazioniTavolo}
+\end{figure}
 
-Un'altra sezione sarà la sezione “Componenti”. Qui si può aggiungere una nuova componente dei menù che poi verrà aggiunta in alto a destra insieme alle altre; e si può anche modificare il nome di una componente (Esempio: invece che dire solo: secondo; dire secondo carne). Avremo due sezioni. In alto avremo la modifica/eliminazione delle componenti e in basso l'aggiunta delle componenti. Nella sezione in alto avremo tutte le componenti e dopo averne selezionato una la si potrà modificare, e poi salvare, oppure eliminarla. Inoltre ci sarà una tabella con la quale si potrà modificare l'ordine di visualizzazione delle componenti. Per la sezione aggiunta componenti avremo un campo in cui inseriremo il nuovo nome della componente, e sotto di esso, ci sarà un pulsante di conferma (attivo solo se il campo non è vuoto)
-Un'altra sezione sarà la sezione “Piatti”. La quale tramite un selettore potremmo indicare quale componente visualizzare, e sotto di esso ci sarà una lista contenente tutti i piatti, della componente con i relativi prezzi. Sotto la lista ci saranno tre pulsanti “Aggiungi”, “Modifica” e “Elimina” di cui gli ultimi due saranno attivi solo se un piatto verrà selezionato.
+Una volta cliccato il tasto Aggiungi o Modifica comparirà una schermata pop-up la quale chiederà il nome del tavolo e il numero di posti. Mentre, per il tasto elimina comparirà una schermata pop-up per la conferma dell'eliminazione.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 0.8 \linewidth]{../Documentazione/Drawio/AggiungiEliminaTavolo.png}
+    \caption{Pop-up impostazioni tavolo}
+    \label{AggiungiEliminaTavolo}
+\end{figure}
+
+Un'altra sezione sarà quella dedicata alle “Componenti” [Figura: \ref{ImpostazioniComponenti}]. Si avranno tre sezioni, In alto modifica/eliminazione, al centro la riordinazione mentre in basso l'aggiunta.
+\begin{enumerate}
+    \item Nella sezione in alto avremo tutte le componenti, dopo averne selezionato una la si potrà modificare, tramite il pulsante "salva" si conferma la modifica, oppure eliminare, tramite il pulsante "elimina".
+    \item Nella parte centrale ci sarà una tabella con la quale si potrà modificare l'ordine di visualizzazione delle componenti.
+    \item Mentre per la sezione aggiunta componenti avremo un campo in cui inseriremo il nuovo nome della componente, e sotto di esso, ci sarà un pulsante di conferma.
+
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.6 \linewidth]{../Documentazione/Drawio/ImpostazioniComponenti.png}
+    \caption{Impostazioni componenti}
+    \label{ImpostazioniComponenti}
+\end{figure}
+
+Un'altra sezione sarà la sezione “Piatti” [Figura: \ref{ImpostazioniPiatti}]. La quale tramite un selettore potremmo indicare quale componente visualizzare, e sotto di esso ci sarà una lista contenente tutti i piatti, con i relativi prezzi. Sotto ci saranno tre pulsanti: “Aggiungi”, “Modifica” e “Elimina”.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.6 \linewidth]{../Documentazione/Drawio/ImpostazioniPiatti.png}
+    \caption{Impostazioni Piatti}
+    \label{ImpostazioniPiatti}
+\end{figure}
 
 Al click del pulsante “Elimina” comparirà una schermata pop-up nella quale chiederà la conferma dell'operazione. Mentre per i pulsanti “Aggiungi” e “Modifica” comparirà una schermata pop-up nella quale si potrà aggiungere il nome e il prezzo del piatto (in caso di modifica il nome e il prezzo visualizzati saranno quelli del piatto selezionato, nell'altro caso saranno vuoti).
 
-Infine l'ultima piccola sezione è quella del “Modifica coperto”. Se schiacciata non apparirà una schermata come per le altre, ma si aprirà solo una schermata pop-up nella quale si inserirà il valore che si vuole e sotto si avranno i pulsanti “annulla” a sinistra e “conferma” a destra.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.8 \linewidth]{../Documentazione/Drawio/AggiungiEliminaPiatto.png}
+    \caption{Pop-up impostazioni piatti}
+    \label{PopupPiatti}
+\end{figure}
+
+Infine l'ultima piccola sezione è: “Modifica coperto” [Figura: \ref{PopupCoperto}]. Se schiacciata non apparirà una schermata come per le altre, ma si aprirà una schermata pop-up, nella quale si inserirà il nuovo valore che si confermerà tramite il pulsante "conferma", inoltre ci sarà anche il pulsante "annulla".
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.4 \linewidth]{../Documentazione/Drawio/ModificaCoperto.png}
+    \caption{Pop-up Modifica Coperto}
+    \label{PopupCoperto}
+\end{figure}
+
 
 \section{MoSCoW}
 \subsubsection{Must have}
-ordinazioni ai tavoli e la gestione degli stati dei tavoli
+Ordinazioni ai tavoli e la gestione degli stati dei tavoli.
 \subsubsection{Should have}
 Impostazioni, quindi modifiche: dei tavoli, delle componenti, dei piatti e del coperto.
 \subsubsection{Could have}
@@ -262,11 +352,106 @@ Login caposala
 \subsubsection{Won't have}
 Gestione della concorrenza nella sezione impostazioni e nelle ordinazioni dei singoli tavoli
 
-% \begin{figure}[ht]
-%     \centering
-%     \includegraphics[width=1\linewidth]{../../UML/Diagrammi/Use_Case_Diagram.png}
-%     \caption{Use Case Diagram}
-%     \label{fig: use_case_diagram}
-% \end{figure}
+\chapter{Diagrammi UML}
+Di seguito riportiamo i grafici UML.
+\section{State Machine}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width =0.6 \linewidth]{../UML/DrawIo/StateMachine/StateMachine-Tavolo.jpg}
+    \caption{State machine tavolo}
+    \label{UML: SM-Tavolo}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width =0.4 \linewidth]{../UML/DrawIo/StateMachine/StateMachine-GraficaCoperto.jpg}
+    \caption{State machine grafica selezione del coperto}
+    \label{UML: SM-GraficaCoperto}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width =1 \linewidth]{../UML/DrawIo/StateMachine/StateMachine-Grafica.jpg}
+    \caption{State machine grafica}
+    \label{UML: SM-grafica}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width =0.8 \linewidth]{../UML/DrawIo/StateMachine/StateMachine-GraficaOrdinazioni.jpg}
+    \caption{State machine grafica ordinazioni}
+    \label{UML: SM-GraficaOrdinazioni}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width =1 \linewidth]{../UML/DrawIo/StateMachine/StateMachine-GraficaImpostazioni.jpg}
+    \caption{State machine grafica impostazioni}
+    \label{UML: SM-GraficaImpostazioni}
+\end{figure}
+
+\newpage
+
+\section{Casi D'Uso}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 1 \linewidth]{../UML/Diagrammi/Use_Case_Diagram.png}
+    \caption{Use Case Diagram}
+    \label{fig: useCase}
+\end{figure}
+
+\newpage
+
+\section{Diagrammi di Sequenza}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width =0.9 \linewidth]{../UML/DrawIo/Sequence/Diagramme delle Sequenze-Ordinazione.jpg}
+    \caption{Diagramma delle sequenze ordinazione}
+    \label{UM: S-ordinazione}
+\end{figure}
+
+\newpage
+
+\section{Diagrammi delle Attività}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width =0.9 \linewidth]{../UML/DrawIo/Activity/Activity-ArrivoClienti.jpg}
+    \caption{Diagramma attività arrivo clienti}
+    \label{UM: A-ArrivoClienti}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width =0.9 \linewidth]{../UML/DrawIo/Activity/Activity-Ordinazioni.jpg}
+    \caption{Diagramma attività ordinazioni}
+    \label{UM: A-Ordinazioni}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width =0.9 \linewidth]{../UML/DrawIo/Activity/Activity-ImpostazioniTavolo.jpg}
+    \caption{Diagramma attività impostazioni tavolo}
+    \label{UM: A-ImpostazioniTavolo}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width =0.9 \linewidth]{../UML/DrawIo/Activity/Activity-ImpostazioniComponenti.jpg}
+    \caption{Diagramma attività impostazioni componenti}
+    \label{UM: A-ImpostazioniComponenti}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width =1 \linewidth]{../UML/DrawIo/Activity/Activity-ImpostazioniPiatti.jpg}
+    \caption{Diagramma attività impostazioni piatti}
+    \label{UM: A-ImpostazioniPiatti}
+\end{figure}
+
+
+\newpage
+
+\section{Diagramma ER}
+Di seguito riportiamo il diagramma ER per il data base
+\begin{figure}[h]
+    \centering
+    \includegraphics[width =0.99 \linewidth]{../Diagrammi Data Base/DiagrammaER.jpg}
+    \caption{Diagramma ER}
+    \label{DB: ER}
+\end{figure}
+
 
 \end{document}

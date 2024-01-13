@@ -27,3 +27,7 @@ readMe
 issue
 miss-click
 miss-click
+Machine
+machine
+diagram
+Diagram
