@@ -5,12 +5,12 @@
 \contentsline {section}{\numberline {1.2}Modello di Processo}{5}{section.1.2}%
 \contentsline {section}{\numberline {1.3}Organizzazione del Progetto}{6}{section.1.3}%
 \contentsline {section}{\numberline {1.4}Standard, Linee guida, Procedure}{7}{section.1.4}%
-\contentsline {section}{\numberline {1.5}Attività di Gestione}{7}{section.1.5}%
+\contentsline {section}{\numberline {1.5}Attività di Gestione}{8}{section.1.5}%
 \contentsline {section}{\numberline {1.6}Rischi}{8}{section.1.6}%
 \contentsline {section}{\numberline {1.7}Personale}{8}{section.1.7}%
 \contentsline {section}{\numberline {1.8}Metodi e Tecniche}{8}{section.1.8}%
 \contentsline {section}{\numberline {1.9}Garanzia e Qualità}{9}{section.1.9}%
-\contentsline {section}{\numberline {1.10}Workpackages}{10}{section.1.10}%
+\contentsline {section}{\numberline {1.10}Workpackages}{9}{section.1.10}%
 \contentsline {section}{\numberline {1.11}Risorse}{10}{section.1.11}%
 \contentsline {section}{\numberline {1.12}Budget}{11}{section.1.12}%
 \contentsline {section}{\numberline {1.13}Cambiamenti}{11}{section.1.13}%
@@ -41,3 +41,4 @@
 \contentsline {section}{\numberline {3.3}Diagrammi di Sequenza}{27}{section.3.3}%
 \contentsline {section}{\numberline {3.4}Diagrammi delle Attività}{28}{section.3.4}%
 \contentsline {section}{\numberline {3.5}Diagramma ER}{31}{section.3.5}%
+\contentsline {chapter}{\numberline {4}Analisi Parametri Codice}{33}{chapter.4}%

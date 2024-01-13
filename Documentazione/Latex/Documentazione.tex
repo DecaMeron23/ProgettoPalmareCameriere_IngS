@@ -25,7 +25,7 @@
 
 Questo progetto verrà svolto da Benedetta Vitale ed Emilio Meroni, entrambi studenti al terzo anno d'ingegneria informatica presso l'università di Bergamo.\\
 
-Il software che andremo a sviluppare è pensato per dare supporto
+Il software che andremo a sviluppare(versione desktop) è pensato per dare supporto
 all'attività di ristorazione. In particolare, dovrà assistere alle mansioni dei camerieri, come ad esempio: prendere le ordinazioni, redigere il conto, trovare i tavoli disponibili, ecc.\\
 
 Abbiamo scelto questa tipologia di sistema dato che Emilio lavora, nei week-end, presso un ristorante, e gli ha incuriosito la gestione interna tramite l'utilizzo dei palmari da parte dei camerieri.
@@ -35,7 +35,7 @@ Abbiamo scelto questa tipologia di sistema dato che Emilio lavora, nei week-end,
 
 \section{Modello di Processo}
 
-Il modello di processo che seguiremo è quello della prototipazione, in particolare la prototipazione evolutiva [Figura: \ref{fig: modello_processo_evolutivo}]. Questo processo è molto utile per quanto riguarda la costruzione dell'interfaccia grafica, dato che ci aiuterà a costruire più velocemente la GUI finale, tramite diversi prototipi d'interfacce utente. La parte principale della nostra applicazione, infatti, sarà la grafica.
+Il modello di processo che seguiremo è quello della prototipazione, in particolare la prototipazione evolutiva [Figura: \ref{fig: modello_processo_evolutivo}], nella quale si pensa di utilizzare circa dalle 4 alle 8 ore per effettuare un "giro". Questo processo è molto utile per quanto riguarda la costruzione dell'interfaccia grafica, dato che ci aiuterà a costruire più velocemente la GUI finale, tramite diversi prototipi d'interfacce utente. La parte principale della nostra applicazione, infatti, sarà la grafica.
 
 \begin{figure}[h]
     \centering
@@ -91,7 +91,7 @@ Il numero di persone che lavoreranno a questo progetto sarà molto ristretto, ne
     \item Benedetta Vitale
     \item Emilio Meroni
 \end{itemize}
-I quali participeranno in modo equo a quasi tutte le attività. Si è deciso che si lavorerà spesso in coppia, in particolar modo sulla parte di programmazione della GUI, dato che la parte grafica su \textit{Java} non è mai stata approfondita da entrambe le parti, e questo progetto ha una parte di grafica molto importante.
+I quali parteciperanno in modo equo a quasi tutte le attività. Si è deciso che si lavorerà spesso in coppia, in particolar modo sulla parte di programmazione della GUI, dato che la parte grafica su \textit{Java} non è mai stata approfondita da entrambe le parti, e questo progetto ha una parte di grafica molto importante.
 
 
 \section{Metodi e Tecniche}
@@ -452,6 +452,29 @@ Di seguito riportiamo il diagramma ER per il data base
     \caption{Diagramma ER}
     \label{DB: ER}
 \end{figure}
+
+
+\chapter{Analisi Parametri Codice}
+In questo capitolo ci occuperemo dello studio di alcuni parametri estratti grazie all'utilizzo del tool "CodeMR". Di seguito presenteremo 4 diversi parametri e li discuteremo, utilizzeremo la figura \ref{fig: graficiParametri} come riferimento. 
+\subsubsection*{WMC: Weighted Method Count}
+"Conteggio Ponderato dei Metodi" questo parametro rappresenta la complessità di McCabe di una classe, esso è la somma ponderata dei diversi metodi in una classe, per esempio: \textit{se consideriamo tutti i metodi di una classe a complessità pari a 1 allora WMC sarà pari alla somma dei metodi}.\\
+Nel nostro caso abbiamo che il 50\% ha un valore basso, il 36\% medio-basso e il restante, in particolare la classe "DataService" medio-alto, quest'ultima, infatti, è la classe principale per l'estrazione, inserimento, modifiche ed eliminazione dei dati dal data base.
+\subsubsection*{Coupling}
+Il secondo parametro che analizzeremo è l'accoppiamento. Quindi quanto una classe viene utilizzata al di fuori del proprio pacchetto. Nella maggior parte dei casi si ha un basso accoppiamento eccetto per una classe (sempre "DataService") la quale viene utilizzata molto dal modulo di presentazione, dato che serve per estrarre le informazioni dal data base.
+\subsubsection*{Lack of Cohesion}
+Un altro parametro è la "Mancanza di Coesione", in particolare se si ha \textit{alta} coesione (utilizzo di una all'interno del proprio pacchetto) si avrà una \textit{bassa} mancanza di coesione.
+Si può osservare che i parametri sono maggiormente di bassa/media-bassa, fattore molto buono il quale potrebbe indicare: robustezza, affidabilità e ri-utilizzabilità.
+\subsubsection*{Size}
+Quest'ultimo parametro rappresenta le dimensioni di ciascuna classe, si può osservare dal grafico che maggiormente tutte le classi hanno una dimensione media-bassa, con il solo 9\% media-alta dimensione.
+
+\begin{figure}
+    \centering
+    \includegraphics[width = 0.8 \linewidth]{Complessità.png}
+    \caption{Grafici a torta dei diversi parametri}
+    \label{fig: graficiParametri}
+\end{figure}
+
+
 
 
 \end{document}
