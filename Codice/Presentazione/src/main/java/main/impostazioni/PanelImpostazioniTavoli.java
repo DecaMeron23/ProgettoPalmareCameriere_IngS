@@ -242,7 +242,7 @@ class PanelImpostazioniTavoli extends JPanel {
 				public void actionPerformed(ActionEvent e) {
 					JDialog frame = (JDialog) SwingUtilities.getWindowAncestor((JButton) e.getSource());
 					frame.dispose();
-
+					enableFrame(true);
 					try {
 						Logico.eliminaTavolo(tavoloSelezionato);
 					} catch (Exception ex) {
@@ -258,6 +258,7 @@ class PanelImpostazioniTavoli extends JPanel {
 				public void actionPerformed(ActionEvent e) {
 					JDialog frame = (JDialog) SwingUtilities.getWindowAncestor((JButton) e.getSource());
 					frame.dispose();
+					enableFrame(true);
 				}
 			};
 

@@ -35,13 +35,13 @@ class FrameSelezioneCoperti extends JDialog {
 
 	/** The main frame. */
 	private MainFrame mainFrame;
-	
+
 	/**
 	 * Instantiates a new frame selezione coperti.
 	 *
-	 * @param t il tavolo a cui fa riferimento il frame
-	 * @param close il listener del frame
-	 * @param mainFrame il main frame 
+	 * @param t         il tavolo a cui fa riferimento il frame
+	 * @param close     il listener del frame
+	 * @param mainFrame il main frame
 	 */
 	FrameSelezioneCoperti(Tavolo t, WindowAdapter close, MainFrame mainFrame) {
 		super();
@@ -79,13 +79,16 @@ class FrameSelezioneCoperti extends JDialog {
 				int coperti = Integer.parseInt(lblText.getText());
 				if (coperti > 1) {
 					coperti--;
-					btnPiu.setEnabled(true);
-				} else {
-					btnMeno.setEnabled(false);
-				}
+					if(coperti <= 1) {
+						btnMeno.setEnabled(false);
+						btnPiu.setEnabled(true);
+					}else {
+						btnMeno.setEnabled(true);
+						btnPiu.setEnabled(true);
+					}
 				lblText.setText("" + coperti);
 			}
-		});
+		}});
 
 		btnPiu.addActionListener(new ActionListener() {
 
@@ -94,13 +97,16 @@ class FrameSelezioneCoperti extends JDialog {
 				int coperti = Integer.parseInt(lblText.getText());
 				if (coperti < tavolo.getNumPostiMassimi()) {
 					coperti++;
-					btnMeno.setEnabled(true);
-				} else {
-					btnPiu.setEnabled(false);
-				}
+					if(coperti >= tavolo.getNumPostiMassimi()) {
+						btnPiu.setEnabled(false);
+						btnMeno.setEnabled(true);
+					}else {
+						btnPiu.setEnabled(true);
+						btnMeno.setEnabled(true);
+					}
 				lblText.setText("" + coperti);
 			}
-		});
+		}});
 
 		btnInvio.addActionListener(new ActionBtnInvio());
 
@@ -117,7 +123,7 @@ class FrameSelezioneCoperti extends JDialog {
 	/**
 	 * prendi il label in numero intero.
 	 *
-	 * @return  il valore in intero del testo all'interno del label 
+	 * @return il valore in intero del testo all'interno del label
 	 */
 	private int getIntLabel() {
 		return Integer.parseInt(lblText.getText());
@@ -137,7 +143,7 @@ class FrameSelezioneCoperti extends JDialog {
 		public void actionPerformed(ActionEvent e) {
 			int coperti = getIntLabel();
 			try {
-				Logico.occupaTavolo(tavolo , coperti);
+				Logico.occupaTavolo(tavolo, coperti);
 			} catch (Exception e1) {
 				System.err.println(e1.getMessage());
 			}
