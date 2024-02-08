@@ -47,3 +47,6 @@ replay_pid*
 
 # Overleaf
 .project
+
+#Video
+*.mp4
