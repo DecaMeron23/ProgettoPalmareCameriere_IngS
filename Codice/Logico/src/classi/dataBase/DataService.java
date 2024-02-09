@@ -190,7 +190,7 @@ public class DataService {
 		}
 
 		List<Ordine> listaOrdini = getOrdini(t);
-		ResocontoTavolo resocontoTavolo = Record2Class.resocontoTavolo(listaResoconti.get(0), listaOrdini);
+		ResocontoTavolo resocontoTavolo = Record2Class.resocontoTavolo(listaResoconti.get(0), listaOrdini , DataService.getPrezzoCoperto());
 		return resocontoTavolo;
 
 	}
