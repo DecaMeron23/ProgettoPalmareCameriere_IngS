@@ -52,10 +52,13 @@ class Record2Class {
 	}
 
 	/**
-	 * @param resocontoTavoloRecord il resoconto del tavolo record da trasformare
+	 * @param resocontoTavoloRecord il resoconto del tavolo in formato Record
+	 * @param listaOrdini la lista dei ordini
+	 * @param prezzoCoperto il prezzo attuale del coperto
 	 * @return il resoconto del tavolo
 	 */
-	public static ResocontoTavolo resocontoTavolo(ResocontoTavoloRecord resocontoTavoloRecord , List<Ordine> listaOrdini) {
+	public static ResocontoTavolo resocontoTavolo(ResocontoTavoloRecord resocontoTavoloRecord , List<Ordine> listaOrdini , double prezzoCoperto) {
+		ResocontoTavolo.setCoperto(prezzoCoperto);
 		return new ResocontoTavolo(resocontoTavoloRecord.getNumCoperti() , listaOrdini , resocontoTavoloRecord.getCounterOrdini());
 	}
 
