@@ -6,13 +6,18 @@ package classi.tavolo;
 import java.util.ArrayList;
 import java.util.List;
 
-import classi.dataBase.DataService;
 import classi.ordine.Ordine;
 
 /**
  * The Class Resoconto del Tavolo.
  */
 public class ResocontoTavolo {
+	
+	
+	/**
+	 * Prezzo del coperto
+	 */
+	private static double prezzoCoperto;
     
 	/** il numero dei coperti */
 	private int numCoperti;
@@ -72,7 +77,7 @@ public class ResocontoTavolo {
      * Aggiorna il prezzo totale.
      */
     private void aggiornaPrezzoTotale() {
-    	double prezzo = numCoperti * DataService.getPrezzoCoperto();
+    	double prezzo = numCoperti * prezzoCoperto;
     	for (Ordine ordine : listaOrdini) {
 			prezzo += ordine.getPrezzo_parziale();
 		}
@@ -109,5 +114,22 @@ public class ResocontoTavolo {
 	 */
 	public int getCounter() {
 		return counterOrdini;
+	}
+
+	
+	/**
+	 * Prende il prezzo del coperto
+	 */
+	public static double getCoperto() {
+		return prezzoCoperto;
+	}
+	
+	/**
+	 * Modifica il prezzo del coperto
+	 * 
+	 * @param coperto il prezzo del coperto
+	 */
+	public static void setCoperto(double coperto) {
+		prezzoCoperto = coperto;
 	}
 }
